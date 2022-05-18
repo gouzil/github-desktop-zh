@@ -12,7 +12,7 @@ This is a project to translate GitHub desktop into Chinese
 
 ## 这是一个什么项目？
 
-这是一个把github desktop翻译成中文的项目
+这是一个把github desktop翻译成中文的项目, 当前翻译版本[here](https://github.com/gouzil/github-desktop-zh/tree/releases/3.0.1-test7)
 
 ## Where can I get it?
 
