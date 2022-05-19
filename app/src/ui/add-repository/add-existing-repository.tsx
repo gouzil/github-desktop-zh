@@ -219,14 +219,14 @@ export class AddExistingRepository extends React.Component<
               placeholder="repository path"
               onValueChanged={this.onPathChanged}
             />
-            <Button onClick={this.showFilePicker}>Choose…</Button>
+            <Button onClick={this.showFilePicker}>选择…</Button>
           </Row>
           {this.renderWarning()}
         </DialogContent>
 
         <DialogFooter>
           <OkCancelButtonGroup
-            okButtonText={__DARWIN__ ? 'Add Repository' : 'Add repository'}
+            okButtonText={__DARWIN__ ? '添加存储库' : '添加存储库'}
             okButtonDisabled={disabled}
           />
         </DialogFooter>

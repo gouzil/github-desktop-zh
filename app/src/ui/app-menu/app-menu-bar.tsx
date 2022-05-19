@@ -162,7 +162,7 @@ export class AppMenuBar extends React.Component<
         id="app-menu-bar"
         ref={this.onMenuBarRef}
         role="menubar"
-        aria-label="Application menu"
+        aria-label="应用程序菜单"
       >
         {this.state.menuItems.map(this.renderMenuItem, this)}
       </div>
