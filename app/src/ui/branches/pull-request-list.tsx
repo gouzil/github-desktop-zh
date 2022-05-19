@@ -252,7 +252,7 @@ export class PullRequestList extends React.Component<
 
     this.props.dispatcher.closeFoldout(FoldoutType.Branch)
     const timer = startTimer(
-      'checkout pull request from list',
+      '从列表签出拉取请求',
       this.props.repository
     )
     this.props.dispatcher
@@ -279,7 +279,7 @@ export class PullRequestList extends React.Component<
   private renderListHeader = () => {
     return (
       <div className="filter-list-group-header">
-        Pull requests in {this.getRepositoryName()}
+        拉入请求 {this.getRepositoryName()}
       </div>
     )
   }
@@ -293,11 +293,11 @@ export class PullRequestList extends React.Component<
       <Button
         disabled={this.props.isLoadingPullRequests}
         onClick={this.onRefreshPullRequests}
-        tooltip="Refresh the list of pull requests"
+        tooltip="刷新拉取请求列表"
       >
         <Octicon
           symbol={syncClockwise}
-          className={this.props.isLoadingPullRequests ? 'spin' : undefined}
+          className={this.props.isLoadingPullRequests ? '加载中' : undefined}
         />
       </Button>
     )
@@ -315,7 +315,7 @@ export class PullRequestList extends React.Component<
 
 function getSubtitle(pr: PullRequest) {
   const timeAgo = formatRelative(pr.created.getTime() - Date.now())
-  return `#${pr.pullRequestNumber} opened ${timeAgo} by ${pr.author}`
+  return `#${pr.pullRequestNumber} 已打开 ${timeAgo} 通过 ${pr.author}`
 }
 
 function createListItems(
@@ -328,7 +328,7 @@ function createListItems(
   }))
 
   return {
-    identifier: 'pull-requests',
+    identifier: '拉取请求',
     items,
   }
 }

@@ -78,14 +78,14 @@ export class BranchListItem extends React.Component<
 
     if (onRenameBranch !== undefined) {
       items.push({
-        label: 'Rename…',
+        label: '重名…',
         action: () => onRenameBranch(name),
         enabled: isLocal,
       })
     }
 
     items.push({
-      label: __DARWIN__ ? 'Copy Branch Name' : 'Copy branch name',
+      label: __DARWIN__ ? '复制分支的名字' : '复制分支的名字',
       action: () => clipboard.writeText(name),
     })
 
@@ -93,7 +93,7 @@ export class BranchListItem extends React.Component<
 
     if (onDeleteBranch !== undefined) {
       items.push({
-        label: 'Delete…',
+        label: '删除…',
         action: () => onDeleteBranch(name),
       })
     }

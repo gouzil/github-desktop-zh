@@ -152,10 +152,12 @@ export function getClassNameForCheck(
 ): string {
   switch (check.conclusion) {
     case 'timed_out':
-      return 'timed-out'
+      // return 'timed-out'
+      return '断开'
     case 'action_required':
-      return 'action-required'
-    case 'failure':
+      // return 'action-required' //感觉这个会有问题
+      return '需要采取的行动'
+      case 'failure':
     case 'neutral':
     case 'success':
     case 'cancelled':
@@ -205,5 +207,5 @@ export function getRefCheckSummary(check: ICombinedRefCheck): string {
     0
   )
 
-  return `${successCount}/${check.checks.length} checks OK`
+  return `${successCount}/${check.checks.length} 检查好了`
 }
