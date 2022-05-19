@@ -139,8 +139,8 @@ export class AddExistingRepository extends React.Component<
         <Row className="warning-helper-text">
           <Octicon symbol={OcticonSymbol.alert} />
           <p>
-            This directory appears to be a bare repository. Bare repositories
-            are not currently supported.
+            该目录似乎是一个空的存储库。 
+            空的存储库目前不支持。
           </p>
         </Row>
       )
@@ -159,23 +159,22 @@ export class AddExistingRepository extends React.Component<
           <Octicon symbol={OcticonSymbol.alert} />
           <div>
             <p>
-              The Git repository
+              Git存储库
               {repositoryUnsafePath !== convertedPath && (
                 <>
                   {' at '}
                   <Ref>{repositoryUnsafePath}</Ref>
                 </>
               )}{' '}
-              appears to be owned by another user on your machine. Adding
-              untrusted repositories may automatically execute files in the
-              repository.
+              似乎属于您计算机上的其他用户。
+              正在添加不受信任的存储库可能会自动执行存储库文件。
             </p>
             <p>
-              If you trust the owner of the directory you can
+              如果您信任目录的所有者，则可以
               <LinkButton onClick={this.onTrustDirectory}>
-                add an exception for this directory
+                为这个目录添加一个例外
               </LinkButton>{' '}
-              in order to continue.
+              继续.
             </p>
           </div>
         </Row>
@@ -186,13 +185,13 @@ export class AddExistingRepository extends React.Component<
       <Row className="warning-helper-text">
         <Octicon symbol={OcticonSymbol.alert} />
         <p>
-          This directory does not appear to be a Git repository.
+          此目录似乎不是Git存储库.
           <br />
-          Would you like to{' '}
+            如果你想要{' '}
           <LinkButton onClick={this.onCreateRepositoryClicked}>
-            create a repository
+            创建存储库
           </LinkButton>{' '}
-          here instead?
+            在这里?
         </p>
       </Row>
     )
@@ -207,7 +206,7 @@ export class AddExistingRepository extends React.Component<
     return (
       <Dialog
         id="add-existing-repository"
-        title={__DARWIN__ ? 'Add Local Repository' : 'Add local repository'}
+        title={__DARWIN__ ? '添加本地存储库' : '添加本地存储库'}
         onSubmit={this.addRepository}
         onDismissed={this.props.onDismissed}
         loading={this.state.isTrustingRepository}
@@ -216,7 +215,7 @@ export class AddExistingRepository extends React.Component<
           <Row>
             <TextBox
               value={this.state.path}
-              label={__DARWIN__ ? 'Local Path' : 'Local path'}
+              label={__DARWIN__ ? '本地路径' : '本地路径'}
               placeholder="repository path"
               onValueChanged={this.onPathChanged}
             />

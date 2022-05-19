@@ -422,7 +422,7 @@ export class CreateRepository extends React.Component<
     return (
       <Row className="warning-helper-text">
         <Octicon symbol={OcticonSymbol.alert} />
-        Will be created as {sanitizedName}
+        将被创建为 {sanitizedName}
       </Row>
     )
   }
@@ -444,7 +444,7 @@ export class CreateRepository extends React.Component<
     return (
       <Row>
         <Select
-          label={__DARWIN__ ? 'Git Ignore' : 'Git ignore'}
+          label={__DARWIN__ ? 'Git忽略 (Git Ignore)' : 'Git忽略 (Git ignore)'}
           value={this.state.gitIgnore}
           onChange={this.onGitIgnoreChange}
         >
@@ -469,7 +469,7 @@ export class CreateRepository extends React.Component<
     return (
       <Row>
         <Select
-          label="License"
+          label="许可证(开源协议 License)"
           value={this.state.license}
           onChange={this.onLicenseChange}
         >
@@ -499,8 +499,8 @@ export class CreateRepository extends React.Component<
 
     return (
       <DialogError>
-        Directory could not be created at this path. You may not have
-        permissions to create a directory here.
+        无法在此路径创建目录。
+        你可能没有在这里创建目录的权限。
       </DialogError>
     )
   }
@@ -516,11 +516,11 @@ export class CreateRepository extends React.Component<
       <Row className="warning-helper-text">
         <Octicon symbol={OcticonSymbol.alert} />
         <p>
-          This directory appears to be a Git repository. Would you like to{' '}
+          这个目录看起来像是一个Git存储库. 你想要{' '}
           <LinkButton onClick={this.onAddRepositoryClicked}>
-            add this repository
+            添加这个存储库
           </LinkButton>{' '}
-          instead?
+          相反?
         </p>
       </Row>
     )
@@ -542,8 +542,8 @@ export class CreateRepository extends React.Component<
       <Row className="warning-helper-text">
         <Octicon symbol={OcticonSymbol.alert} />
         <p>
-          This directory contains a <Ref>README.md</Ref> file already. Checking
-          this box will result in the existing file being overwritten.
+          此目录包含 <Ref>README.md</Ref> 文件.
+          选中此框将导致覆盖现有文件.
         </p>
       </Row>
     )
@@ -576,7 +576,7 @@ export class CreateRepository extends React.Component<
       <Dialog
         id="create-repository"
         title={
-          __DARWIN__ ? 'Create a New Repository' : 'Create a new repository'
+          __DARWIN__ ? '创建一个新的存储库' : '创建一个新的存储库'
         }
         loading={this.state.creating}
         onSubmit={this.createRepository}
@@ -588,8 +588,8 @@ export class CreateRepository extends React.Component<
           <Row>
             <TextBox
               value={this.state.name}
-              label="Name"
-              placeholder="repository name"
+              label="名字"
+              placeholder="存储库名称"
               onValueChanged={this.onNameChanged}
             />
           </Row>
@@ -599,7 +599,7 @@ export class CreateRepository extends React.Component<
           <Row>
             <TextBox
               value={this.state.description}
-              label="Description"
+              label="描述"
               onValueChanged={this.onDescriptionChanged}
             />
           </Row>
@@ -607,8 +607,8 @@ export class CreateRepository extends React.Component<
           <Row>
             <TextBox
               value={this.state.path ?? ''}
-              label={__DARWIN__ ? 'Local Path' : 'Local path'}
-              placeholder="repository path"
+              label={__DARWIN__ ? '本地路径' : '本地路径'}
+              placeholder="存储库路径"
               onValueChanged={this.onPathChanged}
               disabled={readOnlyPath || loadingDefaultDir}
             />
@@ -616,7 +616,7 @@ export class CreateRepository extends React.Component<
               onClick={this.showFilePicker}
               disabled={readOnlyPath || loadingDefaultDir}
             >
-              Choose…
+              选择…
             </Button>
           </Row>
 
@@ -624,7 +624,7 @@ export class CreateRepository extends React.Component<
 
           <Row>
             <Checkbox
-              label="Initialize this repository with a README"
+              label="使用README初始化此存储库"
               value={
                 this.state.createWithReadme
                   ? CheckboxValue.On
@@ -642,7 +642,7 @@ export class CreateRepository extends React.Component<
         <DialogFooter>
           <OkCancelButtonGroup
             okButtonText={
-              __DARWIN__ ? 'Create Repository' : 'Create repository'
+              __DARWIN__ ? '创建存储库' : '创建存储库'
             }
             okButtonDisabled={disabled || loadingDefaultDir}
           />
