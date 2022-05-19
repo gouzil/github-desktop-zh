@@ -13,14 +13,14 @@ export function SuccessfulMerge({
   const message =
     theirBranch !== undefined ? (
       <span>
-        {'Successfully merged '}
+        {'已成功合并 '}
         <strong>{theirBranch}</strong>
         {' into '}
         <strong>{ourBranch}</strong>
       </span>
     ) : (
       <span>
-        {'Successfully merged into '}
+        {'已成功合并到 '}
         <strong>{ourBranch}</strong>
       </span>
     )

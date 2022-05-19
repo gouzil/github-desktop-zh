@@ -16,9 +16,9 @@ export class CherryPickUndone extends React.Component<
     const pluralized = countCherryPicked === 1 ? 'commit' : 'commits'
     return (
       <SuccessBanner timeout={5000} onDismissed={onDismissed}>
-        Cherry-pick undone. Successfully removed the {countCherryPicked}
+        废弃筛选. 已成功删除 {countCherryPicked}
         {' copied '}
-        {pluralized} from <strong>{targetBranchName}</strong>.
+        {pluralized} 来自 <strong>{targetBranchName}</strong>.
       </SuccessBanner>
     )
   }

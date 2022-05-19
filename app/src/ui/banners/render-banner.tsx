@@ -120,15 +120,15 @@ export function renderBanner(
         />
       )
     case BannerType.SquashUndone: {
-      const pluralized = banner.commitsCount === 1 ? 'commit' : 'commits'
+      const pluralized = banner.commitsCount === 1 ? '暂存区' : '暂存区'
       return (
         <SuccessBanner timeout={5000} onDismissed={onDismissed}>
-          Squash of {banner.commitsCount} {pluralized} undone.
+          取消 {banner.commitsCount} {pluralized} 未完成的.
         </SuccessBanner>
       )
     }
     case BannerType.SuccessfulReorder: {
-      const pluralized = banner.count === 1 ? 'commit' : 'commits'
+      const pluralized = banner.count === 1 ? '暂存区' : '暂存区'
 
       return (
         <SuccessBanner
@@ -137,16 +137,16 @@ export function renderBanner(
           onUndo={banner.onUndo}
         >
           <span>
-            Successfully reordered {banner.count} {pluralized}.
+            已成功重新排序 {banner.count} {pluralized}.
           </span>
         </SuccessBanner>
       )
     }
     case BannerType.ReorderUndone: {
-      const pluralized = banner.commitsCount === 1 ? 'commit' : 'commits'
+      const pluralized = banner.commitsCount === 1 ? '暂存区' : '暂存区'
       return (
         <SuccessBanner timeout={5000} onDismissed={onDismissed}>
-          Reorder of {banner.commitsCount} {pluralized} undone.
+          重新排序 {banner.commitsCount} {pluralized} 未完成的.
         </SuccessBanner>
       )
     }

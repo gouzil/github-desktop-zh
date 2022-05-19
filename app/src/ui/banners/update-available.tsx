@@ -57,10 +57,10 @@ export class UpdateAvailable extends React.Component<
             text={':tada:'}
             emoji={this.props.emoji}
           />
-          Exciting new features have been added{version}. See{' '}
-          <LinkButton onClick={this.showReleaseNotes}>what's new</LinkButton> or{' '}
+          添加了令人兴奋的新功能{version}. 看这里{' '}
+          <LinkButton onClick={this.showReleaseNotes}>新增功能</LinkButton> 或者{' '}
           <LinkButton onClick={this.dismissUpdateShowCaseVisibility}>
-            dismiss
+            不考虑
           </LinkButton>
           .
         </span>
@@ -69,10 +69,10 @@ export class UpdateAvailable extends React.Component<
 
     return (
       <span onSubmit={this.updateNow}>
-        An updated version of GitHub Desktop is available and will be installed
-        at the next launch. See{' '}
-        <LinkButton onClick={this.showReleaseNotes}>what's new</LinkButton> or{' '}
-        <LinkButton onClick={this.updateNow}>restart GitHub Desktop</LinkButton>
+        (有更新的话记得提醒我翻译哈)
+        已提供并将安装更新版本的GitHub Desktop在下次发布时. 看{' '}
+        <LinkButton onClick={this.showReleaseNotes}>新功能</LinkButton> 或者{' '}
+        <LinkButton onClick={this.updateNow}>重启 GitHub Desktop</LinkButton>
         .
       </span>
     )

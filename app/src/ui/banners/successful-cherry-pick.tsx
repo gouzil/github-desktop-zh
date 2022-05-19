@@ -16,12 +16,12 @@ export class SuccessfulCherryPick extends React.Component<
     const { countCherryPicked, onDismissed, onUndo, targetBranchName } =
       this.props
 
-    const pluralized = countCherryPicked === 1 ? 'commit' : 'commits'
+    const pluralized = countCherryPicked === 1 ? '暂存区' : '暂存区'
 
     return (
       <SuccessBanner timeout={15000} onDismissed={onDismissed} onUndo={onUndo}>
         <span>
-          Successfully copied {countCherryPicked} {pluralized} to{' '}
+          成功复制 {countCherryPicked} {pluralized} 到{' '}
           <strong>{targetBranchName}</strong>.
         </span>
       </SuccessBanner>
