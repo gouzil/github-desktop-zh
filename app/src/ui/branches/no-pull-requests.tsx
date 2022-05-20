@@ -48,7 +48,7 @@ export class NoPullRequests extends React.Component<INoPullRequestsProps, {}> {
     } else {
       return (
         <div>
-          <div className="title">你都准备好了!</div>
+          <div className="title">您都准备好了!</div>
           <div className="no-prs">
             没有打开的拉取(pull)请求 <Ref>{this.props.repositoryName}</Ref>
           </div>
@@ -69,17 +69,17 @@ export class NoPullRequests extends React.Component<INoPullRequestsProps, {}> {
     if (this.props.isOnDefaultBranch) {
       return (
         <div className="call-to-action">
-          你愿意{' '}
+          您愿意{' '}
           <LinkButton onClick={this.props.onCreateBranch}>
             创建一个新的分支
           </LinkButton>{' '}
-          继续你的下一个项目?
+          继续您的下一个项目?
         </div>
       )
     } else {
       return (
         <div className="call-to-action">
-          你愿意{' '}
+          您愿意{' '}
           <LinkButton onClick={this.props.onCreatePullRequest}>
             创建拉取请求
           </LinkButton>{' '}

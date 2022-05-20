@@ -500,7 +500,7 @@ export class CreateRepository extends React.Component<
     return (
       <DialogError>
         无法在此路径创建目录。
-        你可能没有在这里创建目录的权限。
+        您可能没有在这里创建目录的权限。
       </DialogError>
     )
   }
@@ -516,7 +516,7 @@ export class CreateRepository extends React.Component<
       <Row className="warning-helper-text">
         <Octicon symbol={OcticonSymbol.alert} />
         <p>
-          这个目录看起来像是一个Git存储库. 你想要{' '}
+          这个目录看起来像是一个Git存储库. 您想要{' '}
           <LinkButton onClick={this.onAddRepositoryClicked}>
             添加这个存储库
           </LinkButton>{' '}

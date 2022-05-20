@@ -23,7 +23,7 @@ export class OpenThankYouCard extends React.Component<
         <span onSubmit={this.props.onOpenCard}>
           Github Desktop团队非常感谢您的贡献.{' '}
           <LinkButton onClick={this.props.onOpenCard}>
-            打开你的卡片
+            打开您的卡片
           </LinkButton>{' '}
           <RichText
             className="thank-you-banner-emoji"

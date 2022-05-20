@@ -112,7 +112,7 @@ export class PushBranchCommits extends React.Component<
     return (
       <DialogContent>
         <p>
-          你有 {localCommits} 还没有被推送到远程仓库.
+          您有 {localCommits} 还没有被推送到远程仓库.
         </p>
         <p>
           要将更改推至{' '}

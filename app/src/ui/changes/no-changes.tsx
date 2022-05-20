@@ -393,7 +393,7 @@ export class NoChanges extends React.Component<
     const numChanges = stashEntry.files.files.length
     const description = (
       <>
-        你有 {numChanges} {numChanges === 1 ? '变化' : '变化'} 还没有提交的文件.
+        您有 {numChanges} {numChanges === 1 ? '变化' : '变化'} 还没有提交的文件.
       </>
     )
     const discoverabilityContent = (
@@ -449,8 +449,8 @@ export class NoChanges extends React.Component<
     return (
       <MenuBackedSuggestedAction
         key="publish-repository-action"
-        title="将你的仓库发布到GitHub"
-        description="此存储库目前仅在您的本地计算机上可用. 通过在GitHub上发布它, 你可以分享它, 并与他人合作."
+        title="将您的仓库发布到GitHub"
+        description="此存储库目前仅在您的本地计算机上可用. 通过在GitHub上发布它, 您可以分享它, 并与他人合作."
         discoverabilityContent={discoverabilityContent}
         buttonText="发布存储库"
         menuItemId={itemId}
@@ -482,7 +482,7 @@ export class NoChanges extends React.Component<
     const description = (
       <>
         当前分支 (<Ref>{tip.branch.name}</Ref>) 尚未发布
-        到远程仓库. 通过发布它 {isGitHub ? '到GitHub' : ''} 你可以分享, 
+        到远程仓库. 通过发布它 {isGitHub ? '到GitHub' : ''} 您可以分享, 
         {isGitHub ? '打开一个拉取请求, ' : ''}
         与他人合作.
       </>
@@ -599,7 +599,7 @@ export class NoChanges extends React.Component<
       )
     }
 
-    const description = `你有 ${itemsToPushDescriptions.join(
+    const description = `您有 ${itemsToPushDescriptions.join(
       ' and '
     )} 正在等待推送到 ${isGitHub ? 'GitHub' : '远程'}.`
 
@@ -640,7 +640,7 @@ export class NoChanges extends React.Component<
 
     const description = (
       <>
-        当前分支 (<Ref>{tip.branch.name}</Ref>) 已经发布到GitHub。创建一个拉取请求来提议和协作你的变更.
+        当前分支 (<Ref>{tip.branch.name}</Ref>) 已经发布到GitHub。创建一个拉取请求来提议和协作您的变更.
       </>
     )
 

@@ -187,7 +187,7 @@ export class AddExistingRepository extends React.Component<
         <p>
           此目录似乎不是Git存储库.
           <br />
-            如果你想要{' '}
+            如果您想要{' '}
           <LinkButton onClick={this.onCreateRepositoryClicked}>
             创建存储库
           </LinkButton>{' '}

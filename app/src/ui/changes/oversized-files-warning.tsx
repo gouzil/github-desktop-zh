@@ -38,7 +38,7 @@ export class OversizedFiles extends React.Component<IOversizedFilesProps> {
           <p>
             以下文件超过100MB.{' '}
             <strong>
-              如果你提交了这些文件, 你将不再能够将这个仓库推送到GitHub.com.
+              如果您提交了这些文件, 您将不再能够将这个仓库推送到GitHub.com.
             </strong>
           </p>
           {this.renderFileList()}

@@ -136,7 +136,7 @@ export class CommitMessageAvatar extends React.Component<
           <div>
             全局Git配置中的电子邮件 (
             <span className="git-email">{this.props.email}</span>) 不匹配
-            你的 GitHub{accountTypeSuffix} 账户.{' '}
+            您的 GitHub{accountTypeSuffix} 账户.{' '}
             <LinkButton uri="https://docs.github.com/en/github/committing-changes-to-your-project/why-are-my-commits-linked-to-the-wrong-user">
               了解更多信息.
             </LinkButton>

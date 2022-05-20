@@ -223,9 +223,9 @@ export class About extends React.Component<IAboutProps, IAboutState> {
     if (!this.state.updateState.lastSuccessfulCheck) {
       return (
         <DialogError>
-          无法确定上次执行更新检查的时间。你
+          无法确定上次执行更新检查的时间。您
           可能运行的是旧版本。请尝试手动检查
-          如果问题仍然存在，请更新并联系GitHub支持人员
+          如果问题仍然存在, 请更新并联系GitHub支持人员
         </DialogError>
       )
     }
