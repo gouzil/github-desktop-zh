@@ -184,8 +184,8 @@ export class CICheckRunListItem extends React.PureComponent<
 
     const tooltip =
       checkRun.actionJobSteps !== undefined
-        ? 'Re-run this check'
-        : 'This check cannot be re-run individually.'
+        ? '重新运行此检查'
+        : '无法单独重新运行此检查.'
 
     return (
       <div className={classes} onClick={this.rerunJob}>

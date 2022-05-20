@@ -158,14 +158,14 @@ export class CICheckRunRerunDialog extends React.Component<
       this.props.checkRuns.length === 1 ? (
         <strong>{this.props.checkRuns[0].name}</strong>
       ) : (
-        'these workflows'
+        '这些工作流程'
       )
     const dependentAdj = this.props.checkRuns.length === 1 ? 'its' : 'their'
 
     return (
       <div className="re-run-dependents-message">
-        A new attempt of {name} will be started, including all of {dependentAdj}{' '}
-        dependents:
+        一种新的尝试 {name} 将开始，包括所有 {dependentAdj}{' '}
+        关联 (dependents):
       </div>
     )
   }

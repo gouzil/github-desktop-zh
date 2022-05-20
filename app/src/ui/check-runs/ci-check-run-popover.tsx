@@ -187,10 +187,10 @@ export class CICheckRunPopover extends React.PureComponent<
       const output = summaryArray.map(
         ({ count, conclusion }) => `${count} ${conclusion}`
       )
-      return `${output.slice(0, -1).join(', ')}, and ${output.slice(-1)} checks`
+      return `${output.slice(0, -1).join(', ')}, 和 ${output.slice(-1)} 检查`
     }
 
-    const pluralize = summaryArray[0].count > 1 ? 'checks' : 'check'
+    const pluralize = summaryArray[0].count > 1 ? '检查' : '检查'
     return `${summaryArray[0].count} ${summaryArray[0].conclusion} ${pluralize}`
   }
 
@@ -243,8 +243,8 @@ export class CICheckRunPopover extends React.PureComponent<
     return (
       <div className="loading-check-runs">
         <img src={BlankSlateImage} className="blankslate-image" />
-        <div className="title">Stand By</div>
-        <div className="call-to-action">Check runs incoming!</div>
+        <div className="title">支持 (Stand By)</div>
+        <div className="call-to-action">检查传入的运行!</div>
       </div>
     )
   }
@@ -288,18 +288,18 @@ export class CICheckRunPopover extends React.PureComponent<
   ): JSX.Element {
     switch (true) {
       case loading:
-        return <>Checks Summary</>
+        return <>检查摘要</>
       case somePendingNoFailures:
         return (
-          <span className="pending">Some checks haven't completed yet</span>
+          <span className="pending">一些检查尚未完成</span>
         )
       case allFailure:
-        return <span className="failure">All checks have failed</span>
+        return <span className="failure">所有检查均失败</span>
       case allSuccess:
-        return <>All checks have passed</>
+        return <>所有检查均已通过</>
     }
 
-    return <span className="failure">Some checks were not successful</span>
+    return <span className="failure">某些检查未成功</span>
   }
 
   private renderHeader = (): JSX.Element => {

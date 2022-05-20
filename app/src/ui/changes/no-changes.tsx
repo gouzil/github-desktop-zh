@@ -203,16 +203,9 @@ export class NoChanges extends React.Component<
 
   private renderDiscoverabilityElements(menuItem: IMenuItemInfo) {
     const parentMenusText = formatParentMenuLabel(menuItem)
-    // let parentMenusTextv1
-    // if (parentMenusText === "Repository"){
-    //   parentMenusTextv1 = "存储库"
-    // }else{
-    //   parentMenusTextv1 = ""
-    // }
 
     return (
       <>
-        {/* {parentMenusText} 菜单或{' '} */}
         存储库({parentMenusText})菜单或{' '}
         {this.renderDiscoverabilityKeyboardShortcut(menuItem)}
       </>
