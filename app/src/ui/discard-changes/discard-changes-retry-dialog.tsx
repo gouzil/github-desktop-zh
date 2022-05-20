@@ -32,7 +32,7 @@ export class DiscardChangesRetryDialog extends React.Component<
 
     return (
       <Dialog
-        title="Error"
+        title="错误"
         id="discard-changes-retry"
         loading={retrying}
         disabled={retrying}
@@ -41,17 +41,17 @@ export class DiscardChangesRetryDialog extends React.Component<
         type="error"
       >
         <DialogContent>
-          <p>Failed to discard changes to {TrashNameLabel}.</p>
+          <p>未能丢弃对 {TrashNameLabel} 的更改 .</p>
           <div>
-            Common reasons are:
+            常见的原因是:
             <ul>
               <li>
-                The {TrashNameLabel} is configured to delete items immediately.
+                {TrashNameLabel} 配置为立即删除项.
               </li>
-              <li>Restricted access to move the file(s).</li>
+              <li>移动文件的限制访问权限.</li>
             </ul>
           </div>
-          <p>These changes will be unrecoverable from the {TrashNameLabel}.</p>
+          <p>这些更改将无法从 {TrashNameLabel}.</p>
           {this.renderConfirmDiscardChanges()}
         </DialogContent>
         {this.renderFooter()}

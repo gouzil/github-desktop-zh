@@ -57,18 +57,18 @@ export class DiscardChanges extends React.Component<
 
   private getOkButtonLabel() {
     if (this.props.discardingAllChanges) {
-      return __DARWIN__ ? 'Discard All Changes' : 'Discard all changes'
+      return __DARWIN__ ? '放弃所有更改' : '放弃所有更改'
     }
-    return __DARWIN__ ? 'Discard Changes' : 'Discard changes'
+    return __DARWIN__ ? '放弃更改' : '放弃更改'
   }
 
   private getDialogTitle() {
     if (this.props.discardingAllChanges) {
       return __DARWIN__
-        ? 'Confirm Discard All Changes'
-        : 'Confirm discard all changes'
+        ? '确认放弃所有更改'
+        : '确认放弃所有更改'
     }
-    return __DARWIN__ ? 'Confirm Discard Changes' : 'Confirm discard changes'
+    return __DARWIN__ ? '确认放弃更改' : '确认放弃更改'
   }
 
   public render() {
@@ -129,14 +129,13 @@ export class DiscardChanges extends React.Component<
     if (this.props.files.length > MaxFilesToList) {
       return (
         <p>
-          Are you sure you want to discard all {this.props.files.length} changed
-          files?
+          是否确实要放弃所有 {this.props.files.length} 更改文件?
         </p>
       )
     } else {
       return (
         <div>
-          <p>Are you sure you want to discard all changes to:</p>
+          <p>确定要放弃对的所有更改吗:</p>
           <div className="file-list">
             <ul>
               {this.props.files.map(p => (
