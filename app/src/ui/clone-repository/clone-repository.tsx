@@ -228,7 +228,7 @@ export class CloneRepository extends React.Component<
     return (
       <Dialog
         className="clone-repository"
-        title={__DARWIN__ ? 'Clone a Repository' : 'Clone a repository'}
+        title={__DARWIN__ ? '克隆存储库' : '克隆存储库'}
         onSubmit={this.clone}
         onDismissed={this.props.onDismissed}
         loading={this.state.loading}
@@ -238,7 +238,7 @@ export class CloneRepository extends React.Component<
           selectedIndex={this.props.selectedTab}
         >
           <span>GitHub.com</span>
-          <span>GitHub Enterprise</span>
+          <span>GitHub企业</span>
           <span>URL</span>
         </TabBar>
 
@@ -455,13 +455,13 @@ export class CloneRepository extends React.Component<
   }
 
   private renderSignIn(tab: CloneRepositoryTab) {
-    const signInTitle = __DARWIN__ ? 'Sign In' : 'Sign in'
+    const signInTitle = __DARWIN__ ? '登录' : '登录'
     switch (tab) {
       case CloneRepositoryTab.DotCom:
         return (
           <CallToAction actionTitle={signInTitle} onAction={this.signInDotCom}>
             <div>
-              Sign in to your GitHub.com account to access your repositories.
+              登录到你的GitHub.com帐户来访问你的仓库.
             </div>
           </CallToAction>
         )
@@ -472,8 +472,7 @@ export class CloneRepository extends React.Component<
             onAction={this.signInEnterprise}
           >
             <div>
-              If you have a GitHub Enterprise or AE account at work, sign in to
-              it to get access to your repositories.
+              如果你有一个GitHub企业账户或AE帐户在工作, 登录它获得访问您的存储库.
             </div>
           </CallToAction>
         )
@@ -566,8 +565,8 @@ export class CloneRepository extends React.Component<
     const tabState = this.getSelectedTabState()
 
     const path = await showSaveDialog({
-      buttonLabel: 'Select',
-      nameFieldLabel: 'Clone As:',
+      buttonLabel: '选择',
+      nameFieldLabel: '克隆为:',
       showsTagField: false,
       defaultPath: tabState.path ?? '',
       properties: ['createDirectory'],

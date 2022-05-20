@@ -174,7 +174,7 @@ export class CloneableRepositoryFilterList extends React.PureComponent<ICloneabl
         renderNoItems={this.renderNoItems}
         renderPostFilter={this.renderPostFilter}
         onItemClick={this.props.onItemClicked ? this.onItemClick : undefined}
-        placeholderText="Filter your repositories"
+        placeholderText="筛选存储库"
       />
     )
   }
@@ -209,7 +209,7 @@ export class CloneableRepositoryFilterList extends React.PureComponent<ICloneabl
   private renderGroupHeader = (identifier: string) => {
     let header = identifier
     if (identifier === YourRepositoriesIdentifier) {
-      header = __DARWIN__ ? 'Your Repositories' : 'Your repositories'
+      header = __DARWIN__ ? '您的存储库' : '您的存储库'
     }
     return (
       <div className="clone-repository-list-content clone-repository-list-group-header">
@@ -237,7 +237,7 @@ export class CloneableRepositoryFilterList extends React.PureComponent<ICloneabl
       <Button
         disabled={this.props.loading}
         onClick={this.refreshRepositories}
-        tooltip="Refresh the list of repositories"
+        tooltip="刷新存储库列表"
       >
         <Octicon
           symbol={syncClockwise}
@@ -256,7 +256,7 @@ export class CloneableRepositoryFilterList extends React.PureComponent<ICloneabl
 
     if (loading && (repositories === null || repositories.length === 0)) {
       return (
-        <div className="no-items loading">{`Loading repositories from ${endpointName}…`}</div>
+        <div className="no-items loading">{`从 ${endpointName} 加载存储库…`}</div>
       )
     }
 
@@ -264,7 +264,7 @@ export class CloneableRepositoryFilterList extends React.PureComponent<ICloneabl
       return (
         <div className="no-items no-results-found">
           <div>
-            Sorry, I can't find any repository matching{' '}
+            抱歉，我找不到任何匹配的存储库{' '}
             <Ref>{this.props.filterText}</Ref>
           </div>
         </div>
@@ -274,12 +274,12 @@ export class CloneableRepositoryFilterList extends React.PureComponent<ICloneabl
     return (
       <div className="no-items empty-repository-list">
         <div>
-          Looks like there are no repositories for{' '}
-          <Ref>{this.props.account.login}</Ref> on {endpointName}.{' '}
+          看起来没有存储库在{' '}
+          <Ref>{this.props.account.login}</Ref> 上 {endpointName}.{' '}
           <LinkButton onClick={this.refreshRepositories}>
-            Refresh this list
+            刷新此列表
           </LinkButton>{' '}
-          if you've created a repository recently.
+          如果您最近创建了存储库.
         </div>
       </div>
     )

@@ -297,7 +297,7 @@ export class PullRequestList extends React.Component<
       >
         <Octicon
           symbol={syncClockwise}
-          className={this.props.isLoadingPullRequests ? '加载中' : undefined}
+          className={this.props.isLoadingPullRequests ? 'spin' : undefined}
         />
       </Button>
     )
