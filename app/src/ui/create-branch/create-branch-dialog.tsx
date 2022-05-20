@@ -148,24 +148,23 @@ export class CreateBranch extends React.Component<
     if (targetCommit !== undefined) {
       return (
         <p>
-          Your new branch will be based on the commit '{targetCommit.summary}' (
-          {targetCommit.sha.substring(0, 7)}) from your repository.
+          您的新分支将基于提交 '{targetCommit.summary}' (
+          {targetCommit.sha.substring(0, 7)}) 从存储库.
         </p>
       )
     } else if (tip.kind === TipState.Detached) {
       return (
         <p>
-          You do not currently have any branch checked out (your HEAD reference
-          is detached). As such your new branch will be based on your currently
-          checked out commit ({tip.currentSha.substring(0, 7)}
+          您目前没有检出任何分支 (您的HEAD引用已分离).
+          因此，您的新分支将基于当前签出的提交 ({tip.currentSha.substring(0, 7)}
           ).
         </p>
       )
     } else if (tip.kind === TipState.Unborn) {
       return (
         <p>
-          Your current branch is unborn (does not contain any commits). Creating
-          a new branch will rename the current branch.
+          当前分支未绑定 (不包含任何提交). 
+          创建新分支将重命名当前分支.
         </p>
       )
     } else if (tip.kind === TipState.Valid) {
@@ -352,10 +351,9 @@ export class CreateBranch extends React.Component<
     if (defaultBranch === null || defaultBranch.name === currentBranchName) {
       return (
         <div>
-          Your new branch will be based on your currently checked out branch (
+          您的新分行将基于您当前签出的分行 (
           <Ref>{currentBranchName}</Ref>){this.renderForkLinkSuffix()}.{' '}
-          <Ref>{currentBranchName}</Ref> is the {defaultBranchLink} for your
-          repository.
+          <Ref>{currentBranchName}</Ref> 是 {defaultBranchLink} 为您的存储库.
         </div>
       )
     } else {
@@ -363,13 +361,13 @@ export class CreateBranch extends React.Component<
         {
           title: defaultBranch.name,
           description:
-            "The default branch in your repository. Pick this to start on something new that's not dependent on your current branch.",
+            "存储库中的默认分支. 选择此选项以开始不依赖于当前分支的新内容.",
           key: StartPoint.DefaultBranch,
         },
         {
           title: currentBranchName,
           description:
-            'The currently checked out branch. Pick this if you need to build on work done on this branch.',
+            '当前签出的分支. 如果需要在此分支上完成的工作基础上进行构建, 请选择此选项.',
           key: StartPoint.CurrentBranch,
         },
       ]
@@ -404,9 +402,9 @@ export class CreateBranch extends React.Component<
     if (currentBranchName === upstreamDefaultBranch.nameWithoutRemote) {
       return (
         <div>
-          Your new branch will be based on{' '}
+          您的新分支机构将基于{' '}
           <strong>{upstreamRepositoryFullName}</strong>
-          's {defaultBranchLink} (
+          {defaultBranchLink} (
           <Ref>{upstreamDefaultBranch.nameWithoutRemote}</Ref>)
           {this.renderForkLinkSuffix()}.
         </div>
@@ -416,13 +414,13 @@ export class CreateBranch extends React.Component<
         {
           title: upstreamDefaultBranch.name,
           description:
-            "The default branch of the upstream repository. Pick this to start on something new that's not dependent on your current branch.",
+            "上游存储库的默认分支. 选择这个来开始一些新的不依赖于你当前分支的东西.",
           key: StartPoint.UpstreamDefaultBranch,
         },
         {
           title: currentBranchName,
           description:
-            'The currently checked out branch. Pick this if you need to build on work done on this branch.',
+            '当前签出的分支. 如果您需要在此分支上完成的工作的基础上进行构建, 请选择此分支.',
           key: StartPoint.CurrentBranch,
         },
       ]
@@ -444,9 +442,9 @@ export class CreateBranch extends React.Component<
     if (isRepositoryWithForkedGitHubRepository(this.props.repository)) {
       return (
         <div className="secondary-text">
-          Your default branch source is determined by your{' '}
+          您的默认分支源由您的{' '}
           <LinkButton onClick={this.onForkSettingsClick}>
-            fork behavior settings
+            (fock)分支行为设置
           </LinkButton>
           .
         </div>
@@ -460,9 +458,9 @@ export class CreateBranch extends React.Component<
     if (isRepositoryWithForkedGitHubRepository(this.props.repository)) {
       return (
         <span>
-          &nbsp;as determined by your{' '}
+          &nbsp;由您的{' '}
           <LinkButton onClick={this.onForkSettingsClick}>
-            fork behavior settings
+          (fock)分支行为设置
           </LinkButton>
         </span>
       )
@@ -478,7 +476,7 @@ export class CreateBranch extends React.Component<
   ) => (
     <Row>
       <VerticalSegmentedControl
-        label="Create branch based on…"
+        label="基于分支创建…"
         items={items}
         selectedKey={selectedValue}
         onSelectionChanged={this.onBaseBranchChanged}
@@ -498,7 +496,7 @@ export class CreateBranch extends React.Component<
 /** Reusable snippet */
 const defaultBranchLink = (
   <LinkButton uri="https://help.github.com/articles/setting-the-default-branch/">
-    default branch
+    默认分支
   </LinkButton>
 )
 

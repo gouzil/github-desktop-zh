@@ -34,7 +34,7 @@ export class TwoUp extends React.Component<ITwoUpProps, {}> {
       <div className="image-diff-container" ref={this.props.onContainerRef}>
         <div className="image-diff-two-up">
           <div className="image-diff-previous" style={style}>
-            <div className="image-diff-header">Deleted</div>
+            <div className="image-diff-header">已删除</div>
             <ImageContainer
               image={previous}
               onElementLoad={this.props.onPreviousImageLoad}
@@ -43,13 +43,13 @@ export class TwoUp extends React.Component<ITwoUpProps, {}> {
             <div className="image-diff-footer">
               <span className="strong">W:</span> {previousImageSize.width}
               px | <span className="strong">H:</span> {previousImageSize.height}
-              px | <span className="strong">Size:</span>{' '}
+              px | <span className="strong">大小:</span>{' '}
               {formatBytes(previous.bytes, 2, false)}
             </div>
           </div>
 
           <div className="image-diff-current" style={style}>
-            <div className="image-diff-header">Added</div>
+            <div className="image-diff-header">已添加</div>
             <ImageContainer
               image={current}
               onElementLoad={this.props.onCurrentImageLoad}
@@ -58,13 +58,13 @@ export class TwoUp extends React.Component<ITwoUpProps, {}> {
             <div className="image-diff-footer">
               <span className="strong">W:</span> {currentImageSize.width}
               px | <span className="strong">H:</span> {currentImageSize.height}
-              px | <span className="strong">Size:</span>{' '}
+              px | <span className="strong">大小:</span>{' '}
               {formatBytes(current.bytes, 2, false)}
             </div>
           </div>
         </div>
         <div className="image-diff-summary">
-          Diff:{' '}
+          差异:{' '}
           <span
             className={classNames({
               added: diffBytes > 0,
@@ -77,7 +77,7 @@ export class TwoUp extends React.Component<ITwoUpProps, {}> {
                   2,
                   false
                 )} (${diffPercent})`
-              : 'No size difference'}
+              : '无尺寸差异'}
           </span>
         </div>
       </div>

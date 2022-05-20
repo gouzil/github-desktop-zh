@@ -325,7 +325,7 @@ export class SideBySideDiffRow extends React.Component<
         {data.noNewLineIndicator && (
           <Octicon
             symbol={narrowNoNewlineSymbol}
-            title="No newline at end of file"
+            title="文件末尾没有换行符"
           />
         )}
       </div>
@@ -341,7 +341,7 @@ export class SideBySideDiffRow extends React.Component<
       case DiffHunkExpansionType.Up:
         return {
           icon: OcticonSymbol.foldUp,
-          title: 'Expand Up',
+          title: '向上展开',
           handler: this.onExpandHunk(hunkIndex, 'up'),
         }
       // This can only be the last dummy hunk. In this case, we expand the
@@ -349,13 +349,13 @@ export class SideBySideDiffRow extends React.Component<
       case DiffHunkExpansionType.Down:
         return {
           icon: OcticonSymbol.foldDown,
-          title: 'Expand Down',
+          title: '向下展开',
           handler: this.onExpandHunk(hunkIndex - 1, 'down'),
         }
       case DiffHunkExpansionType.Short:
         return {
           icon: OcticonSymbol.fold,
-          title: 'Expand All',
+          title: '全部展开',
           handler: this.onExpandHunk(hunkIndex, 'up'),
         }
     }

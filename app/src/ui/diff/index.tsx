@@ -173,13 +173,12 @@ export class Diff extends React.Component<IDiffProps, IDiffState> {
       <div className="panel empty large-diff">
         <img src={NoDiffImage} className="blankslate-image" />
         <p>
-          The diff is too large to be displayed by default.
+          差值太大，默认情况下无法显示.
           <br />
-          You can try to show it anyway, but performance may be negatively
-          impacted.
+          您可以尝试展示它, 但性能可能会受到负面影响.
         </p>
         <Button onClick={this.showLargeDiff}>
-          {__DARWIN__ ? 'Show Diff' : 'Show diff'}
+          {__DARWIN__ ? '显示差异' : '显示差异'}
         </Button>
       </div>
     )
@@ -189,7 +188,7 @@ export class Diff extends React.Component<IDiffProps, IDiffState> {
     return (
       <div className="panel empty large-diff">
         <img src={NoDiffImage} />
-        <p>The diff is too large to be displayed.</p>
+        <p>差异太大，无法显示.</p>
       </div>
     )
   }
@@ -214,13 +213,13 @@ export class Diff extends React.Component<IDiffProps, IDiffState> {
         this.props.file.status.kind === AppFileStatusKind.New ||
         this.props.file.status.kind === AppFileStatusKind.Untracked
       ) {
-        return <div className="panel empty">The file is empty</div>
+        return <div className="panel empty">文件为空</div>
       }
 
       if (this.props.file.status.kind === AppFileStatusKind.Renamed) {
         return (
           <div className="panel renamed">
-            The file was renamed but not changed
+            文件已重命名，但未更改
           </div>
         )
       }
@@ -231,16 +230,16 @@ export class Diff extends React.Component<IDiffProps, IDiffState> {
       ) {
         return (
           <div className="panel empty">
-            The file is in conflict and must be resolved via the command line.
+            文件冲突，必须通过命令行解决.
           </div>
         )
       }
 
       if (this.props.hideWhitespaceInDiff) {
-        return <div className="panel empty">Only whitespace changes found</div>
+        return <div className="panel empty">仅找到空白更改</div>
       }
 
-      return <div className="panel empty">No content changes found</div>
+      return <div className="panel empty">未找到内容更改</div>
     }
 
     return this.renderTextDiff(diff)
