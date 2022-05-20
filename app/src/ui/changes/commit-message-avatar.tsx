@@ -121,24 +121,24 @@ export class CommitMessageAvatar extends React.Component<
 
   private renderPopover() {
     const accountTypeSuffix = this.props.isEnterpriseAccount
-      ? ' Enterprise'
+      ? ' 企业'
       : ''
 
-    const updateEmailTitle = __DARWIN__ ? 'Update Email' : 'Update email'
+    const updateEmailTitle = __DARWIN__ ? '更新邮件' : '更新邮件'
 
     return (
       <Popover
         caretPosition={PopoverCaretPosition.LeftBottom}
         onClickOutside={this.closePopover}
       >
-        <h3>This commit will be misattributed</h3>
+        <h3>此提交将被错误归因</h3>
         <Row>
           <div>
-            The email in your global Git config (
-            <span className="git-email">{this.props.email}</span>) doesn't match
-            your GitHub{accountTypeSuffix} account.{' '}
+            全局Git配置中的电子邮件 (
+            <span className="git-email">{this.props.email}</span>) 不匹配
+            你的 GitHub{accountTypeSuffix} 账户.{' '}
             <LinkButton uri="https://docs.github.com/en/github/committing-changes-to-your-project/why-are-my-commits-linked-to-the-wrong-user">
-              Learn more.
+              了解更多信息.
             </LinkButton>
           </div>
         </Row>

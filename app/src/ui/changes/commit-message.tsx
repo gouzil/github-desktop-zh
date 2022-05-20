@@ -308,7 +308,7 @@ export class CommitMessage extends React.Component<
       amend: this.props.commitToAmend !== null,
     }
 
-    const timer = startTimer('create commit', this.props.repository)
+    const timer = startTimer('创建提交', this.props.repository)
     const commitCreated = await this.props.onCreateCommit(commitContext)
     timer.done()
 
@@ -348,7 +348,7 @@ export class CommitMessage extends React.Component<
     const { gitHubRepository } = repository
     const avatarTitle = commitAuthor ? (
       <>
-        Committing as <strong>{commitAuthor.name}</strong> {commitAuthor.email}
+        提交为 <strong>{commitAuthor.name}</strong> {commitAuthor.email}
       </>
     ) : undefined
     const avatarUser: IAvatarUser | undefined =
@@ -440,11 +440,11 @@ export class CommitMessage extends React.Component<
   private get toggleCoAuthorsText(): string {
     return this.props.showCoAuthoredBy
       ? __DARWIN__
-        ? 'Remove Co-Authors'
-        : 'Remove co-authors'
+        ? '删除共同作者'
+        : '删除共同作者'
       : __DARWIN__
-      ? 'Add Co-Authors'
-      : 'Add co-authors'
+      ? '添加共同作者'
+      : '添加共同作者'
   }
 
   private getAddRemoveCoAuthorsMenuItem(): IMenuItem {
@@ -487,11 +487,11 @@ export class CommitMessage extends React.Component<
 
   private getCommitSpellcheckEnabilityMenuItem(isEnabled: boolean): IMenuItem {
     const enableLabel = __DARWIN__
-      ? 'Enable Commit Spellcheck'
-      : 'Enable commit spellcheck'
+      ? '启用提交拼写检查'
+      : '启用提交拼写检查'
     const disableLabel = __DARWIN__
-      ? 'Disable Commit Spellcheck'
-      : 'Disable commit spellcheck'
+      ? '禁用提交拼写检查'
+      : '禁用提交拼写检查'
     return {
       label: isEnabled ? disableLabel : enableLabel,
       action: () => this.props.onCommitSpellcheckEnabledChanged(!isEnabled),
@@ -600,20 +600,20 @@ export class CommitMessage extends React.Component<
     if (commitToAmend !== null) {
       return (
         <CommitWarning icon={CommitWarningIcon.Information}>
-          Your changes will modify your <strong>most recent commit</strong>.{' '}
+            您的更改将修改 <strong>最近提交</strong>.{' '}
           <LinkButton onClick={this.props.onStopAmending}>
-            Stop amending
+            停止修改
           </LinkButton>{' '}
-          to make these changes as a new commit.
+          将这些更改作为新提交.
         </CommitWarning>
       )
     } else if (showNoWriteAccess) {
       return (
         <CommitWarning icon={CommitWarningIcon.Warning}>
-          You don't have write access to <strong>{repository.name}</strong>.
-          Want to{' '}
+          您没有写入权限 <strong>{repository.name}</strong>.
+          想要{' '}
           <LinkButton onClick={this.props.onShowCreateForkDialog}>
-            create a fork
+            创建一个分支(fork)
           </LinkButton>
           ?
         </CommitWarning>
@@ -629,8 +629,8 @@ export class CommitMessage extends React.Component<
 
       return (
         <CommitWarning icon={CommitWarningIcon.Warning}>
-          <strong>{branch}</strong> is a protected branch. Want to{' '}
-          <LinkButton onClick={this.onSwitchBranch}>switch branches</LinkButton>
+          <strong>{branch}</strong> 是受保护的分支. 想要{' '}
+          <LinkButton onClick={this.onSwitchBranch}>切换分支</LinkButton>
           ?
         </CommitWarning>
       )
@@ -653,12 +653,12 @@ export class CommitMessage extends React.Component<
 
     const isAmending = this.props.commitToAmend !== null
 
-    const amendVerb = isCommitting ? 'Amending' : 'Amend'
-    const commitVerb = isCommitting ? 'Committing' : 'Commit'
+    const amendVerb = isCommitting ? '正在修改' : '修改'
+    const commitVerb = isCommitting ? '正在提交' : '提交'
 
-    const amendTitle = `${amendVerb} last commit`
+    const amendTitle = `${amendVerb} 上次提交`
     const commitTitle =
-      branch !== null ? `${commitVerb} to ${branch}` : commitVerb
+      branch !== null ? `${commitVerb} 到 ${branch}` : commitVerb
 
     let tooltip: string | undefined = undefined
 
@@ -666,24 +666,24 @@ export class CommitMessage extends React.Component<
       tooltip = isAmending ? amendTitle : commitTitle
     } else {
       if (isSummaryBlank) {
-        tooltip = `A commit summary is required to commit`
+        tooltip = `提交时需要提交摘要描述`
       } else if (!this.props.anyFilesSelected && this.props.anyFilesAvailable) {
-        tooltip = `Select one or more files to commit`
+        tooltip = `选择一个或多个要提交的文件`
       } else if (isCommitting) {
-        tooltip = `Committing changes…`
+        tooltip = `提交更改…`
       }
     }
 
     const defaultCommitContents =
       branch !== null ? (
         <>
-          {commitVerb} to <strong>{branch}</strong>
+          {commitVerb} 到 <strong>{branch}</strong>
         </>
       ) : (
         commitVerb
       )
 
-    const defaultAmendContents = <>{amendVerb} last commit</>
+    const defaultAmendContents = <>{amendVerb} 上次提交</>
 
     const defaultContents = isAmending
       ? defaultAmendContents
@@ -715,10 +715,10 @@ export class CommitMessage extends React.Component<
         tooltip={
           <>
             <div className="title">
-              Great commit summaries contain fewer than 50 characters
+              优秀的提交摘描述要少于50个字符
             </div>
             <div className="description">
-              Place extra information in the description field.
+              在描述字段中放置额外信息.
             </div>
           </>
         }
@@ -752,7 +752,7 @@ export class CommitMessage extends React.Component<
     return (
       <div
         role="group"
-        aria-label="Create commit"
+        aria-label="创建提交"
         className={className}
         onContextMenu={this.onContextMenu}
         onKeyDown={this.onKeyDown}

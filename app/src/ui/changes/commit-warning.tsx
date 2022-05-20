@@ -22,7 +22,7 @@ const renderIcon = (icon: CommitWarningIcon) => {
       symbol = OcticonSymbol.info
       break
     default:
-      assertNever(icon, `Unexpected icon value ${icon}`)
+      assertNever(icon, `意外的图标值 ${icon}`)
   }
 
   return <Octicon className={className} symbol={symbol} />

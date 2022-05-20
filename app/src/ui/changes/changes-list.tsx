@@ -350,11 +350,11 @@ export class ChangesList extends React.Component<
     const label =
       files.length === 1
         ? __DARWIN__
-          ? `Discard Changes`
-          : `Discard changes`
+          ? `丢弃修改`
+          : `丢弃修改`
         : __DARWIN__
-        ? `Discard ${files.length} Selected Changes`
-        : `Discard ${files.length} selected changes`
+        ? `丢弃 ${files.length} 选定的修改`
+        : `丢弃 ${files.length} 选定的修改`
 
     return this.props.askForConfirmationOnDiscardChanges ? `${label}…` : label
   }
@@ -374,15 +374,15 @@ export class ChangesList extends React.Component<
       hasConflictedFiles(this.props.workingDirectory)
 
     const stashAllChangesLabel = __DARWIN__
-      ? 'Stash All Changes'
-      : 'Stash all changes'
+      ? '隐藏所有更改'
+      : '隐藏所有更改'
     const confirmStashAllChangesLabel = __DARWIN__
-      ? 'Stash All Changes…'
-      : 'Stash all changes…'
+      ? '隐藏所有更改…'
+      : '隐藏所有更改…'
 
     const items: IMenuItem[] = [
       {
-        label: __DARWIN__ ? 'Discard All Changes…' : 'Discard all changes…',
+        label: __DARWIN__ ? '放弃所有更改…' : '放弃所有更改…',
         action: this.onDiscardAllChanges,
         enabled: hasLocalChanges,
       },
@@ -443,7 +443,7 @@ export class ChangesList extends React.Component<
     const { externalEditorLabel, repository } = this.props
 
     const openInExternalEditor = externalEditorLabel
-      ? `Open in ${externalEditorLabel}`
+      ? `在 ${externalEditorLabel} 中打开`
       : DefaultEditorLabel
 
     return {
@@ -500,16 +500,16 @@ export class ChangesList extends React.Component<
     if (paths.length === 1) {
       items.push({
         label: __DARWIN__
-          ? 'Ignore File (Add to .gitignore)'
-          : 'Ignore file (add to .gitignore)',
+          ? '忽略文件 (添加 .gitignore)'
+          : '忽略文件 (添加 .gitignore)',
         action: () => this.props.onIgnoreFile(path),
         enabled: Path.basename(path) !== GitIgnoreFileName,
       })
     } else if (paths.length > 1) {
       items.push({
         label: __DARWIN__
-          ? `Ignore ${paths.length} Selected Files (Add to .gitignore)`
-          : `Ignore ${paths.length} selected files (add to .gitignore)`,
+          ? `忽略 ${paths.length} 选定的文件 (添加 .gitignore)`
+          : `忽略 ${paths.length} 选定的文件 (添加 .gitignore)`,
         action: () => {
           // Filter out any .gitignores that happens to be selected, ignoring
           // those doesn't make sense.
@@ -528,8 +528,8 @@ export class ChangesList extends React.Component<
       .forEach(extension => {
         items.push({
           label: __DARWIN__
-            ? `Ignore All ${extension} Files (Add to .gitignore)`
-            : `Ignore all ${extension} files (add to .gitignore)`,
+            ? `全部忽略 ${extension} 文件 (添加 .gitignore)`
+            : `全部忽略 ${extension} 文件 (添加 .gitignore)`,
           action: () => this.props.onIgnorePattern(`*${extension}`),
         })
       })
@@ -539,8 +539,8 @@ export class ChangesList extends React.Component<
         { type: 'separator' },
         {
           label: __DARWIN__
-            ? 'Include Selected Files'
-            : 'Include selected files',
+            ? '包括选定的文件'
+            : '包括选定的文件',
           action: () => {
             selectedFiles.map(file =>
               this.props.onIncludeChanged(file.path, true)
@@ -549,8 +549,8 @@ export class ChangesList extends React.Component<
         },
         {
           label: __DARWIN__
-            ? 'Exclude Selected Files'
-            : 'Exclude selected files',
+            ? '排除所选文件'
+            : '排除所选文件',
           action: () => {
             selectedFiles.map(file =>
               this.props.onIncludeChanged(file.path, false)
@@ -809,7 +809,7 @@ export class ChangesList extends React.Component<
 
     const className = classNames(
       'stashed-changes-button',
-      this.props.isShowingStashEntry ? 'selected' : null
+      this.props.isShowingStashEntry ? '已选定' : null
     )
 
     return (
@@ -846,14 +846,14 @@ export class ChangesList extends React.Component<
     const { workingDirectory, rebaseConflictState, isCommitting } = this.props
     const { files } = workingDirectory
 
-    const filesPlural = files.length === 1 ? 'file' : 'files'
-    const filesDescription = `${files.length} changed ${filesPlural}`
+    const filesPlural = files.length === 1 ? '文件' : '文件'
+    const filesDescription = `${files.length} 已更改 ${filesPlural}`
 
     const selectedChangeCount = files.filter(
       file => file.selection.getSelectionType() !== DiffSelectionType.None
     ).length
-    const totalFilesPlural = files.length === 1 ? 'file' : 'files'
-    const selectedChangesDescription = `${selectedChangeCount}/${files.length} changed ${totalFilesPlural} selected`
+    const totalFilesPlural = files.length === 1 ? '文件' : '文件'
+    const selectedChangesDescription = `${selectedChangeCount}/${files.length} 已更改 ${totalFilesPlural} 已选定`
 
     const includeAllValue = getIncludeAllValue(
       workingDirectory,
