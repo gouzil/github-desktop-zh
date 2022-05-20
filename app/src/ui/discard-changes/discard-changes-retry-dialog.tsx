@@ -62,7 +62,7 @@ export class DiscardChangesRetryDialog extends React.Component<
   private renderConfirmDiscardChanges() {
     return (
       <Checkbox
-        label="Do not show this message again"
+        label="不再显示此消息"
         value={
           this.state.confirmDiscardChanges
             ? CheckboxValue.Off
@@ -79,11 +79,11 @@ export class DiscardChangesRetryDialog extends React.Component<
         <OkCancelButtonGroup
           okButtonText={
             __DARWIN__
-              ? 'Permanently Discard Changes'
-              : 'Permanently discard changes'
+              ? '永久放弃更改'
+              : '永久放弃更改'
           }
-          okButtonTitle={`This will discard changes and they will be unrecoverable.`}
-          cancelButtonText="Cancel"
+          okButtonTitle={`这将放弃更改，并且这些更改将不可恢复.`}
+          cancelButtonText="取消"
           destructive={true}
         />
       </DialogFooter>

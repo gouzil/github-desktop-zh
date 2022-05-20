@@ -54,7 +54,7 @@ export class RenameBranch extends React.Component<
 
         <DialogFooter>
           <OkCancelButtonGroup
-            okButtonText={`Rename ${this.props.branch.name}`}
+            okButtonText={`重名 ${this.props.branch.name}`}
             okButtonDisabled={this.state.newName.length === 0}
           />
         </DialogFooter>

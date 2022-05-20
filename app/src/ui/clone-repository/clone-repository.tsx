@@ -279,7 +279,7 @@ export class CloneRepository extends React.Component<
 
     return (
       <DialogFooter>
-        <OkCancelButtonGroup okButtonText="Clone" okButtonDisabled={disabled} />
+        <OkCancelButtonGroup okButtonText="克隆" okButtonDisabled={disabled} />
       </DialogFooter>
     )
   }

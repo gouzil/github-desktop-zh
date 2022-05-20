@@ -48,7 +48,7 @@ export class ConfirmDiscardStashDialog extends React.Component<
           <Row>Are you sure you want to discard these stashed changes?</Row>
         </DialogContent>
         <DialogFooter>
-          <OkCancelButtonGroup destructive={true} okButtonText="Discard" />
+          <OkCancelButtonGroup destructive={true} okButtonText="丢弃" />
         </DialogFooter>
       </Dialog>
     )

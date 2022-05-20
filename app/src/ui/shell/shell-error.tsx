@@ -53,7 +53,7 @@ export class ShellError extends React.Component<IShellErrorProps, {}> {
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup
-            okButtonText="Close"
+            okButtonText="关闭"
             cancelButtonText={__DARWIN__ ? 'Open Preferences' : 'Open options'}
             onCancelButtonClick={this.onShowPreferencesDialog}
           />

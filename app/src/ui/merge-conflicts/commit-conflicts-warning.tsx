@@ -78,7 +78,7 @@ export class CommitConflictsWarning extends React.Component<
           <OkCancelButtonGroup
             destructive={true}
             okButtonText={
-              __DARWIN__ ? 'Yes, Commit Files' : 'Yes, commit files'
+              __DARWIN__ ? '是的,提交文件' : '是的,提交文件'
             }
           />
         </DialogFooter>

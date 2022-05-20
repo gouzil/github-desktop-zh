@@ -39,7 +39,7 @@ export class DeleteBranch extends React.Component<
     return (
       <Dialog
         id="delete-branch"
-        title={__DARWIN__ ? 'Delete Branch' : 'Delete branch'}
+        title={__DARWIN__ ? '删除分支' : '删除分支'}
         type="warning"
         onSubmit={this.deleteBranch}
         onDismissed={this.props.onDismissed}
@@ -48,14 +48,14 @@ export class DeleteBranch extends React.Component<
       >
         <DialogContent>
           <p>
-            Delete branch <Ref>{this.props.branch.name}</Ref>?<br />
-            This action cannot be undone.
+            删除分支 <Ref>{this.props.branch.name}</Ref>?<br />
+            此操作不可撤消.
           </p>
 
           {this.renderDeleteOnRemote()}
         </DialogContent>
         <DialogFooter>
-          <OkCancelButtonGroup destructive={true} okButtonText="Delete" />
+          <OkCancelButtonGroup destructive={true} okButtonText="删除" />
         </DialogFooter>
       </Dialog>
     )
@@ -67,12 +67,11 @@ export class DeleteBranch extends React.Component<
         <div>
           <p>
             <strong>
-              The branch also exists on the remote, do you wish to delete it
-              there as well?
+            分支也存在于远程，你希望在那里也删除它?
             </strong>
           </p>
           <Checkbox
-            label="Yes, delete this branch on the remote"
+            label="是的，在远程上删除这个分支"
             value={
               this.state.includeRemoteBranch
                 ? CheckboxValue.On

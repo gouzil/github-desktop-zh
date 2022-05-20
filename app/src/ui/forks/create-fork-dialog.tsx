@@ -112,23 +112,23 @@ function renderCreateForkDialogContent(
     <>
       <DialogContent>
         <p>
-          {`It looks like you don’t have write access to `}
+          {`看起来您没有写入 `}
           <strong>{repository.gitHubRepository.fullName}</strong>
-          {`. If you should, please check with a repository administrator.`}
+          {` 的权限. 如果需要，请与存储库管理员联系.`}
         </p>
         <p>
-          {` Do you want to create a fork of this repository at `}
+          {` 是否要在中创建此存储库的分支 `}
           <strong>
             {`${account.login}/${repository.gitHubRepository.name}`}
           </strong>
-          {` to continue?`}
+          {` 继续?`}
         </p>
       </DialogContent>
       <DialogFooter>
         <OkCancelButtonGroup
           destructive={true}
           okButtonText={
-            __DARWIN__ ? 'Fork This Repository' : 'Fork this repository'
+            __DARWIN__ ? '(Fork)检出此存储库' : '(Fork)检出此存储库'
           }
           okButtonDisabled={loading}
           cancelButtonDisabled={loading}
@@ -147,9 +147,9 @@ function renderCreateForkDialogError(
   const suggestion =
     repository.gitHubRepository.htmlURL !== null ? (
       <>
-        {`You can try `}
+        {`您可以尝试 `}
         <LinkButton uri={repository.gitHubRepository.htmlURL}>
-          creating the fork manually on GitHub
+          在GitHub上手动创建fork
         </LinkButton>
         .
       </>
@@ -158,7 +158,7 @@ function renderCreateForkDialogError(
     <>
       <DialogContent>
         <div>
-          {`Creating your fork `}
+          {`创建你的fork `}
           <strong>
             {`${account.login}/${repository.gitHubRepository.name}`}
           </strong>

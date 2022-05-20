@@ -33,7 +33,7 @@ export class DeleteTag extends React.Component<
     return (
       <Dialog
         id="delete-tag"
-        title={__DARWIN__ ? 'Delete Tag' : 'Delete tag'}
+        title={__DARWIN__ ? '删除标签' : '删除标签'}
         type="warning"
         onSubmit={this.DeleteTag}
         onDismissed={this.props.onDismissed}
@@ -42,12 +42,12 @@ export class DeleteTag extends React.Component<
       >
         <DialogContent>
           <p>
-            Are you sure you want to delete the tag{' '}
+            确实要删除标签吗{' '}
             <Ref>{this.props.tagName}</Ref>?
           </p>
         </DialogContent>
         <DialogFooter>
-          <OkCancelButtonGroup destructive={true} okButtonText="Delete" />
+          <OkCancelButtonGroup destructive={true} okButtonText="删除" />
         </DialogFooter>
       </Dialog>
     )

@@ -62,7 +62,7 @@ export class ConfirmForcePush extends React.Component<
           </div>
         </DialogContent>
         <DialogFooter>
-          <OkCancelButtonGroup destructive={true} okButtonText="I'm sure" />
+          <OkCancelButtonGroup destructive={true} okButtonText="我相信" />
         </DialogFooter>
       </Dialog>
     )

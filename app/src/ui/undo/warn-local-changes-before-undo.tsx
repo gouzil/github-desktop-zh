@@ -48,7 +48,7 @@ export class WarnLocalChangesBeforeUndo extends React.Component<
           <Row>{this.getWarningText()}</Row>
         </DialogContent>
         <DialogFooter>
-          <OkCancelButtonGroup destructive={true} okButtonText="Continue" />
+          <OkCancelButtonGroup destructive={true} okButtonText="继续" />
         </DialogFooter>
       </Dialog>
     )

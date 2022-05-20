@@ -48,19 +48,19 @@ export class GenericGitAuthentication extends React.Component<
     return (
       <Dialog
         id="generic-git-auth"
-        title={__DARWIN__ ? `Authentication Failed` : `Authentication failed`}
+        title={__DARWIN__ ? `身份验证失败` : `身份验证失败`}
         onDismissed={this.props.onDismiss}
         onSubmit={this.save}
       >
         <DialogContent>
           <p>
-            We were unable to authenticate with <Ref>{this.props.hostname}</Ref>
-            . Please enter your username and password to try again.
+            我们无法通过验证 <Ref>{this.props.hostname}</Ref>
+            . 请输入用户名和密码以重试.
           </p>
 
           <Row>
             <TextBox
-              label="Username"
+              label="用户名"
               autoFocus={true}
               value={this.state.username}
               onValueChanged={this.onUsernameChange}
@@ -69,7 +69,7 @@ export class GenericGitAuthentication extends React.Component<
 
           <Row>
             <TextBox
-              label="Password"
+              label="密码"
               type="password"
               value={this.state.password}
               onValueChanged={this.onPasswordChange}
@@ -78,11 +78,10 @@ export class GenericGitAuthentication extends React.Component<
 
           <Row>
             <div>
-              Depending on your repository's hosting service, you might need to
-              use a Personal Access Token (PAT) as your password. Learn more
-              about creating a PAT in our{' '}
+              根据存储库的托管服务，您可能需要使用个人访问令牌(PAT)作为密码。
+              了解关于创建PAT的更多信息{' '}
               <LinkButton uri="https://github.com/desktop/desktop/tree/development/docs/integrations">
-                integration docs
+                文档
               </LinkButton>
               .
             </div>
@@ -91,7 +90,7 @@ export class GenericGitAuthentication extends React.Component<
 
         <DialogFooter>
           <OkCancelButtonGroup
-            okButtonText={__DARWIN__ ? 'Save and Retry' : 'Save and retry'}
+            okButtonText={__DARWIN__ ? '保存并重试' : '保存并重试'}
             okButtonDisabled={disabled}
           />
         </DialogFooter>

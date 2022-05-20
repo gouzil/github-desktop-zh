@@ -34,7 +34,7 @@ export class InitializeLFS extends React.Component<IInitializeLFSProps, {}> {
     return (
       <Dialog
         id="initialize-lfs"
-        title="Initialize Git LFS"
+        title="初始化Git LFS"
         dismissable={false}
         onSubmit={this.onInitialize}
       >
@@ -42,8 +42,8 @@ export class InitializeLFS extends React.Component<IInitializeLFSProps, {}> {
 
         <DialogFooter>
           <OkCancelButtonGroup
-            okButtonText="Initialize Git LFS"
-            cancelButtonText={__DARWIN__ ? 'Not Now' : 'Not now'}
+            okButtonText="初始化Git LFS"
+            cancelButtonText={__DARWIN__ ? '不是现在' : '不是现在'}
             onCancelButtonClick={this.props.onDismissed}
           />
         </DialogFooter>

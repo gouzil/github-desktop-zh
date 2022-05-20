@@ -93,7 +93,7 @@ export class CreateTutorialRepositoryDialog extends React.Component<ICreateTutor
           {this.renderProgress()}
         </DialogContent>
         <DialogFooter>
-          <OkCancelButtonGroup okButtonText="Continue" />
+          <OkCancelButtonGroup okButtonText="继续" />
         </DialogFooter>
       </Dialog>
     )

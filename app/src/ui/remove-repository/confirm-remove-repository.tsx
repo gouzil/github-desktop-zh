@@ -88,7 +88,7 @@ export class ConfirmRemoveRepository extends React.Component<
           </div>
         </DialogContent>
         <DialogFooter>
-          <OkCancelButtonGroup destructive={true} okButtonText="Remove" />
+          <OkCancelButtonGroup destructive={true} okButtonText="去除" />
         </DialogFooter>
       </Dialog>
     )

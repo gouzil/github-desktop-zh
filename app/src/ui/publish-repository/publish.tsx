@@ -255,7 +255,7 @@ export class Publish extends React.Component<IPublishProps, IPublishState> {
         <DialogFooter>
           <OkCancelButtonGroup
             okButtonText={
-              __DARWIN__ ? 'Publish Repository' : 'Publish repository'
+              __DARWIN__ ? '发布存储库' : '发布存储库'
             }
             okButtonDisabled={disabled}
           />

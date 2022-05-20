@@ -78,8 +78,8 @@ export class ConfirmAbortDialog extends React.Component<
             destructive={true}
             okButtonText={
               __DARWIN__
-                ? `Abort ${operation}`
-                : `Abort ${operation.toLowerCase()}`
+                ? `中止 ${operation}`
+                : `中止 ${operation.toLowerCase()}`
             }
           />
         </DialogFooter>

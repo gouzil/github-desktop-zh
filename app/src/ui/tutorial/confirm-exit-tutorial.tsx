@@ -15,7 +15,7 @@ export class ConfirmExitTutorial extends React.Component<
   public render() {
     return (
       <Dialog
-        title={__DARWIN__ ? 'Exit Tutorial' : 'Exit tutorial'}
+        title={__DARWIN__ ? '退出教程' : '退出教程'}
         onDismissed={this.props.onDismissed}
         onSubmit={this.onContinue}
         type="normal"
@@ -28,7 +28,7 @@ export class ConfirmExitTutorial extends React.Component<
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup
-            okButtonText={__DARWIN__ ? 'Exit Tutorial' : 'Exit tutorial'}
+            okButtonText={__DARWIN__ ? '退出教程' : '退出教程'}
           />
         </DialogFooter>
       </Dialog>

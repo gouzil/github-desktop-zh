@@ -131,7 +131,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
     if (latestVersion === __APP_VERSION__) {
       return (
         <Button type="submit" onClick={this.onDismissed}>
-          Close
+          关闭
         </Button>
       )
     }
@@ -140,9 +140,9 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
       <OkCancelButtonGroup
         destructive={true}
         okButtonText={
-          __DARWIN__ ? 'Install and Restart' : 'Install and restart'
+          __DARWIN__ ? '安装并重新启动' : '安装并重新启动'
         }
-        cancelButtonText="Close"
+        cancelButtonText="关闭"
       />
     )
   }

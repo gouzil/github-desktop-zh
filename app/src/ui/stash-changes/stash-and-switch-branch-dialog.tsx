@@ -59,7 +59,7 @@ export class StashAndSwitchBranch extends React.Component<
     return (
       <Dialog
         id="stash-changes"
-        title={__DARWIN__ ? 'Switch Branch' : 'Switch branch'}
+        title={__DARWIN__ ? '切换分支' : '切换分支'}
         onSubmit={this.onSubmit}
         onDismissed={this.props.onDismissed}
         loading={isStashingChanges}
@@ -71,7 +71,7 @@ export class StashAndSwitchBranch extends React.Component<
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup
-            okButtonText={__DARWIN__ ? 'Switch Branch' : 'Switch branch'}
+            okButtonText={__DARWIN__ ? '切换分支' : '切换分支'}
           />
         </DialogFooter>
       </Dialog>

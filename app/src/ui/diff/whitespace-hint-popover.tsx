@@ -24,14 +24,14 @@ export class WhitespaceHintPopover extends React.Component<IWhitespaceHintPopove
         style={this.props.style}
         appearEffect={PopoverAppearEffect.Shake}
       >
-        <h3>Show whitespace changes?</h3>
+        <h3>显示空白更改?</h3>
         <p className="byline">
-          Selecting lines is disabled when hiding whitespace changes.
+          隐藏空白更改时禁用选择行.
         </p>
         <footer>
           <OkCancelButtonGroup
-            okButtonText="Yes"
-            cancelButtonText="No"
+            okButtonText="是的"
+            cancelButtonText="不是"
             onCancelButtonClick={this.onDismissed}
             onOkButtonClick={this.onShowWhitespaceChanges}
           />
