@@ -77,7 +77,7 @@ export class CreateForkDialog extends React.Component<
   public render() {
     return (
       <Dialog
-        title="Do you want to fork this repository?"
+        title="要创建此存储库的分支吗?"
         onDismissed={this.props.onDismissed}
         onSubmit={this.state.error ? undefined : this.onSubmit}
         dismissable={!this.state.loading}
@@ -166,7 +166,7 @@ function renderCreateForkDialogError(
           {suggestion}
         </div>
         <details>
-          <summary>Error details</summary>
+          <summary>错误详细信息</summary>
           <pre className="error">{error.message}</pre>
         </details>
       </DialogContent>

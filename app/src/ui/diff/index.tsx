@@ -213,7 +213,7 @@ export class Diff extends React.Component<IDiffProps, IDiffState> {
         this.props.file.status.kind === AppFileStatusKind.New ||
         this.props.file.status.kind === AppFileStatusKind.Untracked
       ) {
-        return <div className="panel empty">文件为空</div>
+        return <div className="panel empty">文件是空的</div>
       }
 
       if (this.props.file.status.kind === AppFileStatusKind.Renamed) {
