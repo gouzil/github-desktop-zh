@@ -175,10 +175,10 @@ export class CustomThemeSelector extends React.Component<
     return (
       <div className="custom-theme-selector">
         <div className="custom-theme-selecter-header">
-          <h2>Customize:</h2>
+          <h2>自定义:</h2>
           <Button
             onClick={this.onResetToDefaults}
-            tooltip="Reset to High Contrast defaults"
+            tooltip="重置为高对比度默认值"
           >
             <Octicon symbol={syncClockwise} />
           </Button>

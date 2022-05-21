@@ -130,8 +130,8 @@ export class NoRepositoriesView extends React.Component<
     return (
       <UiView id="no-repositories">
         <header>
-          <h1>Let's get started!</h1>
-          <p>Add a repository to GitHub Desktop to start collaborating</p>
+          <h1>让我们开始吧!</h1>
+          <p>向GitHub Desktop添加存储库以开始协作</p>
         </header>
 
         <div className="content">
@@ -266,7 +266,7 @@ export class NoRepositoriesView extends React.Component<
         className="clone-selected-repository"
         onClick={this.onCloneSelectedRepository}
       >
-        Clone{' '}
+        关闭{' '}
         <strong>
           {selectedItem.owner.login}/{selectedItem.name}
         </strong>
@@ -321,7 +321,7 @@ export class NoRepositoriesView extends React.Component<
     return (
       <TabBar selectedIndex={selectedIndex} onTabClicked={this.onTabClicked}>
         <span>GitHub.com</span>
-        <span>GitHub Enterprise</span>
+        <span>GitHub 企业</span>
       </TabBar>
     )
   }
@@ -369,8 +369,8 @@ export class NoRepositoriesView extends React.Component<
       return this.renderButtonGroupButton(
         OcticonSymbol.mortarBoard,
         __DARWIN__
-          ? 'Return to In Progress Tutorial'
-          : 'Return to in progress tutorial',
+          ? '返回正在进行的教程'
+          : '返回正在进行的教程',
         this.props.onResumeTutorialRepository,
         'submit'
       )
@@ -378,8 +378,8 @@ export class NoRepositoriesView extends React.Component<
       return this.renderButtonGroupButton(
         OcticonSymbol.mortarBoard,
         __DARWIN__
-          ? 'Create a Tutorial Repository…'
-          : 'Create a tutorial repository…',
+          ? '创建教程存储库…'
+          : '创建教程存储库…',
         this.props.onCreateTutorialRepository,
         'submit'
       )
@@ -390,8 +390,8 @@ export class NoRepositoriesView extends React.Component<
     return this.renderButtonGroupButton(
       OcticonSymbol.repoClone,
       __DARWIN__
-        ? 'Clone a Repository from the Internet…'
-        : 'Clone a repository from the Internet…',
+        ? '从Internet克隆存储库…'
+        : '从Internet克隆存储库…',
       this.onShowClone
     )
   }
@@ -400,8 +400,8 @@ export class NoRepositoriesView extends React.Component<
     return this.renderButtonGroupButton(
       OcticonSymbol.plus,
       __DARWIN__
-        ? 'Create a New Repository on your Hard Drive…'
-        : 'Create a New Repository on your hard drive…',
+        ? '在硬盘上创建新存储库…'
+        : '在硬盘上创建新存储库…',
       this.props.onCreate
     )
   }
@@ -410,8 +410,8 @@ export class NoRepositoriesView extends React.Component<
     return this.renderButtonGroupButton(
       OcticonSymbol.fileDirectory,
       __DARWIN__
-        ? 'Add an Existing Repository from your Hard Drive…'
-        : 'Add an Existing Repository from your hard drive…',
+        ? '从硬盘添加现有存储库…'
+        : '从硬盘添加现有存储库…',
       this.props.onAdd
     )
   }
@@ -429,8 +429,8 @@ export class NoRepositoriesView extends React.Component<
         <div className="drag-drop-info">
           <Octicon symbol={OcticonSymbol.lightBulb} />
           <div>
-            <strong>ProTip!</strong> You can drag &amp; drop an existing
-            repository folder here to add it to Desktop
+            <strong>专业提示!</strong> 您可以拖动 &amp; 
+            在此处删除现有的存储库文件夹以将其添加到桌面
           </div>
         </div>
       </div>

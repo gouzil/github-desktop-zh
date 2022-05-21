@@ -186,7 +186,7 @@ export class Preferences extends React.Component<
     return (
       <Dialog
         id="preferences"
-        title={__DARWIN__ ? 'Preferences' : 'Options'}
+        title={__DARWIN__ ? '首选项' : '选项'}
         onDismissed={this.props.onDismissed}
         onSubmit={this.onSave}
       >
@@ -199,11 +199,11 @@ export class Preferences extends React.Component<
           >
             <span>
               <Octicon className="icon" symbol={OcticonSymbol.home} />
-              Accounts
+              账户
             </span>
             <span>
               <Octicon className="icon" symbol={OcticonSymbol.person} />
-              Integrations
+              集成
             </span>
             <span>
               <Octicon className="icon" symbol={OcticonSymbol.gitCommit} />
@@ -211,15 +211,15 @@ export class Preferences extends React.Component<
             </span>
             <span>
               <Octicon className="icon" symbol={OcticonSymbol.paintbrush} />
-              Appearance
+              外观
             </span>
             <span>
               <Octicon className="icon" symbol={OcticonSymbol.question} />
-              Prompts
+              提示
             </span>
             <span>
               <Octicon className="icon" symbol={OcticonSymbol.settings} />
-              Advanced
+              高级
             </span>
           </TabBar>
 

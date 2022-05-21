@@ -164,7 +164,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
           src={ReleaseNoteHeaderLeftUri}
         />
         <div className="title">
-          <p className="version">Version {latestVersion}</p>
+          <p className="version">版本 {latestVersion}</p>
           <p className="date">{datePublished}</p>
         </div>
         <img
@@ -187,7 +187,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
         </DialogContent>
         <DialogFooter>
           <LinkButton onClick={this.showAllReleaseNotes}>
-            View all release notes
+            查看所有发行说明
           </LinkButton>
           {this.renderButtons()}
         </DialogFooter>

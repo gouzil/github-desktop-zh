@@ -89,8 +89,8 @@ export class Advanced extends React.Component<
   private reportDesktopUsageLabel() {
     return (
       <span>
-        Help GitHub Desktop improve by submitting{' '}
-        <LinkButton uri={SamplesURL}>usage stats</LinkButton>
+        通过提交帮助GitHub Desktop改进{' '}
+        <LinkButton uri={SamplesURL}>使用情况统计信息</LinkButton>
       </span>
     )
   }
@@ -99,7 +99,7 @@ export class Advanced extends React.Component<
     return (
       <DialogContent>
         <div className="advanced-section">
-          <h2>If I have changes and I switch branches...</h2>
+          <h2>如果我有更改并切换分支...</h2>
 
           <RadioButton
             value={UncommittedChangesStrategy.AskForConfirmation}
@@ -107,7 +107,7 @@ export class Advanced extends React.Component<
               this.state.uncommittedChangesStrategy ===
               UncommittedChangesStrategy.AskForConfirmation
             }
-            label="Ask me where I want the changes to go"
+            label="询问我要更改的位置"
             onSelected={this.onUncommittedChangesStrategyChanged}
           />
 
@@ -117,7 +117,7 @@ export class Advanced extends React.Component<
               this.state.uncommittedChangesStrategy ===
               UncommittedChangesStrategy.MoveToNewBranch
             }
-            label="Always bring my changes to my new branch"
+            label="始终将我的更改带到我的新分支"
             onSelected={this.onUncommittedChangesStrategyChanged}
           />
 
@@ -127,14 +127,14 @@ export class Advanced extends React.Component<
               this.state.uncommittedChangesStrategy ===
               UncommittedChangesStrategy.StashOnCurrentBranch
             }
-            label="Always stash and leave my changes on the current branch"
+            label="始终将更改保存并保留在当前分支上"
             onSelected={this.onUncommittedChangesStrategyChanged}
           />
         </div>
         <div className="advanced-section">
-          <h2>Background updates</h2>
+          <h2>后台更新</h2>
           <Checkbox
-            label="Periodically fetch and refresh status of all repositories"
+            label="定期获取和刷新所有存储库的状态"
             value={
               this.props.repositoryIndicatorsEnabled
                 ? CheckboxValue.On
@@ -143,14 +143,14 @@ export class Advanced extends React.Component<
             onChange={this.onRepositoryIndicatorsEnabledChanged}
           />
           <p className="git-settings-description">
-            Allows the display of up-to-date status indicators in the repository
-            list. Disabling this may improve performance with many repositories.
+            允许在存储库列表中显示最新状态指示器. 
+            禁用此选项可以提高许多存储库的性能.
           </p>
         </div>
         {this.renderSSHSettings()}
         {this.renderNotificationsSettings()}
         <div className="advanced-section">
-          <h2>Usage</h2>
+          <h2>使用</h2>
           <Checkbox
             label={this.reportDesktopUsageLabel()}
             value={
@@ -191,9 +191,9 @@ export class Advanced extends React.Component<
 
     return (
       <div className="advanced-section">
-        <h2>Notifications</h2>
+        <h2>通知</h2>
         <Checkbox
-          label="Enable notifications"
+          label="启用通知"
           value={
             this.props.notificationsEnabled
               ? CheckboxValue.On
@@ -202,8 +202,9 @@ export class Advanced extends React.Component<
           onChange={this.onNotificationsEnabledChanged}
         />
         <p className="git-settings-description">
-          Allows the display of notifications when high-signal events take place
-          in the current repository.{this.renderNotificationSettingsLink()}
+          允许在当前存储库中发生高信号事件时显示通知
+          (Allows the display of notifications when high-signal events take place
+          in the current repository).{this.renderNotificationSettingsLink()}
         </p>
       </div>
     )
@@ -221,9 +222,9 @@ export class Advanced extends React.Component<
     return (
       <>
         {' '}
-        Make sure notifications are enabled for GitHub Desktop in the{' '}
+        确保GitHub Desktop的通知已启用{' '}
         <LinkButton uri={notificationSettingsURL}>
-          Notifications Settings
+          通知设置
         </LinkButton>
         .
       </>

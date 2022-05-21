@@ -26,20 +26,20 @@ interface IAppearanceState {
 }
 
 const systemTheme: ISegmentedItem<ApplicationTheme> = {
-  title: 'System',
-  description: 'Automatically switch theme to match system theme',
+  title: '跟随系统',
+  description: '自动切换主题以匹配系统主题',
   key: ApplicationTheme.System,
 }
 
 const themes: ReadonlyArray<ISegmentedItem<ApplicationTheme>> = [
   {
-    title: 'Light',
-    description: 'The default theme of GitHub Desktop',
+    title: '亮',
+    description: 'GitHub Desktop的默认主题',
     key: ApplicationTheme.Light,
   },
   {
-    title: 'Dark',
-    description: 'GitHub Desktop is for you too, creatures of the night',
+    title: '暗',
+    description: 'GitHub Desktop 也适合你, 夜晚的人们',
     key: ApplicationTheme.Dark,
   },
   ...(enableHighContrastTheme()
@@ -107,7 +107,7 @@ export class Appearance extends React.Component<
     if (selectedTheme == null) {
       return (
         <DialogContent>
-          <Row>Loading system theme</Row>
+          <Row>加载系统主题</Row>
         </DialogContent>
       )
     }

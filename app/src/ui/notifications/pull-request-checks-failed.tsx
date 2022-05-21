@@ -87,13 +87,13 @@ export class PullRequestChecksFailed extends React.Component<
 
   public render() {
     let okButtonTitle = __DARWIN__
-      ? 'Switch to Pull Request'
-      : 'Switch to pull request'
+      ? '切换到拉取请求'
+      : '切换到拉取请求'
 
     if (this.props.shouldChangeRepository) {
       okButtonTitle = __DARWIN__
-        ? 'Switch to Repository and Pull Request'
-        : 'Switch to repository and pull request'
+        ? '切换到存储库并拉取请求'
+        : '切换到存储库并拉取请求'
     }
 
     const { pullRequest } = this.props
@@ -101,14 +101,14 @@ export class PullRequestChecksFailed extends React.Component<
     const loadingChecksInfo = this.loadingChecksInfo
 
     const failedChecks = this.state.checks.filter(isFailure)
-    const pluralChecks = failedChecks.length > 1 ? 'checks' : 'check'
+    const pluralChecks = failedChecks.length > 1 ? '检查' : '检查'
 
     const header = (
       <div className="ci-check-run-dialog-header">
         <Octicon symbol={OcticonSymbol.xCircleFill} />
         <div className="title-container">
           <div className="summary">
-            {failedChecks.length} {pluralChecks} failed in your pull request
+            {failedChecks.length} {pluralChecks} 拉取请求失败
           </div>
           <span className="pr-title">
             <span className="pr-title">{pullRequest.title}</span>{' '}
@@ -144,7 +144,7 @@ export class PullRequestChecksFailed extends React.Component<
             {this.renderSummary()}
             <OkCancelButtonGroup
               onCancelButtonClick={this.props.onDismissed}
-              cancelButtonText="Dismiss"
+              cancelButtonText="驳回"
               okButtonText={okButtonTitle}
               okButtonDisabled={this.state.switchingToPullRequest}
               onOkButtonClick={this.onSubmit}
@@ -157,11 +157,11 @@ export class PullRequestChecksFailed extends React.Component<
 
   private renderSummary() {
     const failedChecks = this.state.checks.filter(isFailure)
-    const pluralThem = failedChecks.length > 1 ? 'them' : 'it'
+    const pluralThem = failedChecks.length > 1 ? '它们' : '它们'
     return (
       <div className="footer-question">
         <span>
-          Do you want to switch to that Pull Request now and start fixing{' '}
+          是否要立即切换到该拉动请求并开始修复{' '}
           {pluralThem}?
         </span>
       </div>
@@ -222,8 +222,8 @@ export class PullRequestChecksFailed extends React.Component<
     return (
       <div className="loading-check-runs">
         <img src={BlankSlateImage} className="blankslate-image" />
-        <div className="title">Stand By</div>
-        <div className="call-to-action">Check run steps incoming!</div>
+        <div className="title">准备</div>
+        <div className="call-to-action">检查运行步骤!</div>
       </div>
     )
   }
@@ -231,10 +231,10 @@ export class PullRequestChecksFailed extends React.Component<
     return (
       <div className="no-steps-to-display">
         <div className="text">
-          There are no steps to display for this check.
+          此检查没有可显示的步骤.
           <div>
             <LinkButton onClick={this.onViewSelectedCheckRunOnGitHub}>
-              View check details
+              查看检查详细信息
             </LinkButton>
           </div>
         </div>

@@ -38,13 +38,13 @@ export class RenameBranch extends React.Component<
     return (
       <Dialog
         id="rename-branch"
-        title={__DARWIN__ ? 'Rename Branch' : 'Rename branch'}
+        title={__DARWIN__ ? '重名分支' : '重名分支'}
         onDismissed={this.props.onDismissed}
         onSubmit={this.renameBranch}
       >
         <DialogContent>
           <RefNameTextBox
-            label="Name"
+            label="名字"
             initialValue={this.props.branch.name}
             onValueChange={this.onNameChange}
           />

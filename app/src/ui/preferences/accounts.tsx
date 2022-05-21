@@ -32,7 +32,7 @@ export class Accounts extends React.Component<IAccountsProps, {}> {
           ? this.renderAccount(this.props.dotComAccount)
           : this.renderSignIn(SignInType.DotCom)}
 
-        <h2>GitHub Enterprise</h2>
+        <h2>GitHub 企业</h2>
         {this.props.enterpriseAccount
           ? this.renderAccount(this.props.enterpriseAccount)
           : this.renderSignIn(SignInType.Enterprise)}
@@ -56,7 +56,7 @@ export class Accounts extends React.Component<IAccountsProps, {}> {
           <div className="login">@{account.login}</div>
         </div>
         <Button onClick={this.logout(account)}>
-          {__DARWIN__ ? 'Sign Out' : 'Sign out'}
+          {__DARWIN__ ? '退出登录' : '退出登录'}
         </Button>
       </Row>
     )
@@ -71,7 +71,7 @@ export class Accounts extends React.Component<IAccountsProps, {}> {
   }
 
   private renderSignIn(type: SignInType) {
-    const signInTitle = __DARWIN__ ? 'Sign In' : 'Sign in'
+    const signInTitle = __DARWIN__ ? '登录' : '登录'
     switch (type) {
       case SignInType.DotCom: {
         return (
@@ -80,7 +80,7 @@ export class Accounts extends React.Component<IAccountsProps, {}> {
             onAction={this.onDotComSignIn}
           >
             <div>
-              Sign in to your GitHub.com account to access your repositories.
+              登录到你的GitHub.com帐户来访问你的仓库.
             </div>
           </CallToAction>
         )
@@ -92,8 +92,8 @@ export class Accounts extends React.Component<IAccountsProps, {}> {
             onAction={this.onEnterpriseSignIn}
           >
             <div>
-              If you have a GitHub Enterprise or AE account at work, sign in to
-              it to get access to your repositories.
+              如果你有一个GitHub企业或AE帐户在工作, 
+              登录到它获得访问您的存储库.
             </div>
           </CallToAction>
         )

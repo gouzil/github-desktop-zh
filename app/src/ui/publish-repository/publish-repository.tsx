@@ -130,7 +130,7 @@ export class PublishRepository extends React.Component<
 
     return (
       <Select
-        label="Organization"
+        label="组织"
         value={selectedIndex.toString()}
         onChange={this.onOrgChange}
       >
@@ -144,7 +144,7 @@ export class PublishRepository extends React.Component<
       <DialogContent>
         <Row>
           <TextBox
-            label="Name"
+            label="名字"
             value={this.name}
             onValueChanged={this.onNameChange}
           />
@@ -154,7 +154,7 @@ export class PublishRepository extends React.Component<
 
         <Row>
           <TextBox
-            label="Description"
+            label="描述"
             value={this.props.settings.description}
             onValueChanged={this.onDescriptionChange}
           />
@@ -163,11 +163,11 @@ export class PublishRepository extends React.Component<
         <Row>
           <label>
             <input
-              type="checkbox"
+              type="复选框"
               checked={this.props.settings.private}
               onChange={this.onPrivateChange}
             />
-            Keep this code private
+            保持此代码为私有
           </label>
         </Row>
 
@@ -185,7 +185,7 @@ export class PublishRepository extends React.Component<
     return (
       <Row className="warning-helper-text">
         <Octicon symbol={OcticonSymbol.alert} />
-        Will be created as {sanitizedName}
+        将创建为 {sanitizedName}
       </Row>
     )
   }
