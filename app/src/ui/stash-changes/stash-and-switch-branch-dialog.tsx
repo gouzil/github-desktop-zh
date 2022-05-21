@@ -88,8 +88,7 @@ export class StashAndSwitchBranch extends React.Component<
 
     return (
       <Row>
-        <Octicon symbol={OcticonSymbol.alert} /> Your current stash will be
-        overwritten by creating a new stash
+        <Octicon symbol={OcticonSymbol.alert} /> 您当前的存储将被创建一个新的存储覆盖
       </Row>
     )
   }
@@ -98,14 +97,14 @@ export class StashAndSwitchBranch extends React.Component<
     const { branchToCheckout } = this.props
     const items = [
       {
-        title: `Leave my changes on ${this.state.currentBranchName}`,
+        title: `保留我的更改 ${this.state.currentBranchName}`,
         description:
-          'Your in-progress work will be stashed on this branch for you to return to later',
+          '您正在进行的工作将保存在此分支上, 以便您稍后返回',
         key: StashAction.StashOnCurrentBranch,
       },
       {
-        title: `Bring my changes to ${branchToCheckout.name}`,
-        description: 'Your in-progress work will follow you to the new branch',
+        title: `将我的更改带到 ${branchToCheckout.name}`,
+        description: '您正在进行的工作将跟随您进入新的分支',
         key: StashAction.MoveToNewBranch,
       },
     ]
@@ -113,7 +112,7 @@ export class StashAndSwitchBranch extends React.Component<
     return (
       <Row>
         <VerticalSegmentedControl
-          label="You have changes on this branch. What would you like to do with them?"
+          label="您对此分支进行了更改. 你想用它们做什么?"
           items={items}
           selectedKey={this.state.selectedStashAction}
           onSelectionChanged={this.onSelectionChanged}

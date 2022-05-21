@@ -21,7 +21,7 @@ export class TermsAndConditions extends React.Component<
     return (
       <Dialog
         id="terms-and-conditions"
-        title="GitHub Open Source Applications Terms and Conditions"
+        title="GitHub开源应用程序条款和条件"
         onSubmit={this.props.onDismissed}
         onDismissed={this.props.onDismissed}
       >

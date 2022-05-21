@@ -32,7 +32,7 @@ export class ConfirmDiscardStashDialog extends React.Component<
   }
 
   public render() {
-    const title = __DARWIN__ ? 'Discard Stash?' : 'Discard stash?'
+    const title = __DARWIN__ ? '丢弃隐藏?' : '丢弃隐藏?'
 
     return (
       <Dialog
@@ -45,7 +45,7 @@ export class ConfirmDiscardStashDialog extends React.Component<
         onDismissed={this.props.onDismissed}
       >
         <DialogContent>
-          <Row>Are you sure you want to discard these stashed changes?</Row>
+          <Row>是否确实要放弃这些隐藏的更改?</Row>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup destructive={true} okButtonText="丢弃" />

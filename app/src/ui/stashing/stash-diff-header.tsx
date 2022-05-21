@@ -40,7 +40,7 @@ export class StashDiffHeader extends React.Component<
 
     return (
       <div className="header">
-        <h3>Stashed changes</h3>
+        <h3>隐藏的更改</h3>
         <div className="row">
           <OkCancelButtonGroup
             okButtonText="恢复"
@@ -63,8 +63,7 @@ export class StashDiffHeader extends React.Component<
       return (
         <div className="explanatory-text">
           <span className="text">
-            <strong>Restore</strong> will move your stashed files to the Changes
-            list.
+            <strong>恢复</strong> 将您隐藏的文件移动到更改列表.
           </span>
         </div>
       )
@@ -74,7 +73,7 @@ export class StashDiffHeader extends React.Component<
       <div className="explanatory-text">
         <Octicon symbol={OcticonSymbol.alert} />
         <span className="text">
-          Unable to restore stash when changes are present on your branch.
+          当分支上存在更改时，无法恢复存储.
         </span>
       </div>
     )
