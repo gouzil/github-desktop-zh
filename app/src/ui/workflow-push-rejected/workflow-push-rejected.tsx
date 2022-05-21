@@ -6,7 +6,7 @@ import { RepositoryWithGitHubRepository } from '../../models/repository'
 import { OkCancelButtonGroup } from '../dialog/ok-cancel-button-group'
 import { getDotComAPIEndpoint } from '../../lib/api'
 
-const okButtonText = __DARWIN__ ? 'Continue in Browser' : 'Continue in browser'
+const okButtonText = __DARWIN__ ? '在浏览器中继续' : '在浏览器中继续'
 
 interface IWorkflowPushRejectedDialogProps {
   readonly rejectedPath: string
