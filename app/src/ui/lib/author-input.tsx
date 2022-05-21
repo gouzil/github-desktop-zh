@@ -304,8 +304,8 @@ function renderUnknownHandleMarkReplacementElement(
 
   elem.classList.add('handle', isError ? 'error' : 'progress')
   elem.title = isError
-    ? `Could not find user with username ${username}`
-    : `Searching for @${username}`
+    ? `找不到用户名为 ${username} 的用户`
+    : `正在搜索 @${username}`
 
   const symbol = isError ? OcticonSymbol.stop : syncClockwise
 
@@ -780,9 +780,12 @@ export class AuthorInput extends React.Component<IAuthorInputProps, {}> {
   private onContextMenu(cm: Editor, e: MouseEvent) {
     e.preventDefault()
 
+    // 感觉这里会有问题
     const menu: IMenuItem[] = [
-      { label: 'Undo', action: () => cm.getDoc().undo() },
-      { label: 'Redo', action: () => cm.getDoc().redo() },
+      // { label: 'Undo', action: () => cm.getDoc().undo() },
+      // { label: 'Redo', action: () => cm.getDoc().redo() },
+      { label: '撤销', action: () => cm.getDoc().undo() },
+      { label: '重做', action: () => cm.getDoc().redo() },
       { type: 'separator' },
       { role: 'cut' },
       { role: 'copy' },
@@ -794,7 +797,7 @@ export class AuthorInput extends React.Component<IAuthorInputProps, {}> {
     }
 
     menu.push({
-      label: __DARWIN__ ? 'Select All' : 'Select all',
+      label: __DARWIN__ ? '全选' : '全选',
       action: () => {
         cm.execCommand('selectAll')
       },

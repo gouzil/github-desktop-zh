@@ -102,14 +102,14 @@ export class AuthenticationForm extends React.Component<
     return (
       <>
         <TextBox
-          label="Username or email address"
+          label="用户名或电子邮件地址"
           disabled={disabled}
           autoFocus={true}
           onValueChanged={this.onUsernameChange}
         />
 
         <TextBox
-          label="Password"
+          label="密码"
           type="password"
           disabled={disabled}
           onValueChanged={this.onPasswordChange}
@@ -132,7 +132,7 @@ export class AuthenticationForm extends React.Component<
       <div className="actions">
         {this.props.supportsBasicAuth ? (
           <Button type="submit" disabled={signInDisabled}>
-            {this.props.loading ? <Loading /> : null} Sign in
+            {this.props.loading ? <Loading /> : null} 登录
           </Button>
         ) : null}
 
@@ -143,7 +143,7 @@ export class AuthenticationForm extends React.Component<
             className="forgot-password-link"
             uri={this.props.forgotPasswordUrl}
           >
-            Forgot password?
+            忘记密码?
           </LinkButton>
         ) : null}
       </div>
@@ -200,7 +200,7 @@ export class AuthenticationForm extends React.Component<
         className="button-with-icon"
         onClick={this.signInWithBrowser}
       >
-        Sign in using your browser
+        使用浏览器登录
         <Octicon symbol={OcticonSymbol.linkExternal} />
       </Button>
     )
@@ -239,15 +239,14 @@ function getEndpointRequiresWebFlowMessage(endpoint: string): JSX.Element {
   if (endpoint === getDotComAPIEndpoint()) {
     return (
       <>
-        <p>GitHub now requires you to sign in with your browser.</p>
+        <p>GitHub现在要求您使用浏览器登录.</p>
         <p>{BrowserRedirectMessage}</p>
       </>
     )
   } else {
     return (
       <p>
-        Your GitHub Enterprise instance requires you to sign in with your
-        browser.
+        你的GitHub企业实例需要你用浏览器登录.
       </p>
     )
   }

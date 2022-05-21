@@ -159,14 +159,14 @@ export class RefNameTextBox extends React.Component<
     if (sanitizedValue.length === 0) {
       return (
         <>
-          <Ref>{proposedValue}</Ref> is not a valid name.
+          <Ref>{proposedValue}</Ref> 不是一个有效的名称.
         </>
       )
     }
 
     return (
       <>
-        Will be created as <Ref>{sanitizedValue}</Ref>.
+        将被创建为 <Ref>{sanitizedValue}</Ref>.
       </>
     )
   }

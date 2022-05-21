@@ -13,8 +13,7 @@ export function renderBranchHasRemoteWarning(branch: Branch) {
       <Row className="warning-helper-text">
         <Octicon symbol={OcticonSymbol.alert} />
         <p>
-          This branch is tracking <Ref>{branch.upstream}</Ref> and renaming this
-          branch will not change the branch name on the remote.
+          此分支正在跟踪 <Ref>{branch.upstream}</Ref> 重命名此分支不会更改远程上的分支名称.
         </p>
       </Row>
     )
@@ -40,7 +39,7 @@ export function renderBranchNameExistsOnRemoteWarning(
     <Row className="warning-helper-text">
       <Octicon symbol={OcticonSymbol.alert} />
       <p>
-        A branch named <Ref>{sanitizedName}</Ref> already exists on the remote.
+        一个分支命名 <Ref>{sanitizedName}</Ref> 已在远程上存在.
       </p>
     </Row>
   )
@@ -54,8 +53,7 @@ export function renderStashWillBeLostWarning(stash: IStashEntry | null) {
     <Row className="warning-helper-text">
       <Octicon symbol={OcticonSymbol.alert} />
       <p>
-        Your current stashed changes on this branch will no longer be visible in
-        GitHub Desktop if the branch is renamed.
+        如果该分支被重命名, 你当前在该分支上隐藏的更改将不再在GitHub Desktop中可见.
       </p>
     </Row>
   )

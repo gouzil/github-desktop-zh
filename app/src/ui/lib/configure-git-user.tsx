@@ -242,7 +242,7 @@ export class ConfigureGitUser extends React.Component<
 
     return (
       <div id="commit-list" className="commit-list-example">
-        <div className="header">Example commit</div>
+        <div className="header">示例提交</div>
 
         <CommitListItem
           commit={dummyCommit}
@@ -272,13 +272,13 @@ export class ConfigureGitUser extends React.Component<
     return (
       <div>
         <RadioButton
-          label={`Use my GitHub${accountTypeSuffix} account name and email address`}
+          label={`使用我的GitHub${accountTypeSuffix} 帐户名称和电子邮件地址`}
           checked={this.state.useGitHubAuthorInfo}
           onSelected={this.onUseGitHubInfoSelected}
           value="github-account"
         />
         <RadioButton
-          label="Configure manually"
+          label="手动配置"
           checked={!this.state.useGitHubAuthorInfo}
           onSelected={this.onUseGitConfigInfoSelected}
           value="git-config"
@@ -295,14 +295,14 @@ export class ConfigureGitUser extends React.Component<
     return (
       <Form className="sign-in-form" onSubmit={this.save}>
         <TextBox
-          label="Name"
+          label="名字"
           placeholder="Your Name"
           value={this.state.gitHubName}
           disabled={true}
         />
 
         <Select
-          label="Email"
+          label="邮箱"
           value={this.state.gitHubEmail}
           onChange={this.onSelectedGitHubEmailChange}
         >
@@ -333,7 +333,7 @@ export class ConfigureGitUser extends React.Component<
 
         <TextBox
           type="email"
-          label="Email"
+          label="邮箱"
           placeholder="your-email@example.com"
           value={this.state.manualEmail}
           onValueChanged={this.onEmailChange}

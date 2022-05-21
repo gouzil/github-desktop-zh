@@ -170,7 +170,7 @@ const renderManualConflictedFile: React.FunctionComponent<{
   let conflictTypeString = manualConflictString
 
   if ([entry.us, entry.them].includes(GitStatusEntry.Deleted)) {
-    let targetBranch = 'target branch'
+    let targetBranch = '目标分支'
     if (entry.us === GitStatusEntry.Deleted && ourBranch !== undefined) {
       targetBranch = ourBranch
     }
@@ -178,7 +178,7 @@ const renderManualConflictedFile: React.FunctionComponent<{
     if (entry.them === GitStatusEntry.Deleted && theirBranch !== undefined) {
       targetBranch = theirBranch
     }
-    conflictTypeString = `File does not exist on ${targetBranch}.`
+    conflictTypeString = `文件不存在 ${targetBranch}.`
   }
 
   const content = (
@@ -192,7 +192,7 @@ const renderManualConflictedFile: React.FunctionComponent<{
           className="small-button button-group-item resolve-arrow-menu"
           onClick={onDropdownClick}
         >
-          Resolve
+          解决
           <Octicon symbol={OcticonSymbol.triangleDown} />
         </Button>
       </div>
@@ -229,8 +229,8 @@ const renderConflictedFileWithConflictMarkers: React.FunctionComponent<{
   )
   const message =
     humanReadableConflicts === 1
-      ? `1 conflict`
-      : `${humanReadableConflicts} conflicts`
+      ? `1个冲突`
+      : `${humanReadableConflicts} 个冲突`
 
   const disabled = props.resolvedExternalEditor === null
   const tooltip = editorButtonTooltip(props.resolvedExternalEditor)
@@ -385,7 +385,7 @@ function resolvedFileStatusString(
   if (manualResolution === ManualConflictResolution.theirs) {
     return getUnmergedStatusEntryDescription(status.entry.them, branch)
   }
-  return 'No conflicts remaining'
+  return '没有剩余冲突'
 }
 
 const renderResolvedFileStatusSummary: React.FunctionComponent<{
@@ -400,7 +400,7 @@ const renderResolvedFileStatusSummary: React.FunctionComponent<{
     isConflictWithMarkers(props.status) &&
     props.status.conflictMarkerCount === 0
   ) {
-    return <div className="file-conflicts-status">No conflicts remaining</div>
+    return <div className="file-conflicts-status">没有剩余冲突</div>
   }
 
   const statusString = resolvedFileStatusString(
@@ -420,7 +420,7 @@ const renderResolvedFileStatusSummary: React.FunctionComponent<{
           props.dispatcher
         )}
       >
-        Undo
+        撤销
       </LinkButton>
     </div>
   )
@@ -453,8 +453,8 @@ function calculateConflicts(conflictMarkers: number) {
 }
 
 function editorButtonString(editorName: string | null): string {
-  const defaultEditorString = 'editor'
-  return `Open in ${editorName || defaultEditorString}`
+  const defaultEditorString = '编辑器'
+  return `在 ${editorName || defaultEditorString} 打开`
 }
 
 function editorButtonTooltip(editorName: string | null): string | undefined {
@@ -464,10 +464,10 @@ function editorButtonTooltip(editorName: string | null): string | undefined {
   }
 
   if (__DARWIN__) {
-    return `No editor configured in Preferences > Advanced`
+    return `在“首选项”>“高级”中未配置编辑器`
   } else {
-    return `No editor configured in Options > Advanced`
+    return `在选项>高级中未配置编辑器`
   }
 }
 
-const manualConflictString = 'Manual conflict'
+const manualConflictString = '手动冲突'

@@ -29,10 +29,10 @@ export class GitEmailNotFoundWarning extends React.Component<IGitEmailNotFoundWa
 
     return (
       <div>
-        ⚠️ This email address doesn't match {this.getAccountTypeDescription()},
-        so your commits will be wrongly attributed.{' '}
+        ⚠️ 此电子邮件地址不匹配 {this.getAccountTypeDescription()},
+        所以你的行为将被错误地归因于.{' '}
         <LinkButton uri="https://docs.github.com/en/github/committing-changes-to-your-project/why-are-my-commits-linked-to-the-wrong-user">
-          Learn more.
+          查看更多.
         </LinkButton>
       </div>
     )
@@ -43,11 +43,11 @@ export class GitEmailNotFoundWarning extends React.Component<IGitEmailNotFoundWa
       const accountType =
         this.props.accounts[0].endpoint === getDotComAPIEndpoint()
           ? 'GitHub'
-          : 'GitHub Enterprise'
+          : 'GitHub 企业'
 
-      return `your ${accountType} account`
+      return `你的 ${accountType} 账户`
     }
 
-    return 'either of your GitHub.com nor GitHub Enterprise accounts'
+    return '你的GitHub.com或GitHub企业帐户'
   }
 }

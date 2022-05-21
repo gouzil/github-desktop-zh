@@ -76,7 +76,7 @@ export class TwoFactorAuthentication extends React.Component<
 
         <Form onSubmit={this.signIn}>
           <TextBox
-            label="Authentication code"
+            label="验证码"
             disabled={textEntryDisabled}
             autoFocus={true}
             onValueChanged={this.onOTPChange}
@@ -86,7 +86,7 @@ export class TwoFactorAuthentication extends React.Component<
 
           <div className="actions">
             <Button type="submit" disabled={signInDisabled}>
-              {this.props.loading ? <Loading /> : null} Verify
+              {this.props.loading ? <Loading /> : null} 验证
             </Button>
             {this.props.additionalButtons}
           </div>

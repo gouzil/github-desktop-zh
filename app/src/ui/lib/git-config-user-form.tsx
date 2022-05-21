@@ -89,7 +89,7 @@ export class GitConfigUserForm extends React.Component<
       <div>
         <Row>
           <TextBox
-            label="Name"
+            label="名字"
             value={this.props.name}
             disabled={this.props.disabled}
             onValueChanged={this.props.onNameChanged}
@@ -126,7 +126,7 @@ export class GitConfigUserForm extends React.Component<
     return (
       <Row>
         <Select
-          label="Email"
+          label="邮箱"
           value={
             this.state.emailIsOther ? OtherEmailSelectValue : this.props.email
           }
@@ -159,7 +159,7 @@ export class GitConfigUserForm extends React.Component<
     // Only show the "Email" label above the textbox when the textbox is
     // presented independently, without the email dropdown, not when presented
     // as a consequence of the option "Other" selected in the dropdown.
-    const label = this.state.emailIsOther ? undefined : 'Email'
+    const label = this.state.emailIsOther ? undefined : '邮箱'
 
     return (
       <Row>

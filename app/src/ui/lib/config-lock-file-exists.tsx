@@ -41,17 +41,17 @@ export class ConfigLockFileExists extends React.Component<IConfigLockFileExistsP
     return (
       <div className="config-lock-file-exists-component">
         <p>
-          Failed to update Git configuration file. A lock file already exists at{' '}
+          日志含义更新Git配置文件失败。已存在一个锁文件{' '}
           <Ref>{this.props.lockFilePath}</Ref>.
         </p>
         <p>
-          This can happen if another tool is currently modifying the Git
-          configuration or if a Git process has terminated earlier without
-          cleaning up the lock file. Do you want to{' '}
+          如果另一个工具当前正在修改Git配置,
+          或者Git进程提前终止而没有清理锁文件, 
+          则可能会发生这种情况。您是否想要{' '}
           <LinkButton onClick={this.onDeleteLockFile}>
-            delete the lock file
+            删除锁定文件
           </LinkButton>{' '}
-          and try again?
+          重试?
         </p>
       </div>
     )
