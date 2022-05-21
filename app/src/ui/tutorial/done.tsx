@@ -33,37 +33,37 @@ export class TutorialDone extends React.Component<ITutorialDoneProps, {}> {
         <div className="content">
           <div className="header">
             <div className="text">
-              <h1>You're done!</h1>
+              <h1>你完成了!</h1>
               <p>
-                You’ve learned the basics on how to use GitHub Desktop. Here are
-                some suggestions for what to do next.
+                您已经学习了如何使用GitHub Desktop的基本知识.
+                下面是一些关于下一步做什么的建议.
               </p>
             </div>
             <img src={ClappingHandsImage} className="image" />
           </div>
           <SuggestedActionGroup>
             <SuggestedAction
-              title="Explore projects on GitHub"
-              description="Contribute to a project that interests you"
-              buttonText={__DARWIN__ ? 'Open in Browser' : 'Open in browser'}
+              title="在GitHub上浏览项目"
+              description="为您感兴趣的项目做出贡献"
+              buttonText={__DARWIN__ ? '在浏览器中打开' : '在浏览器中打开'}
               onClick={this.openDotcomExplore}
               type="normal"
               image={TelescopeOcticon}
             />
             <SuggestedAction
-              title="Create a new repository"
-              description="Get started on a brand new project"
+              title="创建新存储库"
+              description="开始一个全新的项目"
               buttonText={
-                __DARWIN__ ? 'Create Repository' : 'Create repository'
+                __DARWIN__ ? '创建存储库' : '创建存储库'
               }
               onClick={this.onCreateNewRepository}
               type="normal"
               image={PlusOcticon}
             />
             <SuggestedAction
-              title="Add a local repository"
-              description="Work on an existing project in GitHub Desktop"
-              buttonText={__DARWIN__ ? 'Add Repository' : 'Add repository'}
+              title="添加一个本地存储库"
+              description="在GitHub Desktop上进行现有项目"
+              buttonText={__DARWIN__ ? '添加存储库' : '添加存储库'}
               onClick={this.onAddExistingRepository}
               type="normal"
               image={FileDirectoryOcticon}

@@ -22,8 +22,7 @@ export class ConfirmExitTutorial extends React.Component<
       >
         <DialogContent>
           <p>
-            Are you sure you want to leave the tutorial? This will bring you
-            back to the home screen.
+            是否确实要退出教程? 这将使您返回主屏幕.
           </p>
         </DialogContent>
         <DialogFooter>

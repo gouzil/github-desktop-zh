@@ -154,7 +154,7 @@ export class FullScreenInfo extends React.Component<
         timeout={toastTransitionTimeout}
       >
         <div key="notification" className="toast-notification">
-          Press <kbd>{kbdShortcut}</kbd> to exit fullscreen
+          按 <kbd>{kbdShortcut}</kbd> 退出全屏
         </div>
       </CSSTransition>
     )

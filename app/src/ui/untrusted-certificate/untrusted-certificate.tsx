@@ -37,30 +37,28 @@ export class UntrustedCertificate extends React.Component<
 
     return (
       <Dialog
-        title={__DARWIN__ ? 'Untrusted Server' : 'Untrusted server'}
+        title={__DARWIN__ ? '不受信任的服务器' : '不受信任的服务器'}
         onDismissed={this.props.onDismissed}
         onSubmit={this.onContinue}
         type={__DARWIN__ ? 'warning' : 'error'}
       >
         <DialogContent>
           <p>
-            GitHub Desktop cannot verify the identity of {host}. The certificate
-            ({this.props.certificate.subjectName}) is invalid or untrusted.{' '}
+            GitHub Desktop 无法验证的标识{host}. 证书
+            ({this.props.certificate.subjectName}) 无效或不受信任.{' '}
             <strong>
-              This may indicate attackers are trying to steal your data.
+              这可能表示攻击者正试图窃取您的数据.
             </strong>
           </p>
-          <p>In some cases, this may be expected. For example:</p>
+          <p>在某些情况下, 这可能是意料之中的. 例如:</p>
           <ul>
-            <li>If this is a GitHub Enterprise trial.</li>
+            <li>如果这是GitHub 企业试用版.</li>
             <li>
-              If your GitHub Enterprise instance is run on an unusual top-level
-              domain.
+              如果你的GitHub 企业实例运行在一个不寻常的顶级域上.
             </li>
           </ul>
           <p>
-            If you are unsure of what to do, cancel and contact your system
-            administrator.
+            如果不确定要做什么，请取消并与系统管理员联系.
           </p>
         </DialogContent>
         <DialogFooter>

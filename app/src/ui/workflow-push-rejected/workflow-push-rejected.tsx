@@ -34,7 +34,7 @@ export class WorkflowPushRejectedDialog extends React.Component<
     return (
       <Dialog
         id="workflow-push-rejected"
-        title={__DARWIN__ ? 'Push Rejected' : 'Push rejected'}
+        title={__DARWIN__ ? '推送被拒绝' : '推送被拒绝'}
         loading={this.state.loading}
         onDismissed={this.props.onDismissed}
         onSubmit={this.onSignIn}
@@ -42,14 +42,12 @@ export class WorkflowPushRejectedDialog extends React.Component<
       >
         <DialogContent>
           <p>
-            The push was rejected by the server for containing a modification to
-            the workflow file <Ref>{this.props.rejectedPath}</Ref>. In order to
-            be able to push to workflow files GitHub Desktop needs to request
-            additional permissions.
+            由于包含对工作流文件的修改, 
+            推送被服务器拒绝 <Ref>{this.props.rejectedPath}</Ref>. 
+            为了能够推送工作流文件, GitHub Desktop需要请求其他权限.
           </p>
           <p>
-            Would you like to open a browser to grant GitHub Desktop permission
-            to update workflow files?
+            是否打开浏览器以授予 GitHub Desktop更新工作流文件的权限?
           </p>
         </DialogContent>
         <DialogFooter>

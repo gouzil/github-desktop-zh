@@ -32,7 +32,7 @@ export class WarnLocalChangesBeforeUndo extends React.Component<
   }
 
   public render() {
-    const title = __DARWIN__ ? 'Undo Commit' : 'Undo commit'
+    const title = __DARWIN__ ? '撤销提交' : '撤销提交'
 
     return (
       <Dialog
@@ -61,14 +61,13 @@ export class WarnLocalChangesBeforeUndo extends React.Component<
     ) {
       return (
         <>
-          You have changes in progress. Undoing the merge commit might result in
-          some of these changes being lost.
+          您正在进行更改。撤销合并提交可能会导致其中一些更改丢失.
           <br />
           <br />
           {this.getMergeCommitUndoWarningText()}
           <br />
           <br />
-          Do you want to continue anyway?
+          您还想继续吗?
         </>
       )
     } else if (this.props.commit.isMergeCommit) {
@@ -77,24 +76,23 @@ export class WarnLocalChangesBeforeUndo extends React.Component<
           {this.getMergeCommitUndoWarningText()}
           <br />
           <br />
-          Do you want to continue anyway?
+          您还想继续吗?
         </>
       )
     } else {
       return (
         <>
-          You have changes in progress. Undoing the commit might result in some
-          of these changes being lost. Do you want to continue anyway?
+          您正在进行更改. 撤销提交可能会导致其中一些更改丢失. 
+          您还想继续吗?
         </>
       )
     }
   }
 
   private getMergeCommitUndoWarningText() {
-    return `Undoing a merge commit will apply the changes from the merge into
-    your working directory, and committing again will create an entirely new
-    commit. This means you will lose the merge commit and, as a result, commits
-    from the merged branch could disappear from this branch.`
+    return `取消合并提交将把合并中的更改应用到工作目录中,
+    再次提交将创建一个全新的提交. 这意味着您将丢失合并提交, 
+    因此, 来自合并分支的提交可能会从该分支中消失.`
   }
 
   private onSubmit = async () => {

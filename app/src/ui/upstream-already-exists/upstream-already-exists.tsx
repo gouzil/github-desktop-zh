@@ -28,11 +28,11 @@ export class UpstreamAlreadyExists extends React.Component<IUpstreamAlreadyExist
   public render() {
     const name = this.props.repository.name
     const gitHubRepository = forceUnwrap(
-      'A repository must have a GitHub repository to add an upstream remote',
+      '存储库必须具有GitHub存储库才能添加上游远程',
       this.props.repository.gitHubRepository
     )
     const parent = forceUnwrap(
-      'A repository must have a parent repository to add an upstream remote',
+      '存储库必须具有父存储库才能添加上游远程',
       gitHubRepository.parent
     )
     const parentName = parent.fullName
@@ -41,7 +41,7 @@ export class UpstreamAlreadyExists extends React.Component<IUpstreamAlreadyExist
     return (
       <Dialog
         title={
-          __DARWIN__ ? 'Upstream Already Exists' : 'Upstream already exists'
+          __DARWIN__ ? '上游已存在' : '上游已存在'
         }
         onDismissed={this.props.onDismissed}
         onSubmit={this.onUpdate}
@@ -49,19 +49,19 @@ export class UpstreamAlreadyExists extends React.Component<IUpstreamAlreadyExist
       >
         <DialogContent>
           <p>
-            The repository <Ref>{name}</Ref> is a fork of{' '}
-            <Ref>{parentName}</Ref>, but its <Ref>{UpstreamRemoteName}</Ref>{' '}
-            remote points elsewhere.
+            存储库 <Ref>{name}</Ref> 是一个分支{' '}
+            <Ref>{parentName}</Ref>, 但是它 <Ref>{UpstreamRemoteName}</Ref>{' '}
+            其他远程点.
           </p>
           <ul>
             <li>
-              Current: <Ref>{existingURL}</Ref>
+              现在的: <Ref>{existingURL}</Ref>
             </li>
             <li>
-              Expected: <Ref>{replacementURL}</Ref>
+              预期的: <Ref>{replacementURL}</Ref>
             </li>
           </ul>
-          <p>Would you like to update the remote to use the expected URL?</p>
+          <p>是否要更新远程以使用预期的URL?</p>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup

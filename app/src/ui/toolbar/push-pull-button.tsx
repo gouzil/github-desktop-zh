@@ -96,11 +96,11 @@ function renderLastFetched(lastFetched: Date | null): JSX.Element | string {
   if (lastFetched) {
     return (
       <span>
-        Last fetched <RelativeTime date={lastFetched} />
+        最后获取 <RelativeTime date={lastFetched} />
       </span>
     )
   } else {
-    return 'Never fetched'
+    return '从不获取'
   }
 }
 
@@ -115,7 +115,7 @@ function progressButton(progress: Progress, networkActionInProgress: boolean) {
     <ToolbarButton
       {...defaultProps}
       title={progress.title}
-      description={progress.description || 'Hang on…'}
+      description={progress.description || '稍等…'}
       progressValue={progress.value}
       icon={syncClockwise}
       iconClassName={networkActionInProgress ? 'spin' : ''}
@@ -129,8 +129,8 @@ function publishRepositoryButton(onClick: () => void) {
   return (
     <ToolbarButton
       {...defaultProps}
-      title="Publish repository"
-      description="Publish this repository to GitHub"
+      title="发布存储库"
+      description="将此存储库发布到GitHub"
       className="push-pull-button"
       icon={OcticonSymbol.upload}
       style={ToolbarButtonStyle.Subtitle}
@@ -143,8 +143,8 @@ function unbornRepositoryButton() {
   return (
     <ToolbarButton
       {...defaultProps}
-      title="Publish branch"
-      description="Cannot publish unborn HEAD"
+      title="发布分支"
+      description="无法发布未出生(unborn) 的 HEAD"
       icon={OcticonSymbol.upload}
       disabled={true}
     />
@@ -153,13 +153,13 @@ function unbornRepositoryButton() {
 
 function detachedHeadButton(rebaseInProgress: boolean) {
   const description = rebaseInProgress
-    ? 'Rebase in progress'
-    : 'Cannot publish detached HEAD'
+    ? '正在进行变基'
+    : '无法发布分离的 HEAD'
 
   return (
     <ToolbarButton
       {...defaultProps}
-      title="Publish branch"
+      title="发布分支"
       description={description}
       icon={OcticonSymbol.upload}
       disabled={true}
@@ -173,8 +173,8 @@ function publishBranchButton(
   shouldNudge: boolean
 ) {
   const description = isGitHub
-    ? 'Publish this branch to GitHub'
-    : 'Publish this branch to the remote'
+    ? '将此分支发布到GitHub'
+    : '将此分支发布到远程'
 
   const className = classNames(defaultProps.className, 'nudge-arrow', {
     'nudge-arrow-up': shouldNudge,
@@ -183,7 +183,7 @@ function publishBranchButton(
   return (
     <ToolbarButton
       {...defaultProps}
-      title="Publish branch"
+      title="发布分支"
       description={description}
       icon={OcticonSymbol.upload}
       onClick={onClick}
@@ -199,7 +199,7 @@ function fetchButton(
   lastFetched: Date | null,
   onClick: () => void
 ) {
-  const title = `Fetch ${remoteName}`
+  const title = `获取 ${remoteName}`
   return (
     <ToolbarButton
       {...defaultProps}
@@ -222,8 +222,8 @@ function pullButton(
   onClick: () => void
 ) {
   const title = pullWithRebase
-    ? `Pull ${remoteName} with rebase`
-    : `Pull ${remoteName}`
+    ? `拉取 ${remoteName} 带重新基准 (with rebase)`
+    : `拉取 ${remoteName}`
 
   return (
     <ToolbarButton
@@ -248,7 +248,7 @@ function pushButton(
   return (
     <ToolbarButton
       {...defaultProps}
-      title={`Push ${remoteName}`}
+      title={`推送 ${remoteName}`}
       description={renderLastFetched(lastFetched)}
       icon={OcticonSymbol.arrowUp}
       onClick={onClick}
@@ -283,7 +283,7 @@ function forcePushButton(
   return (
     <ToolbarButton
       {...defaultProps}
-      title={`Force push ${remoteName}`}
+      title={`强制推送 ${remoteName}`}
       description={renderLastFetched(lastFetched)}
       icon={forcePushIcon}
       onClick={onClick}
