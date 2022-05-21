@@ -28,11 +28,11 @@ export class AddSSHHost extends React.Component<IAddSSHHostProps> {
       >
         <DialogContent>
           <Row>
-            The authenticity of host '{this.props.host} ({this.props.ip})' can't
-            be established. {this.props.keyType} key fingerprint is{' '}
+            主机的真实性 '{this.props.host} ({this.props.ip})' 无法建立. 
+            {this.props.keyType} 密钥指纹是{' '}
             {this.props.fingerprint}.
             <br />
-            Are you sure you want to continue connecting?
+            确实要继续连接吗?
           </Row>
         </DialogContent>
         <DialogFooter>

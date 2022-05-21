@@ -165,7 +165,7 @@ export class RepositorySettings extends React.Component<
     return (
       <Dialog
         id="repository-settings"
-        title={__DARWIN__ ? 'Repository Settings' : 'Repository settings'}
+        title={__DARWIN__ ? '存储库设置' : '存储库设置'}
         onDismissed={this.props.onDismissed}
         onSubmit={this.onSubmit}
         disabled={this.state.disabled}
@@ -178,11 +178,11 @@ export class RepositorySettings extends React.Component<
             selectedIndex={this.state.selectedTab}
             type={TabBarType.Vertical}
           >
-            <span>Remote</span>
-            <span>{__DARWIN__ ? 'Ignored Files' : 'Ignored files'}</span>
-            <span>{__DARWIN__ ? 'Git Config' : 'Git config'}</span>
+            <span>远程</span>
+            <span>{__DARWIN__ ? '(Ignored) 忽略文件' : '(Ignored) 忽略文件'}</span>
+            <span>{__DARWIN__ ? 'Git 配置' : 'Git 配置'}</span>
             {showForkSettings && (
-              <span>{__DARWIN__ ? 'Fork Behavior' : 'Fork behavior'}</span>
+              <span>{__DARWIN__ ? '(Fork)分支行为' : '(Fork)分支行为'}</span>
             )}
           </TabBar>
 

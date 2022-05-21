@@ -159,23 +159,23 @@ export class RepositoryListItem extends React.Component<
     const github =
       repository instanceof Repository && repository.gitHubRepository != null
     const openInExternalEditor = this.props.externalEditorLabel
-      ? `Open in ${this.props.externalEditorLabel}`
+      ? `在 ${this.props.externalEditorLabel} 中打开`
       : DefaultEditorLabel
 
     const items: ReadonlyArray<IMenuItem> = [
       ...this.buildAliasMenuItems(),
       {
-        label: __DARWIN__ ? 'Copy Repo Name' : 'Copy repo name',
+        label: __DARWIN__ ? '复制存储库名称 (Copy Repo Name)' : '复制存储库名称 (Copy Repo Name)',
         action: this.copyToClipboard,
       },
       { type: 'separator' },
       {
-        label: 'View on GitHub',
+        label: '在 GitHub 中查看',
         action: this.viewOnGitHub,
         enabled: github,
       },
       {
-        label: `Open in ${this.props.shellLabel}`,
+        label: `在 ${this.props.shellLabel} 中打开`,
         action: this.openInShell,
         enabled: !missing,
       },
@@ -192,8 +192,8 @@ export class RepositoryListItem extends React.Component<
       { type: 'separator' },
       {
         label: this.props.askForConfirmationOnRemoveRepository
-          ? 'Remove…'
-          : 'Remove',
+          ? '删除…'
+          : '删除',
         action: this.removeRepository,
       },
     ]
@@ -208,17 +208,17 @@ export class RepositoryListItem extends React.Component<
       return []
     }
 
-    const verb = repository.alias == null ? 'Create' : 'Change'
+    const verb = repository.alias == null ? '创建' : '变更'
     const items: Array<IMenuItem> = [
       {
-        label: __DARWIN__ ? `${verb} Alias` : `${verb} alias`,
+        label: __DARWIN__ ? `${verb} 别名` : `${verb} 别名`,
         action: this.changeAlias,
       },
     ]
 
     if (repository.alias !== null) {
       items.push({
-        label: __DARWIN__ ? 'Remove Alias' : 'Remove alias',
+        label: __DARWIN__ ? '删除别名' : '删除别名',
         action: this.removeAlias,
       })
     }
@@ -282,11 +282,11 @@ const renderAheadBehindIndicator = (aheadBehind: IAheadBehind) => {
   }
 
   const aheadBehindTooltip =
-    'The currently checked out branch is' +
-    (behind ? ` ${commitGrammar(behind)} behind ` : '') +
-    (behind && ahead ? 'and' : '') +
-    (ahead ? ` ${commitGrammar(ahead)} ahead of ` : '') +
-    'its tracked branch.'
+    '当前签出的分支是在' +
+    (behind ? ` ${commitGrammar(behind)} 后面 ` : '') +
+    (behind && ahead ? '和' : '') +
+    (ahead ? ` ${commitGrammar(ahead)} 前面 ` : '') +
+    '其跟踪分支.'
 
   return (
     <div className="ahead-behind" title={aheadBehindTooltip}>
@@ -300,7 +300,7 @@ const renderChangesIndicator = () => {
   return (
     <TooltippedContent
       className="change-indicator-wrapper"
-      tooltip="There are uncommitted changes in this repository"
+      tooltip="此存储库中有未提交的更改"
     >
       <Octicon symbol={OcticonSymbol.dotFill} />
     </TooltippedContent>
@@ -308,4 +308,4 @@ const renderChangesIndicator = () => {
 }
 
 const commitGrammar = (commitNum: number) =>
-  `${commitNum} commit${commitNum > 1 ? 's' : ''}` // english is hard
+  `${commitNum} 提交${commitNum > 1 ? '' : ''}` // english very is hard

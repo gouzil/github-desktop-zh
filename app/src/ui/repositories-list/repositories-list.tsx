@@ -157,9 +157,9 @@ export class RepositoriesList extends React.Component<
 
   private getGroupLabel(identifier: RepositoryGroupIdentifier) {
     if (identifier === KnownRepositoryGroup.Enterprise) {
-      return 'Enterprise'
+      return '企业'
     } else if (identifier === KnownRepositoryGroup.NonGitHub) {
-      return 'Other'
+      return '其他'
     } else {
       return identifier
     }
@@ -243,7 +243,7 @@ export class RepositoriesList extends React.Component<
         className="new-repository-button"
         onClick={this.onNewRepositoryButtonClick}
       >
-        Add
+        添加
         <Octicon symbol={OcticonSymbol.triangleDown} />
       </Button>
     )
@@ -253,12 +253,11 @@ export class RepositoriesList extends React.Component<
     return (
       <div className="no-items no-results-found">
         <img src={BlankSlateImage} className="blankslate-image" />
-        <div className="title">Sorry, I can't find that repository</div>
+        <div className="title">抱歉，我找不到该存储库</div>
 
         <div className="protip">
-          ProTip! Press {this.renderAddLocalShortcut()} to quickly add a local
-          repository, and {this.renderCloneRepositoryShortcut()} to clone from
-          anywhere within the app
+          专业提示! 按 {this.renderAddLocalShortcut()} 快速添加本地存储库, 
+          以及从 {this.renderCloneRepositoryShortcut()} 应用程序中的任何位置克隆
         </div>
       </div>
     )
@@ -302,17 +301,17 @@ export class RepositoriesList extends React.Component<
   private onNewRepositoryButtonClick = () => {
     const items: IMenuItem[] = [
       {
-        label: __DARWIN__ ? 'Clone Repository…' : 'Clone repository…',
+        label: __DARWIN__ ? '克隆存储库…' : '克隆存储库…',
         action: this.onCloneRepository,
       },
       {
-        label: __DARWIN__ ? 'Create New Repository…' : 'Create new repository…',
+        label: __DARWIN__ ? '创建新存储库…' : '创建新存储库…',
         action: this.onCreateNewRepository,
       },
       {
         label: __DARWIN__
-          ? 'Add Existing Repository…'
-          : 'Add existing repository…',
+          ? '添加现有存储库…'
+          : '添加现有存储库…',
         action: this.onAddExistingRepository,
       },
     ]

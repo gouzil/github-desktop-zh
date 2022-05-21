@@ -41,11 +41,11 @@ export class GitConfig extends React.Component<IGitConfigProps> {
     return (
       <DialogContent>
         <div className="advanced-section">
-          <h2>For this repository I wish to</h2>
+          <h2>对于这个储存库, 我希望</h2>
           <Row>
             <div>
               <RadioButton
-                label="Use my global Git config"
+                label="使用我的全局Git配置"
                 checked={
                   this.props.gitConfigLocation === GitConfigLocation.Global
                 }
@@ -53,7 +53,7 @@ export class GitConfig extends React.Component<IGitConfigProps> {
                 onSelected={this.onGitConfigLocationChanged}
               />
               <RadioButton
-                label="Use a local Git config"
+                label="使用本地Git配置"
                 checked={
                   this.props.gitConfigLocation === GitConfigLocation.Local
                 }

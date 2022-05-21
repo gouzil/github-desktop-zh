@@ -31,7 +31,7 @@ export class WarningBeforeReset extends React.Component<
   }
 
   public render() {
-    const title = __DARWIN__ ? 'Reset to Commit' : 'Reset to commit'
+    const title = __DARWIN__ ? '重置以提交' : '重置以提交'
 
     return (
       <Dialog
@@ -45,9 +45,8 @@ export class WarningBeforeReset extends React.Component<
       >
         <DialogContent>
           <Row>
-            You have changes in progress. Resetting to a previous commit might
-            result in some of these changes being lost. Do you want to continue
-            anyway?
+            您正在进行更改. 
+            重置为以前的提交可能会导致某些更改丢失. 是否仍要继续?
           </Row>
         </DialogContent>
         <DialogFooter>

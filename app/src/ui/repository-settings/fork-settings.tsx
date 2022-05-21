@@ -18,14 +18,14 @@ export class ForkSettings extends React.Component<IForkSettingsProps, {}> {
   public render() {
     return (
       <DialogContent>
-        <h2>I'll be using this fork…</h2>
+        <h2>我将使用这个分支…</h2>
 
         <RadioButton
           value={ForkContributionTarget.Parent}
           checked={
             this.props.forkContributionTarget === ForkContributionTarget.Parent
           }
-          label="To contribute to the parent repository"
+          label="贡献给父存储库"
           onSelected={this.onForkContributionTargetChanged}
         />
 
@@ -34,7 +34,7 @@ export class ForkSettings extends React.Component<IForkSettingsProps, {}> {
           checked={
             this.props.forkContributionTarget === ForkContributionTarget.Self
           }
-          label="For my own purposes"
+          label="为了我自己的目的"
           onSelected={this.onForkContributionTargetChanged}
         />
 
