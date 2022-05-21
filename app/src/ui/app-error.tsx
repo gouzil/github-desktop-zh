@@ -122,10 +122,10 @@ export class AppError extends React.Component<IAppErrorProps, IAppErrorState> {
 
   private getTitle(error: Error) {
     if (isCloneError(error)) {
-      return 'Clone failed'
+      return '克隆失败'
     }
 
-    return 'Error'
+    return '错误'
   }
 
   private renderDialog() {
@@ -168,7 +168,7 @@ export class AppError extends React.Component<IAppErrorProps, IAppErrorState> {
     if (retryAction && retryAction.type === RetryActionType.Clone) {
       return (
         <p>
-          Would you like to retry cloning <Ref>{retryAction.name}</Ref>?
+          是否要重试克隆 <Ref>{retryAction.name}</Ref>?
         </p>
       )
     }

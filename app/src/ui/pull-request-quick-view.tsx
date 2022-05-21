@@ -159,9 +159,9 @@ export class PullRequestQuickView extends React.Component<
     return (
       <header className="header">
         <Octicon symbol={OcticonSymbol.listUnordered} />
-        <div className="action-needed">Review requested</div>
+        <div className="action-needed">审查要求</div>
         <Button className="button-with-icon" onClick={this.onViewOnGitHub}>
-          View on GitHub
+          在 GitHub 上查看
           <Octicon symbol={OcticonSymbol.linkExternal} />
         </Button>
       </header>
@@ -179,7 +179,7 @@ export class PullRequestQuickView extends React.Component<
               : OcticonSymbol.gitPullRequest
           }
         />
-        <span className="state">{isDraft ? 'Draft' : 'Open'}</span>
+        <span className="state">{isDraft ? '草稿' : '打开'}</span>
       </div>
     )
   }

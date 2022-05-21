@@ -2508,10 +2508,10 @@ export class App extends React.Component<IAppProps, IAppState> {
       title = alias ?? repository.name
     } else if (this.state.repositories.length > 0) {
       icon = OcticonSymbol.repo
-      title = __DARWIN__ ? 'Select a Repository' : 'Select a repository'
+      title = __DARWIN__ ? '选择存储库' : '选择存储库'
     } else {
       icon = OcticonSymbol.repo
-      title = __DARWIN__ ? 'No Repositories' : 'No repositories'
+      title = __DARWIN__ ? '无存储库' : '无存储库'
     }
 
     const isOpen =
@@ -2537,7 +2537,7 @@ export class App extends React.Component<IAppProps, IAppState> {
       <ToolbarDropdown
         icon={icon}
         title={title}
-        description={__DARWIN__ ? 'Current Repository' : 'Current repository'}
+        description={__DARWIN__ ? '当前存储库' : '当前存储库'}
         tooltip={tooltip}
         foldoutStyle={foldoutStyle}
         onDropdownStateChanged={this.onRepositoryDropdownStateChanged}
@@ -3087,5 +3087,5 @@ export class App extends React.Component<IAppProps, IAppState> {
 }
 
 function NoRepositorySelected() {
-  return <div className="panel blankslate">No repository selected</div>
+  return <div className="panel blankslate">未选择存储库</div>
 }

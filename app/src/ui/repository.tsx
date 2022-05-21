@@ -160,12 +160,12 @@ export class RepositoryView extends React.Component<
     return (
       <TabBar selectedIndex={selectedTab} onTabClicked={this.onTabClicked}>
         <span className="with-indicator">
-          <span>Changes</span>
+          <span>变化</span>
           {this.renderChangesBadge()}
         </span>
 
         <div className="with-indicator">
-          <span>History</span>
+          <span>历史</span>
         </div>
       </TabBar>
     )

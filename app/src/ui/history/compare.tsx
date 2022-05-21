@@ -663,8 +663,8 @@ function getPlaceholderText(state: ICompareState) {
     return __DARWIN__ ? '没有要比较的分支' : '没有要比较的分支'
   } else if (formState.kind === HistoryTabMode.History) {
     return __DARWIN__
-      ? 'Select Branch to Compare...'
-      : 'Select branch to compare...'
+      ? '选择分支进行比较...'
+      : '选择分支进行比较...'
   } else {
     return undefined
   }
