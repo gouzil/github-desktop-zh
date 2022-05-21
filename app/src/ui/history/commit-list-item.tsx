@@ -135,7 +135,7 @@ export class CommitListItem extends React.PureComponent<
     const isDraggable = this.canCherryPick()
     const hasEmptySummary = commit.summary.length === 0
     const commitSummary = hasEmptySummary
-      ? 'Empty commit message'
+      ? '清空提交信息'
       : commit.summary
 
     const summaryClassNames = classNames('summary', {
@@ -263,28 +263,28 @@ export class CommitListItem extends React.PureComponent<
   }
 
   private getContextMenuForSingleCommit(): IMenuItem[] {
-    let viewOnGitHubLabel = 'View on GitHub'
+    let viewOnGitHubLabel = '在GitHub查看'
     const gitHubRepository = this.props.gitHubRepository
 
     if (
       gitHubRepository &&
       gitHubRepository.endpoint !== getDotComAPIEndpoint()
     ) {
-      viewOnGitHubLabel = 'View on GitHub Enterprise'
+      viewOnGitHubLabel = '在GitHub 企业版上查看'
     }
 
     const items: IMenuItem[] = []
 
     if (this.props.canBeAmended && enableAmendingCommits()) {
       items.push({
-        label: __DARWIN__ ? 'Amend Commit…' : 'Amend commit…',
+        label: __DARWIN__ ? '修改提交…' : '修改提交…',
         action: this.onAmendCommit,
       })
     }
 
     if (this.props.canBeUndone) {
       items.push({
-        label: __DARWIN__ ? 'Undo Commit…' : 'Undo commit…',
+        label: __DARWIN__ ? '撤销提交…' : '撤销提交…',
         action: () => {
           if (this.props.onUndoCommit) {
             this.props.onUndoCommit(this.props.commit)
@@ -296,7 +296,7 @@ export class CommitListItem extends React.PureComponent<
 
     if (enableResetToCommit()) {
       items.push({
-        label: __DARWIN__ ? 'Reset to Commit…' : 'Reset to commit…',
+        label: __DARWIN__ ? '重新提交…' : '重新提交…',
         action: () => {
           if (this.props.onResetToCommit) {
             this.props.onResetToCommit(this.props.commit)
@@ -309,8 +309,8 @@ export class CommitListItem extends React.PureComponent<
 
     items.push({
       label: __DARWIN__
-        ? 'Revert Changes in Commit'
-        : 'Revert changes in commit',
+        ? '在提交中恢复更改'
+        : '在提交中恢复更改',
       action: () => {
         if (this.props.onRevertCommit) {
           this.props.onRevertCommit(this.props.commit)
@@ -324,8 +324,8 @@ export class CommitListItem extends React.PureComponent<
     if (enableBranchFromCommit()) {
       items.push({
         label: __DARWIN__
-          ? 'Create Branch from Commit'
-          : 'Create branch from commit',
+          ? '从Commit创建分支'
+          : '从Commit创建分支',
         action: () => {
           if (this.props.onCreateBranch) {
             this.props.onCreateBranch(this.props.commit)
@@ -335,7 +335,7 @@ export class CommitListItem extends React.PureComponent<
     }
 
     items.push({
-      label: 'Create Tag…',
+      label: '创建标签…',
       action: this.onCreateTag,
       enabled: this.props.onCreateTag !== undefined,
     })
@@ -352,7 +352,7 @@ export class CommitListItem extends React.PureComponent<
     }
 
     items.push({
-      label: __DARWIN__ ? 'Cherry-pick Commit…' : 'Cherry-pick commit…',
+      label: __DARWIN__ ? '筛选提交…' : '筛选提交……',
       action: this.onCherryPick,
       enabled: this.canCherryPick(),
     })
@@ -360,7 +360,7 @@ export class CommitListItem extends React.PureComponent<
     items.push(
       { type: 'separator' },
       {
-        label: 'Copy SHA',
+        label: '拷贝 SHA',
         action: this.onCopySHA,
       },
       {
@@ -379,8 +379,8 @@ export class CommitListItem extends React.PureComponent<
     const count = this.props.selectedCommits.length
     items.push({
       label: __DARWIN__
-        ? `Cherry-pick ${count} Commits…`
-        : `Cherry-pick ${count} commits…`,
+        ? `筛选 ${count} 提交…`
+        : `筛选 ${count} 提交…`,
       action: this.onCherryPick,
       enabled: this.canCherryPick(),
     })
@@ -388,8 +388,8 @@ export class CommitListItem extends React.PureComponent<
     if (enableSquashing()) {
       items.push({
         label: __DARWIN__
-          ? `Squash ${count} Commits…`
-          : `Squash ${count} commits…`,
+          ? `去除 ${count} 提交…`
+          : `去除 ${count} 提交…`,
         action: this.onSquash,
       })
     }
@@ -422,7 +422,7 @@ export class CommitListItem extends React.PureComponent<
       const tagName = commit.tags[0]
 
       return {
-        label: `Delete tag ${tagName}`,
+        label: `删除标签 ${tagName}`,
         action: () => onDeleteTag(tagName),
         enabled: unpushedTags.includes(tagName),
       }
@@ -432,7 +432,7 @@ export class CommitListItem extends React.PureComponent<
     const unpushedTagsSet = new Set(unpushedTags)
 
     return {
-      label: 'Delete tag…',
+      label: '删除标签…',
       submenu: commit.tags.map(tagName => {
         return {
           label: tagName,

@@ -30,9 +30,9 @@ export class InvalidatedToken extends React.Component<IInvalidatedTokenProps> {
       >
         <DialogContent>
           <Row>
-            Your account token has been invalidated and you have been signed out
-            from your GitHub{accountTypeSuffix} account. Do you want to sign in
-            again?
+            您的帐户令牌已失效, 您已被退出登录
+            来着您的 GitHub{accountTypeSuffix} 账户. 
+            您想要重新登录吗?
           </Row>
         </DialogContent>
         <DialogFooter>

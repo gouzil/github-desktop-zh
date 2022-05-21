@@ -37,7 +37,7 @@ export class MergeCallToAction extends React.Component<
           disabled={count <= 0}
           onClick={this.onMergeClicked}
         >
-          Merge into <strong>{this.props.currentBranch.name}</strong>
+          合并到 <strong>{this.props.currentBranch.name}</strong>
         </Button>
       </div>
     )
@@ -48,17 +48,17 @@ export class MergeCallToAction extends React.Component<
     const count = formState.aheadBehind.behind
 
     if (count > 0) {
-      const pluralized = count === 1 ? 'commit' : 'commits'
+      const pluralized = count === 1 ? '提交' : '提交'
       return (
         <div className="merge-message merge-message-legacy">
-          This will merge
+          这将合并
           <strong>{` ${count} ${pluralized}`}</strong>
           {` `}
-          from
+          从
           {` `}
           <strong>{branch.name}</strong>
           {` `}
-          into
+          到
           {` `}
           <strong>{currentBranch.name}</strong>
         </div>

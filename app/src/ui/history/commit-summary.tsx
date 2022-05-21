@@ -204,7 +204,7 @@ export class CommitSummary extends React.Component<
     return (
       <a onClick={onClick} className="expander">
         <Octicon symbol={icon} />
-        {expanded ? 'Collapse' : 'Expand'}
+        {expanded ? '降低(Collapse)' : '增加 (Expand)'}
       </a>
     )
   }
@@ -305,7 +305,7 @@ export class CommitSummary extends React.Component<
 
     const hasEmptySummary = this.state.summary.length === 0
     const commitSummary = hasEmptySummary
-      ? 'Empty commit message'
+      ? '清空提交消息'
       : this.state.summary
 
     const summaryClassNames = classNames('commit-summary-title', {
@@ -325,7 +325,7 @@ export class CommitSummary extends React.Component<
           <ul className="commit-summary-meta">
             <li
               className="commit-summary-meta-item without-truncation"
-              aria-label="Author"
+              aria-label="作者"
             >
               <AvatarStack users={this.state.avatarUsers} />
               <CommitAttribution
@@ -342,7 +342,7 @@ export class CommitSummary extends React.Component<
               <TooltippedContent
                 className="sha"
                 tooltip={this.renderShaTooltip()}
-                tooltipClassName="sha-hint"
+                tooltipClassName="sha提示"
                 interactive={true}
                 direction={TooltipDirection.SOUTH}
               >
@@ -356,7 +356,7 @@ export class CommitSummary extends React.Component<
 
             <li
               className="commit-summary-meta-item without-truncation"
-              title="Diff Options"
+              title="差异选项"
             >
               <DiffOptions
                 sourceTab={RepositorySectionTab.History}
@@ -395,8 +395,8 @@ export class CommitSummary extends React.Component<
 
   private renderChangedFilesDescription = () => {
     const fileCount = this.props.changesetData.files.length
-    const filesPlural = fileCount === 1 ? 'file' : 'files'
-    const filesShortDescription = `${fileCount} changed ${filesPlural}`
+    const filesPlural = fileCount === 1 ? '文件' : '文件'
+    const filesShortDescription = `${fileCount} 已更改 ${filesPlural}`
 
     let filesAdded = 0
     let filesModified = 0
@@ -423,7 +423,7 @@ export class CommitSummary extends React.Component<
               className="files-added-icon"
               symbol={OcticonSymbol.diffAdded}
             />
-            {filesAdded} added
+            {filesAdded} 已添加
           </span>
         ) : null}
         {filesModified > 0 ? (
@@ -432,7 +432,7 @@ export class CommitSummary extends React.Component<
               className="files-modified-icon"
               symbol={OcticonSymbol.diffModified}
             />
-            {filesModified} modified
+            {filesModified} 已修改
           </span>
         ) : null}
         {filesRemoved > 0 ? (
@@ -441,7 +441,7 @@ export class CommitSummary extends React.Component<
               className="files-deleted-icon"
               symbol={OcticonSymbol.diffRemoved}
             />
-            {filesRemoved} deleted
+            {filesRemoved} 已删除
           </span>
         ) : null}
       </>
@@ -466,10 +466,10 @@ export class CommitSummary extends React.Component<
       return null
     }
 
-    const linesAddedPlural = linesAdded === 1 ? 'line' : 'lines'
-    const linesDeletedPlural = linesDeleted === 1 ? 'line' : 'lines'
-    const linesAddedTitle = `${linesAdded} ${linesAddedPlural} added`
-    const linesDeletedTitle = `${linesDeleted} ${linesDeletedPlural} deleted`
+    const linesAddedPlural = linesAdded === 1 ? '行' : '行'
+    const linesDeletedPlural = linesDeleted === 1 ? '行' : '行'
+    const linesAddedTitle = `${linesAdded} ${linesAddedPlural} 已添加`
+    const linesDeletedTitle = `${linesDeleted} ${linesDeletedPlural} 已删除`
 
     return (
       <>
