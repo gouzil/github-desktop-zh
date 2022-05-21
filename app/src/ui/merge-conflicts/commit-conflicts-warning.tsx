@@ -63,16 +63,15 @@ export class CommitConflictsWarning extends React.Component<
         id="commit-conflict-markers-warning"
         onDismissed={this.onCancel}
         onSubmit={this.onSubmit}
-        title={'Confirm committing conflicted files'}
+        title={'确认提交冲突的文件'}
         type={'warning'}
       >
         <DialogContent>
           <p>
-            If you choose to commit, you’ll be committing the following
-            conflicted files into your repository:
+            如果选择提交，则将把以下冲突文件提交到存储库中:
           </p>
           {this.renderFiles(this.props.files)}
-          <p>Are you sure you want to commit these conflicted files?</p>
+          <p>您确定要提交这些冲突文件吗?</p>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup

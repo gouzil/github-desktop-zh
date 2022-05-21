@@ -62,16 +62,16 @@ export abstract class RebaseChooseBranchDialog extends BaseChooseBranchDialog {
 
   protected getSubmitButtonToolTip = () => {
     return this.selectedBranchIsCurrentBranch()
-      ? 'You are not able to rebase this branch onto itself'
+      ? '您无法将此分支重新定位到自身'
       : !this.selectedBranchIsAheadOfCurrentBranch()
-      ? 'There are no commits on the current branch to rebase'
+      ? '当前分支上没有要重设基础的提交'
       : undefined
   }
 
   protected getDialogTitle = (branchName: string) => {
     return (
       <>
-        Rebase <strong>{branchName}</strong>
+        变基(Rebase) <strong>{branchName}</strong>
       </>
     )
   }
@@ -123,11 +123,11 @@ export abstract class RebaseChooseBranchDialog extends BaseChooseBranchDialog {
   }
 
   private renderLoadingRebaseMessage() {
-    return <>Checking for ability to rebase automatically…</>
+    return <>检查自动重设基础的能力…</>
   }
 
   private renderInvalidRebaseMessage() {
-    return <>Unable to start rebase. Check you have chosen a valid branch.</>
+    return <>无法启动重基。检查您是否选择了有效的分支.</>
   }
 
   private renderCleanRebaseMessage(
@@ -138,19 +138,19 @@ export abstract class RebaseChooseBranchDialog extends BaseChooseBranchDialog {
     if (commitsToRebase <= 0) {
       return (
         <>
-          This branch is up to date with{` `}
+          此分支是最新的{` `}
           <strong>{currentBranch.name}</strong>
         </>
       )
     }
 
-    const pluralized = commitsToRebase === 1 ? 'commit' : 'commits'
+    const pluralized = commitsToRebase === 1 ? '提交' : '提交'
     return (
       <>
-        This will update <strong>{currentBranch.name}</strong>
-        {` by applying its `}
+        这将更新 <strong>{currentBranch.name}</strong>
+        {` 通过应用在 `}
         <strong>{` ${commitsToRebase} ${pluralized}`}</strong>
-        {` on top of `}
+        {` 上面 `}
         <strong>{baseBranch.name}</strong>
       </>
     )

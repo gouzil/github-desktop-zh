@@ -54,8 +54,8 @@ export class ConfirmAbortDialog extends React.Component<
         id="abort-warning"
         title={
           __DARWIN__
-            ? `Confirm Abort ${operation}`
-            : `Confirm abort ${operation.toLowerCase()}`
+            ? `确认中止 ${operation}`
+            : `确认中止 ${operation.toLowerCase()}`
         }
         onDismissed={this.onCancel}
         onSubmit={this.onSubmit}
@@ -65,11 +65,10 @@ export class ConfirmAbortDialog extends React.Component<
         <DialogContent>
           <div className="column-left">
             <p>
-              Are you sure you want to abort this {operation.toLowerCase()}?
+              您确定要取消吗 {operation.toLowerCase()}?
             </p>
             <p>
-              This will take you back to the original branch state and the
-              conflicts you have already resolved will be discarded.
+              这将使您回到最初的分支状态，已经解决的冲突将被丢弃.
             </p>
           </div>
         </DialogContent>
