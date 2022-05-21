@@ -60,24 +60,23 @@ export class InitializeLFS extends React.Component<IInitializeLFSProps, {}> {
     if (this.props.repositories.length > MaxRepositoriesToList) {
       return (
         <p>
-          {this.props.repositories.length} repositories use{' '}
-          <LinkButton uri={LFSURL}>Git LFS</LinkButton>. To contribute to them,
-          Git LFS must first be initialized. Would you like to do so now?
+          {this.props.repositories.length} 存储库使用{' '}
+          <LinkButton uri={LFSURL}>Git LFS</LinkButton>. 要对其作出贡献, 
+          必须首先初始化Git LFS。您现在想这样做吗?
         </p>
       )
     } else {
       const plural = this.props.repositories.length !== 1
       const pluralizedRepositories = plural
-        ? 'The repositories use'
-        : 'This repository uses'
-      const pluralizedUse = plural ? 'them' : 'it'
+        ? '存储库使用'
+        : '存储库使用'
+      const pluralizedUse = plural ? '它们' : '它们'
       return (
         <div>
           <p>
             {pluralizedRepositories}{' '}
-            <LinkButton uri={LFSURL}>Git LFS</LinkButton>. To contribute to{' '}
-            {pluralizedUse}, Git LFS must first be initialized. Would you like
-            to do so now?
+            <LinkButton uri={LFSURL}>Git LFS</LinkButton>. 有助于{' '}
+            {pluralizedUse}, 必须首先初始化Git LFS。您现在想这样做吗?
           </p>
           <ul>
             {this.props.repositories.map(r => (
