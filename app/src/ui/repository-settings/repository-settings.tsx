@@ -179,7 +179,9 @@ export class RepositorySettings extends React.Component<
             type={TabBarType.Vertical}
           >
             <span>远程</span>
-            <span>{__DARWIN__ ? '(Ignored) 忽略文件' : '(Ignored) 忽略文件'}</span>
+            <span>
+              {__DARWIN__ ? '(Ignored) 忽略文件' : '(Ignored) 忽略文件'}
+            </span>
             <span>{__DARWIN__ ? 'Git 配置' : 'Git 配置'}</span>
             {showForkSettings && (
               <span>{__DARWIN__ ? '(Fork)分支行为' : '(Fork)分支行为'}</span>

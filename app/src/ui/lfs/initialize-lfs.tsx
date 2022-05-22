@@ -61,15 +61,13 @@ export class InitializeLFS extends React.Component<IInitializeLFSProps, {}> {
       return (
         <p>
           {this.props.repositories.length} 存储库使用{' '}
-          <LinkButton uri={LFSURL}>Git LFS</LinkButton>. 要对其作出贡献, 
+          <LinkButton uri={LFSURL}>Git LFS</LinkButton>. 要对其作出贡献,
           必须首先初始化Git LFS。您现在想这样做吗?
         </p>
       )
     } else {
       const plural = this.props.repositories.length !== 1
-      const pluralizedRepositories = plural
-        ? '存储库使用'
-        : '存储库使用'
+      const pluralizedRepositories = plural ? '存储库使用' : '存储库使用'
       const pluralizedUse = plural ? '它们' : '它们'
       return (
         <div>

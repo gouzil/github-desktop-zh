@@ -25,9 +25,7 @@ export class WhitespaceHintPopover extends React.Component<IWhitespaceHintPopove
         appearEffect={PopoverAppearEffect.Shake}
       >
         <h3>显示空白更改?</h3>
-        <p className="byline">
-          隐藏空白更改时禁用选择行.
-        </p>
+        <p className="byline">隐藏空白更改时禁用选择行.</p>
         <footer>
           <OkCancelButtonGroup
             okButtonText="Yes"

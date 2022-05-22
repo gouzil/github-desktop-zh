@@ -33,9 +33,7 @@ interface ISignInState {
   readonly otpToken: string
 }
 
-const SignInWithBrowserTitle = __DARWIN__
-  ? '使用浏览器登录'
-  : '使用浏览器登录'
+const SignInWithBrowserTitle = __DARWIN__ ? '使用浏览器登录' : '使用浏览器登录'
 
 const DefaultTitle = '登录'
 
@@ -141,9 +139,7 @@ export class SignIn extends React.Component<ISignInProps, ISignInState> {
         break
       case SignInStep.Authentication:
         if (!state.supportsBasicAuth) {
-          primaryButtonText = __DARWIN__
-            ? '继续使用浏览器'
-            : '继续使用浏览器'
+          primaryButtonText = __DARWIN__ ? '继续使用浏览器' : '继续使用浏览器'
         } else {
           const validUserName = this.state.username.length > 0
           const validPassword = this.state.password.length > 0
@@ -185,10 +181,7 @@ export class SignIn extends React.Component<ISignInProps, ISignInState> {
       if (state.endpoint === getDotComAPIEndpoint()) {
         return (
           <DialogContent>
-            <p>
-              为了提高帐户的安全性, 
-              GitHub现在要求您通过浏览器登录.
-            </p>
+            <p>为了提高帐户的安全性, GitHub现在要求您通过浏览器登录.</p>
             <p>
               登录后,浏览器会将您重定向回GitHub桌面.
               如果您的浏览器要求您允许启动GitHub Desktop, 请允许它.
@@ -198,9 +191,7 @@ export class SignIn extends React.Component<ISignInProps, ISignInState> {
       } else {
         return (
           <DialogContent>
-            <p>
-              GitHub 企业实例要求您使用浏览器登录.
-            </p>
+            <p>GitHub 企业实例要求您使用浏览器登录.</p>
           </DialogContent>
         )
       }

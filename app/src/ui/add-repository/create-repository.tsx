@@ -499,8 +499,7 @@ export class CreateRepository extends React.Component<
 
     return (
       <DialogError>
-        无法在此路径创建目录。
-        您可能没有在这里创建目录的权限。
+        无法在此路径创建目录。 您可能没有在这里创建目录的权限。
       </DialogError>
     )
   }
@@ -542,8 +541,7 @@ export class CreateRepository extends React.Component<
       <Row className="warning-helper-text">
         <Octicon symbol={OcticonSymbol.alert} />
         <p>
-          此目录包含 <Ref>README.md</Ref> 文件.
-          选中此框将导致覆盖现有文件.
+          此目录包含 <Ref>README.md</Ref> 文件. 选中此框将导致覆盖现有文件.
         </p>
       </Row>
     )
@@ -575,9 +573,7 @@ export class CreateRepository extends React.Component<
     return (
       <Dialog
         id="create-repository"
-        title={
-          __DARWIN__ ? '创建一个新的存储库' : '创建一个新的存储库'
-        }
+        title={__DARWIN__ ? '创建一个新的存储库' : '创建一个新的存储库'}
         loading={this.state.creating}
         onSubmit={this.createRepository}
         onDismissed={this.props.onDismissed}
@@ -641,9 +637,7 @@ export class CreateRepository extends React.Component<
 
         <DialogFooter>
           <OkCancelButtonGroup
-            okButtonText={
-              __DARWIN__ ? '创建存储库' : '创建存储库'
-            }
+            okButtonText={__DARWIN__ ? '创建存储库' : '创建存储库'}
             okButtonDisabled={disabled || loadingDefaultDir}
           />
         </DialogFooter>

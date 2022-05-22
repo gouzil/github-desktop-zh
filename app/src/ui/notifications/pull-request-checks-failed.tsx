@@ -86,9 +86,7 @@ export class PullRequestChecksFailed extends React.Component<
   }
 
   public render() {
-    let okButtonTitle = __DARWIN__
-      ? '切换到拉取请求'
-      : '切换到拉取请求'
+    let okButtonTitle = __DARWIN__ ? '切换到拉取请求' : '切换到拉取请求'
 
     if (this.props.shouldChangeRepository) {
       okButtonTitle = __DARWIN__
@@ -160,10 +158,7 @@ export class PullRequestChecksFailed extends React.Component<
     const pluralThem = failedChecks.length > 1 ? '它们' : '它们'
     return (
       <div className="footer-question">
-        <span>
-          是否要立即切换到该拉动请求并开始修复{' '}
-          {pluralThem}?
-        </span>
+        <span>是否要立即切换到该拉动请求并开始修复 {pluralThem}?</span>
       </div>
     )
   }

@@ -46,9 +46,7 @@ export class DeleteRemoteBranch extends React.Component<
             此操作无法撤消.
           </p>
 
-          <p>
-            本地不存在此分支。删除它可能会影响在此分支上协作的其他人.
-          </p>
+          <p>本地不存在此分支。删除它可能会影响在此分支上协作的其他人.</p>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup destructive={true} okButtonText="删除" />

@@ -46,11 +46,8 @@ export class ConfigLockFileExists extends React.Component<IConfigLockFileExistsP
         </p>
         <p>
           如果另一个工具当前正在修改Git配置,
-          或者Git进程提前终止而没有清理锁文件, 
-          则可能会发生这种情况。您是否想要{' '}
-          <LinkButton onClick={this.onDeleteLockFile}>
-            删除锁定文件
-          </LinkButton>{' '}
+          或者Git进程提前终止而没有清理锁文件, 则可能会发生这种情况。您是否想要{' '}
+          <LinkButton onClick={this.onDeleteLockFile}>删除锁定文件</LinkButton>{' '}
           重试?
         </p>
       </div>

@@ -176,9 +176,7 @@ export class ConflictsDialog extends React.Component<
     )
 
     const tooltipString =
-      conflictedFiles.length > 0
-        ? '在继续之前解决所有更改'
-        : undefined
+      conflictedFiles.length > 0 ? '在继续之前解决所有更改' : undefined
 
     return (
       <Dialog

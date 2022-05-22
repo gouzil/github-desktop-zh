@@ -31,7 +31,7 @@ export class Start extends React.Component<IStartProps, {}> {
         {!this.props.loadingBrowserAuth ? (
           <>
             <p className="welcome-text">
-              GitHub Desktop是为GitHub和GitHub 企业贡献项目的无缝方式. 
+              GitHub Desktop是为GitHub和GitHub 企业贡献项目的无缝方式.
               请在下面登录, 以开始您现有的项目.
             </p>
             <p className="welcome-text">
@@ -83,8 +83,9 @@ export class Start extends React.Component<IStartProps, {}> {
           </LinkButton>
           .<br />
           <br />
-          GitHub Desktop发送使用指标以改进产品并通知功能决策. 
-          了解更多有关发送哪些指标以及我们如何使用这些指标的信息 <LinkButton uri={SamplesURL}>点击这里</LinkButton>.
+          GitHub Desktop发送使用指标以改进产品并通知功能决策.
+          了解更多有关发送哪些指标以及我们如何使用这些指标的信息{' '}
+          <LinkButton uri={SamplesURL}>点击这里</LinkButton>.
         </div>
       </div>
     )

@@ -460,9 +460,7 @@ export class CloneRepository extends React.Component<
       case CloneRepositoryTab.DotCom:
         return (
           <CallToAction actionTitle={signInTitle} onAction={this.signInDotCom}>
-            <div>
-              登录到你的GitHub.com帐户来访问你的仓库.
-            </div>
+            <div>登录到你的GitHub.com帐户来访问你的仓库.</div>
           </CallToAction>
         )
       case CloneRepositoryTab.Enterprise:
@@ -472,7 +470,8 @@ export class CloneRepository extends React.Component<
             onAction={this.signInEnterprise}
           >
             <div>
-              如果你有一个GitHub企业账户或AE帐户在工作, 登录它获得访问您的存储库.
+              如果你有一个GitHub企业账户或AE帐户在工作,
+              登录它获得访问您的存储库.
             </div>
           </CallToAction>
         )

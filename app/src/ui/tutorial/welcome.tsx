@@ -18,9 +18,7 @@ export class TutorialWelcome extends React.Component {
       <div id="tutorial-welcome">
         <div className="header">
           <h1>欢迎来到 GitHub Desktop</h1>
-          <p>
-            使用本教程来熟悉Git、GitHub和GitHub Desktop.
-          </p>
+          <p>使用本教程来熟悉Git、GitHub和GitHub Desktop.</p>
         </div>
         <ul className="definitions">
           <li>

@@ -368,18 +368,14 @@ export class NoRepositoriesView extends React.Component<
     if (this.props.tutorialPaused) {
       return this.renderButtonGroupButton(
         OcticonSymbol.mortarBoard,
-        __DARWIN__
-          ? '返回正在进行的教程'
-          : '返回正在进行的教程',
+        __DARWIN__ ? '返回正在进行的教程' : '返回正在进行的教程',
         this.props.onResumeTutorialRepository,
         'submit'
       )
     } else {
       return this.renderButtonGroupButton(
         OcticonSymbol.mortarBoard,
-        __DARWIN__
-          ? '创建教程存储库…'
-          : '创建教程存储库…',
+        __DARWIN__ ? '创建教程存储库…' : '创建教程存储库…',
         this.props.onCreateTutorialRepository,
         'submit'
       )
@@ -389,9 +385,7 @@ export class NoRepositoriesView extends React.Component<
   private renderCloneButton() {
     return this.renderButtonGroupButton(
       OcticonSymbol.repoClone,
-      __DARWIN__
-        ? '从Internet克隆存储库…'
-        : '从Internet克隆存储库…',
+      __DARWIN__ ? '从Internet克隆存储库…' : '从Internet克隆存储库…',
       this.onShowClone
     )
   }
@@ -399,9 +393,7 @@ export class NoRepositoriesView extends React.Component<
   private renderCreateRepositoryButton() {
     return this.renderButtonGroupButton(
       OcticonSymbol.plus,
-      __DARWIN__
-        ? '在硬盘上创建新存储库…'
-        : '在硬盘上创建新存储库…',
+      __DARWIN__ ? '在硬盘上创建新存储库…' : '在硬盘上创建新存储库…',
       this.props.onCreate
     )
   }
@@ -409,9 +401,7 @@ export class NoRepositoriesView extends React.Component<
   private renderAddExistingRepositoryButton() {
     return this.renderButtonGroupButton(
       OcticonSymbol.fileDirectory,
-      __DARWIN__
-        ? '从硬盘添加现有存储库…'
-        : '从硬盘添加现有存储库…',
+      __DARWIN__ ? '从硬盘添加现有存储库…' : '从硬盘添加现有存储库…',
       this.props.onAdd
     )
   }
@@ -429,7 +419,7 @@ export class NoRepositoriesView extends React.Component<
         <div className="drag-drop-info">
           <Octicon symbol={OcticonSymbol.lightBulb} />
           <div>
-            <strong>专业提示!</strong> 您可以拖动 &amp; 
+            <strong>专业提示!</strong> 您可以拖动 &amp;
             在此处删除现有的存储库文件夹以将其添加到桌面
           </div>
         </div>

@@ -44,27 +44,23 @@ export class UntrustedCertificate extends React.Component<
       >
         <DialogContent>
           <p>
-            GitHub Desktop 无法验证的标识{host}. 证书
-            ({this.props.certificate.subjectName}) 无效或不受信任.{' '}
-            <strong>
-              这可能表示攻击者正试图窃取您的数据.
-            </strong>
+            GitHub Desktop 无法验证的标识{host}. 证书 (
+            {this.props.certificate.subjectName}) 无效或不受信任.{' '}
+            <strong>这可能表示攻击者正试图窃取您的数据.</strong>
           </p>
           <p>在某些情况下, 这可能是意料之中的. 例如:</p>
           <ul>
             <li>如果这是GitHub 企业试用版.</li>
-            <li>
-              如果你的GitHub 企业实例运行在一个不寻常的顶级域上.
-            </li>
+            <li>如果你的GitHub 企业实例运行在一个不寻常的顶级域上.</li>
           </ul>
-          <p>
-            如果不确定要做什么，请取消并与系统管理员联系.
-          </p>
+          <p>如果不确定要做什么，请取消并与系统管理员联系.</p>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup
             destructive={true}
-            okButtonText={__DARWIN__ ? '查看证书 (certificate)' : '添加证书 (certificate)'}
+            okButtonText={
+              __DARWIN__ ? '查看证书 (certificate)' : '添加证书 (certificate)'
+            }
           />
         </DialogFooter>
       </Dialog>

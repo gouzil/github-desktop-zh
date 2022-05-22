@@ -64,9 +64,7 @@ export class DiscardChanges extends React.Component<
 
   private getDialogTitle() {
     if (this.props.discardingAllChanges) {
-      return __DARWIN__
-        ? '确认放弃所有更改'
-        : '确认放弃所有更改'
+      return __DARWIN__ ? '确认放弃所有更改' : '确认放弃所有更改'
     }
     return __DARWIN__ ? '确认放弃更改' : '确认放弃更改'
   }
@@ -88,8 +86,8 @@ export class DiscardChanges extends React.Component<
         <DialogContent>
           {this.renderFileList()}
           <p>
-            可以通过从 {TrashNameLabel} 中恢复 (Changes can be restored by retrieving them from the)
-            .
+            可以通过从 {TrashNameLabel} 中恢复 (Changes can be restored by
+            retrieving them from the) .
           </p>
           {this.renderConfirmDiscardChanges()}
         </DialogContent>
@@ -127,11 +125,7 @@ export class DiscardChanges extends React.Component<
 
   private renderFileList() {
     if (this.props.files.length > MaxFilesToList) {
-      return (
-        <p>
-          是否确实要放弃所有 {this.props.files.length} 更改文件?
-        </p>
-      )
+      return <p>是否确实要放弃所有 {this.props.files.length} 更改文件?</p>
     } else {
       return (
         <div>

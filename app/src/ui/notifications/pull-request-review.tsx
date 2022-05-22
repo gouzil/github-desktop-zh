@@ -182,9 +182,7 @@ export class PullRequestReview extends React.Component<
           ? '切换到存储库并拉取请求'
           : '切换到存储库并拉取请求'
       } else if (shouldCheckoutBranch) {
-        okButtonTitle = __DARWIN__
-          ? '切换到拉取请求'
-          : '切换到拉取请求'
+        okButtonTitle = __DARWIN__ ? '切换到拉取请求' : '切换到拉取请求'
       }
     }
 

@@ -69,11 +69,10 @@ export class UpdateAvailable extends React.Component<
 
     return (
       <span onSubmit={this.updateNow}>
-        (有更新的话记得提醒我翻译哈)
-        已提供并将安装更新版本的GitHub Desktop在下次发布时. 看{' '}
+        (有更新的话记得提醒我翻译哈) 已提供并将安装更新版本的GitHub
+        Desktop在下次发布时. 看{' '}
         <LinkButton onClick={this.showReleaseNotes}>新功能</LinkButton> 或者{' '}
-        <LinkButton onClick={this.updateNow}>重启 GitHub Desktop</LinkButton>
-        .
+        <LinkButton onClick={this.updateNow}>重启 GitHub Desktop</LinkButton>.
       </span>
     )
   }

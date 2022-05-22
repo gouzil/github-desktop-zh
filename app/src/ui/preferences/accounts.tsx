@@ -79,9 +79,7 @@ export class Accounts extends React.Component<IAccountsProps, {}> {
             actionTitle={signInTitle}
             onAction={this.onDotComSignIn}
           >
-            <div>
-              登录到你的GitHub.com帐户来访问你的仓库.
-            </div>
+            <div>登录到你的GitHub.com帐户来访问你的仓库.</div>
           </CallToAction>
         )
       }
@@ -92,8 +90,7 @@ export class Accounts extends React.Component<IAccountsProps, {}> {
             onAction={this.onEnterpriseSignIn}
           >
             <div>
-              如果你有一个GitHub企业或AE帐户在工作, 
-              登录到它获得访问您的存储库.
+              如果你有一个GitHub企业或AE帐户在工作, 登录到它获得访问您的存储库.
             </div>
           </CallToAction>
         )

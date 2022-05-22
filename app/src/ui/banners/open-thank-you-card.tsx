@@ -22,17 +22,14 @@ export class OpenThankYouCard extends React.Component<
       <Banner id="open-thank-you-card" onDismissed={this.props.onDismissed}>
         <span onSubmit={this.props.onOpenCard}>
           Github Desktop团队非常感谢您的贡献.{' '}
-          <LinkButton onClick={this.props.onOpenCard}>
-            打开您的卡片
-          </LinkButton>{' '}
+          <LinkButton onClick={this.props.onOpenCard}>打开您的卡片</LinkButton>{' '}
           <RichText
             className="thank-you-banner-emoji"
             text={':tada:'}
             emoji={this.props.emoji}
             renderUrlsAsLinks={true}
           />
-          或者{' '}
-          <LinkButton onClick={this.onThrowCardAway}>把它扔掉</LinkButton>{' '}
+          或者 <LinkButton onClick={this.onThrowCardAway}>把它扔掉</LinkButton>{' '}
           <RichText
             className="thank-you-banner-emoji"
             text={':sob:'}

@@ -373,9 +373,7 @@ export class ChangesList extends React.Component<
       this.props.conflictState !== null ||
       hasConflictedFiles(this.props.workingDirectory)
 
-    const stashAllChangesLabel = __DARWIN__
-      ? '隐藏所有更改'
-      : '隐藏所有更改'
+    const stashAllChangesLabel = __DARWIN__ ? '隐藏所有更改' : '隐藏所有更改'
     const confirmStashAllChangesLabel = __DARWIN__
       ? '隐藏所有更改…'
       : '隐藏所有更改…'
@@ -538,9 +536,7 @@ export class ChangesList extends React.Component<
       items.push(
         { type: 'separator' },
         {
-          label: __DARWIN__
-            ? '包括选定的文件'
-            : '包括选定的文件',
+          label: __DARWIN__ ? '包括选定的文件' : '包括选定的文件',
           action: () => {
             selectedFiles.map(file =>
               this.props.onIncludeChanged(file.path, true)
@@ -548,9 +544,7 @@ export class ChangesList extends React.Component<
           },
         },
         {
-          label: __DARWIN__
-            ? '排除所选文件'
-            : '排除所选文件',
+          label: __DARWIN__ ? '排除所选文件' : '排除所选文件',
           action: () => {
             selectedFiles.map(file =>
               this.props.onIncludeChanged(file.path, false)

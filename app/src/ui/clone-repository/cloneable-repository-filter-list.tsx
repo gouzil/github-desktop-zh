@@ -264,8 +264,7 @@ export class CloneableRepositoryFilterList extends React.PureComponent<ICloneabl
       return (
         <div className="no-items no-results-found">
           <div>
-            抱歉，我找不到任何匹配的存储库{' '}
-            <Ref>{this.props.filterText}</Ref>
+            抱歉，我找不到任何匹配的存储库 <Ref>{this.props.filterText}</Ref>
           </div>
         </div>
       )
@@ -274,11 +273,9 @@ export class CloneableRepositoryFilterList extends React.PureComponent<ICloneabl
     return (
       <div className="no-items empty-repository-list">
         <div>
-          看起来没有存储库在{' '}
-          <Ref>{this.props.account.login}</Ref> 上 {endpointName}.{' '}
-          <LinkButton onClick={this.refreshRepositories}>
-            刷新此列表
-          </LinkButton>{' '}
+          看起来没有存储库在 <Ref>{this.props.account.login}</Ref> 上{' '}
+          {endpointName}.{' '}
+          <LinkButton onClick={this.refreshRepositories}>刷新此列表</LinkButton>{' '}
           如果您最近创建了存储库.
         </div>
       </div>

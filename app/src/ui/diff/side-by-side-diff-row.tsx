@@ -323,10 +323,7 @@ export class SideBySideDiffRow extends React.Component<
       <div className="content" onContextMenu={this.props.onContextMenuText}>
         {syntaxHighlightLine(data.content, data.tokens)}
         {data.noNewLineIndicator && (
-          <Octicon
-            symbol={narrowNoNewlineSymbol}
-            title="文件末尾没有换行符"
-          />
+          <Octicon symbol={narrowNoNewlineSymbol} title="文件末尾没有换行符" />
         )}
       </div>
     )

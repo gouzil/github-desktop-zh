@@ -38,8 +38,7 @@ export class CherryPickConflictsBanner extends React.Component<
         <Octicon className="alert-icon" symbol={OcticonSymbol.alert} />
         <div className="banner-message">
           <span>
-            解决冲突继续筛选{' '}
-            <strong>{this.props.targetBranchName}</strong>.
+            解决冲突继续筛选 <strong>{this.props.targetBranchName}</strong>.
           </span>
           <LinkButton onClick={this.openDialog}>查看冲突</LinkButton>
         </div>

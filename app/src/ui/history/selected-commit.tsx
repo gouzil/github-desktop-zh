@@ -327,9 +327,7 @@ export class SelectedCommit extends React.Component<
     if (!fileExistsOnDisk) {
       showContextualMenu([
         {
-          label: __DARWIN__
-            ? '磁盘上不存在文件'
-            : '磁盘上不存在文件',
+          label: __DARWIN__ ? '磁盘上不存在文件' : '磁盘上不存在文件',
           enabled: false,
         },
       ])

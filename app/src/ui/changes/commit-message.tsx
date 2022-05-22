@@ -486,12 +486,8 @@ export class CommitMessage extends React.Component<
   }
 
   private getCommitSpellcheckEnabilityMenuItem(isEnabled: boolean): IMenuItem {
-    const enableLabel = __DARWIN__
-      ? '启用提交拼写检查'
-      : '启用提交拼写检查'
-    const disableLabel = __DARWIN__
-      ? '禁用提交拼写检查'
-      : '禁用提交拼写检查'
+    const enableLabel = __DARWIN__ ? '启用提交拼写检查' : '启用提交拼写检查'
+    const disableLabel = __DARWIN__ ? '禁用提交拼写检查' : '禁用提交拼写检查'
     return {
       label: isEnabled ? disableLabel : enableLabel,
       action: () => this.props.onCommitSpellcheckEnabledChanged(!isEnabled),
@@ -600,18 +596,15 @@ export class CommitMessage extends React.Component<
     if (commitToAmend !== null) {
       return (
         <CommitWarning icon={CommitWarningIcon.Information}>
-            您的更改将修改 <strong>最近提交</strong>.{' '}
-          <LinkButton onClick={this.props.onStopAmending}>
-            停止修改
-          </LinkButton>{' '}
+          您的更改将修改 <strong>最近提交</strong>.{' '}
+          <LinkButton onClick={this.props.onStopAmending}>停止修改</LinkButton>{' '}
           将这些更改作为新提交.
         </CommitWarning>
       )
     } else if (showNoWriteAccess) {
       return (
         <CommitWarning icon={CommitWarningIcon.Warning}>
-          您没有写入权限 <strong>{repository.name}</strong>.
-          想要{' '}
+          您没有写入权限 <strong>{repository.name}</strong>. 想要{' '}
           <LinkButton onClick={this.props.onShowCreateForkDialog}>
             创建一个分支(fork)
           </LinkButton>
@@ -630,8 +623,7 @@ export class CommitMessage extends React.Component<
       return (
         <CommitWarning icon={CommitWarningIcon.Warning}>
           <strong>{branch}</strong> 是受保护的分支. 想要{' '}
-          <LinkButton onClick={this.onSwitchBranch}>切换分支</LinkButton>
-          ?
+          <LinkButton onClick={this.onSwitchBranch}>切换分支</LinkButton>?
         </CommitWarning>
       )
     } else {
@@ -714,12 +706,8 @@ export class CommitMessage extends React.Component<
         delay={0}
         tooltip={
           <>
-            <div className="title">
-              优秀的提交摘描述要少于50个字符
-            </div>
-            <div className="description">
-              在描述字段中放置额外信息.
-            </div>
+            <div className="title">优秀的提交摘描述要少于50个字符</div>
+            <div className="description">在描述字段中放置额外信息.</div>
           </>
         }
         direction={TooltipDirection.NORTH}

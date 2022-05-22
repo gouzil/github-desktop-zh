@@ -13,7 +13,8 @@ export function renderBranchHasRemoteWarning(branch: Branch) {
       <Row className="warning-helper-text">
         <Octicon symbol={OcticonSymbol.alert} />
         <p>
-          此分支正在跟踪 <Ref>{branch.upstream}</Ref> 重命名此分支不会更改远程上的分支名称.
+          此分支正在跟踪 <Ref>{branch.upstream}</Ref>{' '}
+          重命名此分支不会更改远程上的分支名称.
         </p>
       </Row>
     )
@@ -53,7 +54,8 @@ export function renderStashWillBeLostWarning(stash: IStashEntry | null) {
     <Row className="warning-helper-text">
       <Octicon symbol={OcticonSymbol.alert} />
       <p>
-        如果该分支被重命名, 你当前在该分支上隐藏的更改将不再在GitHub Desktop中可见.
+        如果该分支被重命名, 你当前在该分支上隐藏的更改将不再在GitHub
+        Desktop中可见.
       </p>
     </Row>
   )

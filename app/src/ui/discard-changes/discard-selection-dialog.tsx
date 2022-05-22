@@ -68,9 +68,7 @@ export class DiscardSelection extends React.Component<
     return (
       <Dialog
         id="discard-changes"
-        title={
-          __DARWIN__ ? '确认放弃更改' : '确认放弃更改'
-        }
+        title={__DARWIN__ ? '确认放弃更改' : '确认放弃更改'}
         onDismissed={this.props.onDismissed}
         onSubmit={this.discard}
         dismissable={isDiscardingChanges ? false : true}

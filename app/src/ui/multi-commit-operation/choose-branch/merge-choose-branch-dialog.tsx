@@ -153,11 +153,7 @@ export class MergeChooseBranchDialog extends BaseChooseBranchDialog {
   }
 
   private renderLoadingMergeMessage() {
-    return (
-      <React.Fragment>
-        正在检查自动合并的能力...
-      </React.Fragment>
-    )
+    return <React.Fragment>正在检查自动合并的能力...</React.Fragment>
   }
 
   private renderCleanMergeMessage(
@@ -188,11 +184,7 @@ export class MergeChooseBranchDialog extends BaseChooseBranchDialog {
   }
 
   private renderInvalidMergeMessage() {
-    return (
-      <React.Fragment>
-        无法合并此存储库中不相关的历史记录
-      </React.Fragment>
-    )
+    return <React.Fragment>无法合并此存储库中不相关的历史记录</React.Fragment>
   }
 
   private renderConflictedMergeMessage(

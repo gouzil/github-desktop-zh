@@ -290,9 +290,7 @@ export class CICheckRunPopover extends React.PureComponent<
       case loading:
         return <>检查摘要</>
       case somePendingNoFailures:
-        return (
-          <span className="pending">一些检查尚未完成</span>
-        )
+        return <span className="pending">一些检查尚未完成</span>
       case allFailure:
         return <span className="failure">所有检查均失败</span>
       case allSuccess:

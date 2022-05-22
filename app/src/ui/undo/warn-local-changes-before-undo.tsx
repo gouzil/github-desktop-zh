@@ -81,10 +81,7 @@ export class WarnLocalChangesBeforeUndo extends React.Component<
       )
     } else {
       return (
-        <>
-          您正在进行更改. 撤销提交可能会导致其中一些更改丢失. 
-          您还想继续吗?
-        </>
+        <>您正在进行更改. 撤销提交可能会导致其中一些更改丢失. 您还想继续吗?</>
       )
     }
   }

@@ -120,9 +120,7 @@ export class CommitMessageAvatar extends React.Component<
   }
 
   private renderPopover() {
-    const accountTypeSuffix = this.props.isEnterpriseAccount
-      ? ' 企业'
-      : ''
+    const accountTypeSuffix = this.props.isEnterpriseAccount ? ' 企业' : ''
 
     const updateEmailTitle = __DARWIN__ ? '更新邮件' : '更新邮件'
 
@@ -135,8 +133,8 @@ export class CommitMessageAvatar extends React.Component<
         <Row>
           <div>
             全局Git配置中的电子邮件 (
-            <span className="git-email">{this.props.email}</span>) 不匹配
-            您的 GitHub{accountTypeSuffix} 账户.{' '}
+            <span className="git-email">{this.props.email}</span>) 不匹配 您的
+            GitHub{accountTypeSuffix} 账户.{' '}
             <LinkButton uri="https://docs.github.com/en/github/committing-changes-to-your-project/why-are-my-commits-linked-to-the-wrong-user">
               了解更多信息.
             </LinkButton>

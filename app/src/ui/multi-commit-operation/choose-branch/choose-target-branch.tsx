@@ -131,9 +131,7 @@ export class ChooseTargetBranchDialog extends React.Component<
     const { selectedBranch, isCreateBranchState } = this.state
 
     if (isCreateBranchState) {
-      return __DARWIN__
-        ? '筛选到新的分支'
-        : '筛选到新的分支'
+      return __DARWIN__ ? '筛选到新的分支' : '筛选到新的分支'
     }
 
     const pluralize = this.props.commitCount > 1 ? '提交' : '提交'

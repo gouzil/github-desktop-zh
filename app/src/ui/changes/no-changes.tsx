@@ -397,9 +397,7 @@ export class NoChanges extends React.Component<
       </>
     )
     const discoverabilityContent = (
-      <>
-        当一个收藏存在时, 在Changes选项卡的左边访问它.
-      </>
+      <>当一个收藏存在时, 在Changes选项卡的左边访问它.</>
     )
     const itemId: MenuIDs = 'toggle-stashed-changes'
     const menuItem = this.getMenuItemInfo(itemId)
@@ -481,18 +479,15 @@ export class NoChanges extends React.Component<
 
     const description = (
       <>
-        当前分支 (<Ref>{tip.branch.name}</Ref>) 尚未发布
-        到远程仓库. 通过发布它 {isGitHub ? '到GitHub' : ''} 您可以分享, 
+        当前分支 (<Ref>{tip.branch.name}</Ref>) 尚未发布 到远程仓库. 通过发布它{' '}
+        {isGitHub ? '到GitHub' : ''} 您可以分享,
         {isGitHub ? '打开一个拉取请求, ' : ''}
         与他人合作.
       </>
     )
 
     const discoverabilityContent = (
-      <>
-        总是在工具栏或{' '}
-        {this.renderDiscoverabilityKeyboardShortcut(menuItem)}
-      </>
+      <>总是在工具栏或 {this.renderDiscoverabilityKeyboardShortcut(menuItem)}</>
     )
 
     return (
@@ -538,10 +533,7 @@ export class NoChanges extends React.Component<
     )
 
     const discoverabilityContent = (
-      <>
-        当有远程更改或{' '}
-        {this.renderDiscoverabilityKeyboardShortcut(menuItem)}
-      </>
+      <>当有远程更改或 {this.renderDiscoverabilityKeyboardShortcut(menuItem)}</>
     )
 
     const title = `拉取 ${aheadBehind.behind} ${
@@ -605,7 +597,8 @@ export class NoChanges extends React.Component<
 
     const discoverabilityContent = (
       <>
-        当有本地提交等待推送时，总是在工具栏中可用 {this.renderDiscoverabilityKeyboardShortcut(menuItem)}
+        当有本地提交等待推送时，总是在工具栏中可用{' '}
+        {this.renderDiscoverabilityKeyboardShortcut(menuItem)}
       </>
     )
 
@@ -640,7 +633,8 @@ export class NoChanges extends React.Component<
 
     const description = (
       <>
-        当前分支 (<Ref>{tip.branch.name}</Ref>) 已经发布到GitHub。创建一个拉取请求来提议和协作您的变更.
+        当前分支 (<Ref>{tip.branch.name}</Ref>)
+        已经发布到GitHub。创建一个拉取请求来提议和协作您的变更.
       </>
     )
 
@@ -705,8 +699,8 @@ export class NoChanges extends React.Component<
             <div className="text">
               <h1>没有本地更改</h1>
               <p>
-              此存储库中没有未提交的更改。
-              这里有一些关于下一步该做什么的友好建议.
+                此存储库中没有未提交的更改。
+                这里有一些关于下一步该做什么的友好建议.
               </p>
             </div>
             <img src={PaperStackImage} className="blankslate-image" />

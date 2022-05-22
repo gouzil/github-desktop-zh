@@ -21,9 +21,7 @@ export class ConfirmExitTutorial extends React.Component<
         type="normal"
       >
         <DialogContent>
-          <p>
-            是否确实要退出教程? 这将使您返回主屏幕.
-          </p>
+          <p>是否确实要退出教程? 这将使您返回主屏幕.</p>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup

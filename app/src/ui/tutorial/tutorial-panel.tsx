@@ -115,8 +115,7 @@ export class TutorialPanel extends React.Component<
             {!this.isStepComplete(TutorialStep.PickEditor) ? (
               <>
                 <p className="description">
-                  看起来您没有安装文本编辑器.
-                  我们可以推荐{' '}
+                  看起来您没有安装文本编辑器. 我们可以推荐{' '}
                   <LinkButton
                     uri={suggestedExternalEditor.url}
                     title={`打开 ${suggestedExternalEditor.name} 网站`}
@@ -124,10 +123,7 @@ export class TutorialPanel extends React.Component<
                     {suggestedExternalEditor.name}
                   </LinkButton>
                   {` 或者 `}
-                  <LinkButton
-                    uri="https://atom.io"
-                    title="打开Atom网站"
-                  >
+                  <LinkButton uri="https://atom.io" title="打开Atom网站">
                     Atom
                   </LinkButton>
                   , but feel free to use any.
@@ -159,7 +155,9 @@ export class TutorialPanel extends React.Component<
           >
             <p className="description">
               {`分支允许您同时处理存储库的不同版本. 
-              通过进入顶部栏中的“分支”菜单并单击创建分支 "${__DARWIN__ ? '新建分支' : '新建分支'}".`}
+              通过进入顶部栏中的“分支”菜单并单击创建分支 "${
+                __DARWIN__ ? '新建分支' : '新建分支'
+              }".`}
             </p>
             <div className="action">
               {__DARWIN__ ? (
@@ -222,10 +220,8 @@ export class TutorialPanel extends React.Component<
             onSummaryClick={this.onStepSummaryClick}
           >
             <p className="description">
-            提交允许您保存更改集. 
-            在左下角的 "描述" 区域, 
-            写一条简短的消息, 描述您所做的更改。完成后, 
-            单击蓝色的提交按钮完成.
+              提交允许您保存更改集. 在左下角的 "描述" 区域, 写一条简短的消息,
+              描述您所做的更改。完成后, 单击蓝色的提交按钮完成.
             </p>
           </TutorialStepInstructions>
           <TutorialStepInstructions
@@ -237,7 +233,7 @@ export class TutorialPanel extends React.Component<
             onSummaryClick={this.onStepSummaryClick}
           >
             <p className="description">
-              发布将"推送"或上传你的提交到GitHub上的这个仓库分支. 
+              发布将"推送"或上传你的提交到GitHub上的这个仓库分支.
               使用顶部栏中的第三个按钮发布.
             </p>
             <div className="action">
@@ -264,9 +260,9 @@ export class TutorialPanel extends React.Component<
             onSummaryClick={this.onStepSummaryClick}
           >
             <p className="description">
-              拉取请求允许您对代码提出更改. 
-              打开一个, 就是要求某人审阅并合并它们. 
-              由于这是一个演示存储库, 因此此拉取请求将是私有的.
+              拉取请求允许您对代码提出更改. 打开一个,
+              就是要求某人审阅并合并它们. 由于这是一个演示存储库,
+              因此此拉取请求将是私有的.
             </p>
             <div className="action">
               <Button onClick={this.openPullRequest}>

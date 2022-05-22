@@ -42,13 +42,11 @@ export class WorkflowPushRejectedDialog extends React.Component<
       >
         <DialogContent>
           <p>
-            由于包含对工作流文件的修改, 
-            推送被服务器拒绝 <Ref>{this.props.rejectedPath}</Ref>. 
-            为了能够推送工作流文件, GitHub Desktop需要请求其他权限.
+            由于包含对工作流文件的修改, 推送被服务器拒绝{' '}
+            <Ref>{this.props.rejectedPath}</Ref>. 为了能够推送工作流文件, GitHub
+            Desktop需要请求其他权限.
           </p>
-          <p>
-            是否打开浏览器以授予 GitHub Desktop更新工作流文件的权限?
-          </p>
+          <p>是否打开浏览器以授予 GitHub Desktop更新工作流文件的权限?</p>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup okButtonText={okButtonText} />

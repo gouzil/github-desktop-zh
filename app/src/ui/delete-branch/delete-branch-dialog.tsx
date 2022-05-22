@@ -66,9 +66,7 @@ export class DeleteBranch extends React.Component<
       return (
         <div>
           <p>
-            <strong>
-            分支也存在于远程，你希望在那里也删除它?
-            </strong>
+            <strong>分支也存在于远程，你希望在那里也删除它?</strong>
           </p>
           <Checkbox
             label="是的，在远程上删除这个分支"

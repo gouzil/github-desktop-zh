@@ -148,9 +148,7 @@ export class DiffOptions extends React.Component<
               : CheckboxValue.Off
           }
           onChange={this.onHideWhitespaceChangesChanged}
-          label={
-            __DARWIN__ ? '隐藏空白更改' : '隐藏空白更改'
-          }
+          label={__DARWIN__ ? '隐藏空白更改' : '隐藏空白更改'}
         />
         {this.props.sourceTab === RepositorySectionTab.Changes && (
           <p className="secondary-text">

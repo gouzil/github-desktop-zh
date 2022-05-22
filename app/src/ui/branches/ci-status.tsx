@@ -157,7 +157,7 @@ export function getClassNameForCheck(
     case 'action_required':
       // return 'action-required' //感觉这个会有问题
       return '需要采取的行动'
-      case 'failure':
+    case 'failure':
     case 'neutral':
     case 'success':
     case 'cancelled':

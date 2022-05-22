@@ -40,9 +40,7 @@ export class WarnForcePushDialog extends React.Component<
   public render() {
     const { operation, onDismissed } = this.props
 
-    const title = __DARWIN__
-      ? `${operation} 强制推送`
-      : `${operation} 强制推送`
+    const title = __DARWIN__ ? `${operation} 强制推送` : `${operation} 强制推送`
 
     return (
       <Dialog
@@ -56,7 +54,8 @@ export class WarnForcePushDialog extends React.Component<
           <p>是否确实要 {operation.toLowerCase()}?</p>
           <p>
             在 {operation.toLowerCase()} 流之后, GitHub Desktop
-            将使您能够强制推送分支以更新上游分支. 强制推送将改变远程上的历史记录,
+            将使您能够强制推送分支以更新上游分支.
+            强制推送将改变远程上的历史记录,
             并可能给在此分支上协作的其他人带来问题.
           </p>
           <div>

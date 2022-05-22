@@ -165,7 +165,9 @@ export class RepositoryListItem extends React.Component<
     const items: ReadonlyArray<IMenuItem> = [
       ...this.buildAliasMenuItems(),
       {
-        label: __DARWIN__ ? '复制存储库名称 (Copy Repo Name)' : '复制存储库名称 (Copy Repo Name)',
+        label: __DARWIN__
+          ? '复制存储库名称 (Copy Repo Name)'
+          : '复制存储库名称 (Copy Repo Name)',
         action: this.copyToClipboard,
       },
       { type: 'separator' },

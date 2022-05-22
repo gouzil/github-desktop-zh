@@ -143,7 +143,7 @@ export class Advanced extends React.Component<
             onChange={this.onRepositoryIndicatorsEnabledChanged}
           />
           <p className="git-settings-description">
-            允许在存储库列表中显示最新状态指示器. 
+            允许在存储库列表中显示最新状态指示器.
             禁用此选项可以提高许多存储库的性能.
           </p>
         </div>
@@ -202,9 +202,9 @@ export class Advanced extends React.Component<
           onChange={this.onNotificationsEnabledChanged}
         />
         <p className="git-settings-description">
-          允许在当前存储库中发生高信号事件时显示通知
-          (Allows the display of notifications when high-signal events take place
-          in the current repository).{this.renderNotificationSettingsLink()}
+          允许在当前存储库中发生高信号事件时显示通知 (Allows the display of
+          notifications when high-signal events take place in the current
+          repository).{this.renderNotificationSettingsLink()}
         </p>
       </div>
     )
@@ -223,10 +223,7 @@ export class Advanced extends React.Component<
       <>
         {' '}
         确保GitHub Desktop的通知已启用{' '}
-        <LinkButton uri={notificationSettingsURL}>
-          通知设置
-        </LinkButton>
-        .
+        <LinkButton uri={notificationSettingsURL}>通知设置</LinkButton>.
       </>
     )
   }

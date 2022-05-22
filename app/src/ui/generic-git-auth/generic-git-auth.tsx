@@ -54,8 +54,8 @@ export class GenericGitAuthentication extends React.Component<
       >
         <DialogContent>
           <p>
-            我们无法通过验证 <Ref>{this.props.hostname}</Ref>
-            . 请输入用户名和密码以重试.
+            我们无法通过验证 <Ref>{this.props.hostname}</Ref>.
+            请输入用户名和密码以重试.
           </p>
 
           <Row>

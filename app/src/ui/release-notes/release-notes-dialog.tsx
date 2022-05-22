@@ -139,9 +139,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
     return (
       <OkCancelButtonGroup
         destructive={true}
-        okButtonText={
-          __DARWIN__ ? '安装并重新启动' : '安装并重新启动'
-        }
+        okButtonText={__DARWIN__ ? '安装并重新启动' : '安装并重新启动'}
         cancelButtonText="关闭"
       />
     )

@@ -241,8 +241,7 @@ export class MergeCallToActionWithConflicts extends React.Component<
   private renderLoadingMessage() {
     return (
       <div className="merge-message merge-message-loading">
-        检查是否能够 {this.state.selectedOperation.toLowerCase()}{' '}
-        自动…
+        检查是否能够 {this.state.selectedOperation.toLowerCase()} 自动…
       </div>
     )
   }
@@ -288,9 +287,7 @@ export class MergeCallToActionWithConflicts extends React.Component<
     }
 
     return (
-      <div className="merge-message">
-        无法合并此存储库中不相关的历史记录
-      </div>
+      <div className="merge-message">无法合并此存储库中不相关的历史记录</div>
     )
   }
 

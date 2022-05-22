@@ -72,9 +72,7 @@ export class StashDiffHeader extends React.Component<
     return (
       <div className="explanatory-text">
         <Octicon symbol={OcticonSymbol.alert} />
-        <span className="text">
-          当分支上存在更改时，无法恢复存储.
-        </span>
+        <span className="text">当分支上存在更改时，无法恢复存储.</span>
       </div>
     )
   }

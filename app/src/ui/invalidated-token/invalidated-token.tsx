@@ -30,9 +30,8 @@ export class InvalidatedToken extends React.Component<IInvalidatedTokenProps> {
       >
         <DialogContent>
           <Row>
-            您的帐户令牌已失效, 您已被退出登录
-            来着您的 GitHub{accountTypeSuffix} 账户. 
-            您想要重新登录吗?
+            您的帐户令牌已失效, 您已被退出登录 来着您的 GitHub
+            {accountTypeSuffix} 账户. 您想要重新登录吗?
           </Row>
         </DialogContent>
         <DialogFooter>

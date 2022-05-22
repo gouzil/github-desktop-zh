@@ -798,9 +798,7 @@ export class SideBySideDiff extends React.Component<
             diff.hunks[0].expansionType !== DiffHunkExpansionType.None,
         }
       : {
-          label: __DARWIN__
-            ? '折叠展开的行'
-            : '折叠展开的行',
+          label: __DARWIN__ ? '折叠展开的行' : '折叠展开的行',
           action: this.onCollapseExpandedLines,
         }
   }

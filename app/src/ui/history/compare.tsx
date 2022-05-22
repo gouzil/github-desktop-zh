@@ -212,7 +212,8 @@ export class CompareSidebar extends React.Component<
       emptyListMessage =
         formState.comparisonMode === ComparisonMode.Ahead ? (
           <p>
-            比较的分支 (<Ref>{currentlyComparedBranchName}</Ref>) 是您分支的最新信息
+            比较的分支 (<Ref>{currentlyComparedBranchName}</Ref>)
+            是您分支的最新信息
           </p>
         ) : (
           <p>
@@ -662,9 +663,7 @@ function getPlaceholderText(state: ICompareState) {
   if (!branches.some(b => !b.isDesktopForkRemoteBranch)) {
     return __DARWIN__ ? '没有要比较的分支' : '没有要比较的分支'
   } else if (formState.kind === HistoryTabMode.History) {
-    return __DARWIN__
-      ? '选择分支进行比较...'
-      : '选择分支进行比较...'
+    return __DARWIN__ ? '选择分支进行比较...' : '选择分支进行比较...'
   } else {
     return undefined
   }

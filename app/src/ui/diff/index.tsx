@@ -217,22 +217,14 @@ export class Diff extends React.Component<IDiffProps, IDiffState> {
       }
 
       if (this.props.file.status.kind === AppFileStatusKind.Renamed) {
-        return (
-          <div className="panel renamed">
-            文件已重命名，但未更改
-          </div>
-        )
+        return <div className="panel renamed">文件已重命名，但未更改</div>
       }
 
       if (
         isConflictedFileStatus(this.props.file.status) &&
         isManualConflict(this.props.file.status)
       ) {
-        return (
-          <div className="panel empty">
-            文件冲突，必须通过命令行解决.
-          </div>
-        )
+        return <div className="panel empty">文件冲突，必须通过命令行解决.</div>
       }
 
       if (this.props.hideWhitespaceInDiff) {

@@ -84,9 +84,7 @@ export class EditorError extends React.Component<IEditorErrorProps, {}> {
   }
 
   public render() {
-    const title = __DARWIN__
-      ? '无法打开外部编辑器'
-      : '无法打开外部编辑器'
+    const title = __DARWIN__ ? '无法打开外部编辑器' : '无法打开外部编辑器'
 
     return (
       <Dialog

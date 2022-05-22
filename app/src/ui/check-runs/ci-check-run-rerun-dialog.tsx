@@ -164,8 +164,7 @@ export class CICheckRunRerunDialog extends React.Component<
 
     return (
       <div className="re-run-dependents-message">
-        一种新的尝试 {name} 将开始，包括所有 {dependentAdj}{' '}
-        关联 (dependents):
+        一种新的尝试 {name} 将开始，包括所有 {dependentAdj} 关联 (dependents):
       </div>
     )
   }

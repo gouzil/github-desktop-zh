@@ -223,9 +223,7 @@ export class Publish extends React.Component<IPublishProps, IPublishState> {
       case PublishTab.DotCom:
         return (
           <CallToAction actionTitle={signInTitle} onAction={this.signInDotCom}>
-            <div>
-              登录到你的GitHub.com帐户来访问你的仓库.
-            </div>
+            <div>登录到你的GitHub.com帐户来访问你的仓库.</div>
           </CallToAction>
         )
       case PublishTab.Enterprise:
@@ -235,8 +233,7 @@ export class Publish extends React.Component<IPublishProps, IPublishState> {
             onAction={this.signInEnterprise}
           >
             <div>
-              如果你有一个GitHub企业或AE帐户在工作,
-              登录到它获得访问您的存储库.
+              如果你有一个GitHub企业或AE帐户在工作, 登录到它获得访问您的存储库.
             </div>
           </CallToAction>
         )
@@ -254,9 +251,7 @@ export class Publish extends React.Component<IPublishProps, IPublishState> {
       return (
         <DialogFooter>
           <OkCancelButtonGroup
-            okButtonText={
-              __DARWIN__ ? '发布存储库' : '发布存储库'
-            }
+            okButtonText={__DARWIN__ ? '发布存储库' : '发布存储库'}
             okButtonDisabled={disabled}
           />
         </DialogFooter>

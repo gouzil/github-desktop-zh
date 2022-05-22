@@ -138,10 +138,7 @@ export class AddExistingRepository extends React.Component<
       return (
         <Row className="warning-helper-text">
           <Octicon symbol={OcticonSymbol.alert} />
-          <p>
-            该目录似乎是一个空的存储库。 
-            空的存储库目前不支持。
-          </p>
+          <p>该目录似乎是一个空的存储库。 空的存储库目前不支持。</p>
         </Row>
       )
     }
@@ -187,11 +184,11 @@ export class AddExistingRepository extends React.Component<
         <p>
           此目录似乎不是Git存储库.
           <br />
-            如果您想要{' '}
+          如果您想要{' '}
           <LinkButton onClick={this.onCreateRepositoryClicked}>
             创建存储库
           </LinkButton>{' '}
-            在这里?
+          在这里?
         </p>
       </Row>
     )

@@ -62,8 +62,6 @@ jobs:
           TARGET_ARCH: ${{ matrix.arch }}
       - name: Lint
         run: yarn lint
-      - name: Dbug
-        run: echo "-------------------------"
       - name: Validate changelog
         run: yarn validate-changelog
       - name: Ensure a clean working directory

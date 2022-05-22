@@ -29,12 +29,10 @@ export function ForkSettingsDescription(props: IForkSettingsDescription) {
         浏览器.
       </li>
       <li>
-        新分支机构将基于{' '}
-        <strong>{targetRepository.fullName}</strong> 默认分支.
+        新分支机构将基于 <strong>{targetRepository.fullName}</strong> 默认分支.
       </li>
       <li>
-        自动完成的用户和问题将基于{' '}
-        <strong>{targetRepository.fullName}</strong>.
+        自动完成的用户和问题将基于 <strong>{targetRepository.fullName}</strong>.
       </li>
     </ul>
   )

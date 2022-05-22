@@ -134,9 +134,7 @@ export class CommitListItem extends React.PureComponent<
 
     const isDraggable = this.canCherryPick()
     const hasEmptySummary = commit.summary.length === 0
-    const commitSummary = hasEmptySummary
-      ? '清空提交信息'
-      : commit.summary
+    const commitSummary = hasEmptySummary ? '清空提交信息' : commit.summary
 
     const summaryClassNames = classNames('summary', {
       'empty-summary': hasEmptySummary,
@@ -308,9 +306,7 @@ export class CommitListItem extends React.PureComponent<
     }
 
     items.push({
-      label: __DARWIN__
-        ? '在提交中恢复更改'
-        : '在提交中恢复更改',
+      label: __DARWIN__ ? '在提交中恢复更改' : '在提交中恢复更改',
       action: () => {
         if (this.props.onRevertCommit) {
           this.props.onRevertCommit(this.props.commit)
@@ -323,9 +319,7 @@ export class CommitListItem extends React.PureComponent<
 
     if (enableBranchFromCommit()) {
       items.push({
-        label: __DARWIN__
-          ? '从Commit创建分支'
-          : '从Commit创建分支',
+        label: __DARWIN__ ? '从Commit创建分支' : '从Commit创建分支',
         action: () => {
           if (this.props.onCreateBranch) {
             this.props.onCreateBranch(this.props.commit)
@@ -378,18 +372,14 @@ export class CommitListItem extends React.PureComponent<
 
     const count = this.props.selectedCommits.length
     items.push({
-      label: __DARWIN__
-        ? `筛选 ${count} 提交…`
-        : `筛选 ${count} 提交…`,
+      label: __DARWIN__ ? `筛选 ${count} 提交…` : `筛选 ${count} 提交…`,
       action: this.onCherryPick,
       enabled: this.canCherryPick(),
     })
 
     if (enableSquashing()) {
       items.push({
-        label: __DARWIN__
-          ? `去除 ${count} 提交…`
-          : `去除 ${count} 提交…`,
+        label: __DARWIN__ ? `去除 ${count} 提交…` : `去除 ${count} 提交…`,
         action: this.onSquash,
       })
     }

@@ -100,7 +100,7 @@ export class PushBranchCommits extends React.Component<
         <DialogContent>
           <p>在打开拉取请求之前，必须先发布分支.</p>
           <p>
-            是否要发布 <Ref>{this.props.branch.name}</Ref> 
+            是否要发布 <Ref>{this.props.branch.name}</Ref>
             现在打开pull请求?
           </p>
         </DialogContent>
@@ -111,12 +111,9 @@ export class PushBranchCommits extends React.Component<
 
     return (
       <DialogContent>
+        <p>您有 {localCommits} 还没有被推送到远程仓库.</p>
         <p>
-          您有 {localCommits} 还没有被推送到远程仓库.
-        </p>
-        <p>
-          要将更改推至{' '}
-          <Ref>{this.props.branch.name}</Ref> 创建拉取请求之前?
+          要将更改推至 <Ref>{this.props.branch.name}</Ref> 创建拉取请求之前?
         </p>
       </DialogContent>
     )
@@ -142,9 +139,7 @@ export class PushBranchCommits extends React.Component<
     return (
       <OkCancelButtonGroup
         okButtonText={__DARWIN__ ? '推送提交' : '推送提交'}
-        cancelButtonText={
-          __DARWIN__ ? '创建而不推送' : '创建而不推送'
-        }
+        cancelButtonText={__DARWIN__ ? '创建而不推送' : '创建而不推送'}
         onCancelButtonClick={this.onCreateWithoutPushButtonClick}
       />
     )

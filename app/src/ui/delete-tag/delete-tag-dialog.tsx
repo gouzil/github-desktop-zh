@@ -42,8 +42,7 @@ export class DeleteTag extends React.Component<
       >
         <DialogContent>
           <p>
-            确实要删除标签吗{' '}
-            <Ref>{this.props.tagName}</Ref>?
+            确实要删除标签吗 <Ref>{this.props.tagName}</Ref>?
           </p>
         </DialogContent>
         <DialogFooter>

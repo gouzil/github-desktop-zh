@@ -121,9 +121,9 @@ export class Acknowledgements extends React.Component<
       >
         <DialogContent>
           <p>
-            <LinkButton uri={WebsiteURL}>GitHub Desktop</LinkButton> 这是一个开放的
-              源项目根据MIT许可证发布。您可以查看
-              源代码并对此项目作出贡献{' '}
+            <LinkButton uri={WebsiteURL}>GitHub Desktop</LinkButton>{' '}
+            这是一个开放的 源项目根据MIT许可证发布。您可以查看
+            源代码并对此项目作出贡献{' '}
             <LinkButton uri={RepositoryURL}>GitHub</LinkButton>.
           </p>
 

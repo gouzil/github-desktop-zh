@@ -117,12 +117,12 @@ export class MissingRepository extends React.Component<
             </div>
             <div className="details">
               <p>
-                Git仓库位于 <Ref>{unsafePath}</Ref> 似乎由您机器上的另一个用户拥有. 
+                Git仓库位于 <Ref>{unsafePath}</Ref>{' '}
+                似乎由您机器上的另一个用户拥有.
                 添加不受信任的存储库可能会自动执行存储库中的文件.
               </p>
               <p>
-                如果您信任该目录的所有者, 
-                则可以为此目录添加一个例外以便继续.
+                如果您信任该目录的所有者, 则可以为此目录添加一个例外以便继续.
               </p>
             </div>
           </div>

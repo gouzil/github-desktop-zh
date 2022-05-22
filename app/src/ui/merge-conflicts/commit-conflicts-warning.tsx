@@ -67,18 +67,14 @@ export class CommitConflictsWarning extends React.Component<
         type={'warning'}
       >
         <DialogContent>
-          <p>
-            如果选择提交，则将把以下冲突文件提交到存储库中:
-          </p>
+          <p>如果选择提交，则将把以下冲突文件提交到存储库中:</p>
           {this.renderFiles(this.props.files)}
           <p>您确定要提交这些冲突文件吗?</p>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup
             destructive={true}
-            okButtonText={
-              __DARWIN__ ? '是的,提交文件' : '是的,提交文件'
-            }
+            okButtonText={__DARWIN__ ? '是的,提交文件' : '是的,提交文件'}
           />
         </DialogFooter>
       </Dialog>

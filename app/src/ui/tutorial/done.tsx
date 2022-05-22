@@ -53,9 +53,7 @@ export class TutorialDone extends React.Component<ITutorialDoneProps, {}> {
             <SuggestedAction
               title="创建新存储库"
               description="开始一个全新的项目"
-              buttonText={
-                __DARWIN__ ? '创建存储库' : '创建存储库'
-              }
+              buttonText={__DARWIN__ ? '创建存储库' : '创建存储库'}
               onClick={this.onCreateNewRepository}
               type="normal"
               image={PlusOcticon}

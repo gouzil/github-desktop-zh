@@ -59,25 +59,23 @@ export class AttributeMismatch extends React.Component<
     return (
       <Dialog
         id="lfs-attribute-mismatch"
-        title={
-          __DARWIN__
-            ? '更新现有Git LFS筛选器?'
-            : '更新现有Git LFS筛选器?'
-        }
+        title={__DARWIN__ ? '更新现有Git LFS筛选器?' : '更新现有Git LFS筛选器?'}
         onDismissed={this.props.onDismissed}
         onSubmit={this.onSubmit}
       >
         <DialogContent>
           <p>
-            Git LFS筛选器已在中配置{' '}
-            {this.renderGlobalGitConfigLink()} 但这并不是它所期望的价值。您想现在更新它们吗?
+            Git LFS筛选器已在中配置 {this.renderGlobalGitConfigLink()}{' '}
+            但这并不是它所期望的价值。您想现在更新它们吗?
           </p>
         </DialogContent>
 
         <DialogFooter>
           <OkCancelButtonGroup
             okButtonText={
-              __DARWIN__ ? '更新现有筛选器 (existing filters)' : '更新现有筛选器 (existing filters)'
+              __DARWIN__
+                ? '更新现有筛选器 (existing filters)'
+                : '更新现有筛选器 (existing filters)'
             }
             cancelButtonText={__DARWIN__ ? '不是现在' : '不是现在'}
           />

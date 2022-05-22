@@ -152,9 +152,7 @@ function unbornRepositoryButton() {
 }
 
 function detachedHeadButton(rebaseInProgress: boolean) {
-  const description = rebaseInProgress
-    ? '正在进行变基'
-    : '无法发布分离的 HEAD'
+  const description = rebaseInProgress ? '正在进行变基' : '无法发布分离的 HEAD'
 
   return (
     <ToolbarButton
@@ -172,9 +170,7 @@ function publishBranchButton(
   onClick: () => void,
   shouldNudge: boolean
 ) {
-  const description = isGitHub
-    ? '将此分支发布到GitHub'
-    : '将此分支发布到远程'
+  const description = isGitHub ? '将此分支发布到GitHub' : '将此分支发布到远程'
 
   const className = classNames(defaultProps.className, 'nudge-arrow', {
     'nudge-arrow-up': shouldNudge,

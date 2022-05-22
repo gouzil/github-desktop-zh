@@ -66,8 +66,8 @@ export class ConfirmRemoveRepository extends React.Component<
       >
         <DialogContent>
           <p>
-            是否确实要删除存储库 "
-            {this.props.repository.name}" 从 GitHub Desktop?
+            是否确实要删除存储库 "{this.props.repository.name}" 从 GitHub
+            Desktop?
           </p>
           <p className="description">
             存储库将从 GitHub Desktop 中删除:

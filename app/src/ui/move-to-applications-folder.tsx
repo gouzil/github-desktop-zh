@@ -48,8 +48,7 @@ export class MoveToApplicationsFolder extends React.Component<
             这可能会导致应用程序出现问题, 包括影响您的登录能力。
             <br />
             <br />
-            是否立即将GitHub桌面移动到应用程序文件夹?
-            这也将重新启动应用程序.
+            是否立即将GitHub桌面移动到应用程序文件夹? 这也将重新启动应用程序.
           </p>
           <div>
             <Checkbox

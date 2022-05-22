@@ -59,11 +59,7 @@ export class NoPullRequests extends React.Component<INoPullRequestsProps, {}> {
 
   private renderCallToAction() {
     if (this.props.isLoadingPullRequests) {
-      return (
-        <div className="call-to-action">
-          尽快加载拉取请求!
-        </div>
-      )
+      return <div className="call-to-action">尽快加载拉取请求!</div>
     }
 
     if (this.props.isOnDefaultBranch) {

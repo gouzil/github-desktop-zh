@@ -88,7 +88,8 @@ export class StashAndSwitchBranch extends React.Component<
 
     return (
       <Row>
-        <Octicon symbol={OcticonSymbol.alert} /> 您当前的存储将被创建一个新的存储覆盖
+        <Octicon symbol={OcticonSymbol.alert} />{' '}
+        您当前的存储将被创建一个新的存储覆盖
       </Row>
     )
   }
@@ -98,8 +99,7 @@ export class StashAndSwitchBranch extends React.Component<
     const items = [
       {
         title: `保留我的更改 ${this.state.currentBranchName}`,
-        description:
-          '您正在进行的工作将保存在此分支上, 以便您稍后返回',
+        description: '您正在进行的工作将保存在此分支上, 以便您稍后返回',
         key: StashAction.StashOnCurrentBranch,
       },
       {

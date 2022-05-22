@@ -40,18 +40,15 @@ export class UpstreamAlreadyExists extends React.Component<IUpstreamAlreadyExist
     const replacementURL = parent.cloneURL
     return (
       <Dialog
-        title={
-          __DARWIN__ ? '上游已存在' : '上游已存在'
-        }
+        title={__DARWIN__ ? '上游已存在' : '上游已存在'}
         onDismissed={this.props.onDismissed}
         onSubmit={this.onUpdate}
         type="warning"
       >
         <DialogContent>
           <p>
-            存储库 <Ref>{name}</Ref> 是一个分支{' '}
-            <Ref>{parentName}</Ref>, 但是它 <Ref>{UpstreamRemoteName}</Ref>{' '}
-            其他远程点.
+            存储库 <Ref>{name}</Ref> 是一个分支 <Ref>{parentName}</Ref>, 但是它{' '}
+            <Ref>{UpstreamRemoteName}</Ref> 其他远程点.
           </p>
           <ul>
             <li>

@@ -23,9 +23,7 @@ export class NoBranches extends React.Component<INoBranchesProps> {
 
           <div className="title">对不起, 找不到分支</div>
 
-          <div className="subtitle">
-            是否改为创建新分支?
-          </div>
+          <div className="subtitle">是否改为创建新分支?</div>
 
           <Button
             className="create-branch-button"

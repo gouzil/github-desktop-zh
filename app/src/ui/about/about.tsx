@@ -105,9 +105,7 @@ export class About extends React.Component<IAboutProps, IAboutState> {
       case UpdateStatus.UpdateReady:
         return (
           <Row>
-            <Button onClick={this.onQuitAndInstall}>
-              退出并安装更新
-            </Button>
+            <Button onClick={this.onQuitAndInstall}>退出并安装更新</Button>
           </Row>
         )
       case UpdateStatus.UpdateNotAvailable:
@@ -127,10 +125,7 @@ export class About extends React.Component<IAboutProps, IAboutState> {
           </Row>
         )
       default:
-        return assertNever(
-          updateStatus,
-          `未知更新状态 ${updateStatus}`
-        )
+        return assertNever(updateStatus, `未知更新状态 ${updateStatus}`)
     }
   }
 
@@ -162,18 +157,14 @@ export class About extends React.Component<IAboutProps, IAboutState> {
 
     return (
       <p className="update-status">
-          您有最新版本 (但是！但是！但是！更新后将失去翻译) (last checked{' '}
+        您有最新版本 (但是！但是！但是！更新后将失去翻译) (last checked{' '}
         <RelativeTime date={lastCheckedDate} />)
       </p>
     )
   }
 
   private renderUpdateReady() {
-    return (
-      <p className="update-status">
-        已下载更新并准备安装。
-      </p>
-    )
+    return <p className="update-status">已下载更新并准备安装。</p>
   }
 
   private renderUpdateDetails() {
@@ -182,12 +173,7 @@ export class About extends React.Component<IAboutProps, IAboutState> {
     }
 
     if (__RELEASE_CHANNEL__ === 'development') {
-      return (
-        <p>
-          该应用程序目前正在开发中，不会
-            收到任何更新。
-        </p>
-      )
+      return <p>该应用程序目前正在开发中，不会 收到任何更新。</p>
     }
 
     const updateState = this.state.updateState
@@ -223,8 +209,7 @@ export class About extends React.Component<IAboutProps, IAboutState> {
     if (!this.state.updateState.lastSuccessfulCheck) {
       return (
         <DialogError>
-          无法确定上次执行更新检查的时间。您
-          可能运行的是旧版本。请尝试手动检查
+          无法确定上次执行更新检查的时间。您 可能运行的是旧版本。请尝试手动检查
           如果问题仍然存在, 请更新并联系GitHub支持人员
         </DialogError>
       )
@@ -242,7 +227,7 @@ export class About extends React.Component<IAboutProps, IAboutState> {
       <div>
         <p className="no-padding">正在查找最新功能?</p>
         <p className="no-padding">
-          查看 {' '}
+          查看{' '}
           <LinkButton uri="https://desktop.github.com/beta">
             Beta频道
           </LinkButton>

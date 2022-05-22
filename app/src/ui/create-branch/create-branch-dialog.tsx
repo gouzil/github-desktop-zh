@@ -161,12 +161,7 @@ export class CreateBranch extends React.Component<
         </p>
       )
     } else if (tip.kind === TipState.Unborn) {
-      return (
-        <p>
-          当前分支未绑定 (不包含任何提交). 
-          创建新分支将重命名当前分支.
-        </p>
-      )
+      return <p>当前分支未绑定 (不包含任何提交). 创建新分支将重命名当前分支.</p>
     } else if (tip.kind === TipState.Valid) {
       if (
         this.props.upstreamGitHubRepository !== null &&
@@ -351,9 +346,9 @@ export class CreateBranch extends React.Component<
     if (defaultBranch === null || defaultBranch.name === currentBranchName) {
       return (
         <div>
-          您的新分行将基于您当前签出的分行 (
-          <Ref>{currentBranchName}</Ref>){this.renderForkLinkSuffix()}.{' '}
-          <Ref>{currentBranchName}</Ref> 是 {defaultBranchLink} 为您的存储库.
+          您的新分行将基于您当前签出的分行 (<Ref>{currentBranchName}</Ref>)
+          {this.renderForkLinkSuffix()}. <Ref>{currentBranchName}</Ref> 是{' '}
+          {defaultBranchLink} 为您的存储库.
         </div>
       )
     } else {
@@ -361,7 +356,7 @@ export class CreateBranch extends React.Component<
         {
           title: defaultBranch.name,
           description:
-            "存储库中的默认分支. 选择此选项以开始不依赖于当前分支的新内容.",
+            '存储库中的默认分支. 选择此选项以开始不依赖于当前分支的新内容.',
           key: StartPoint.DefaultBranch,
         },
         {
@@ -402,8 +397,7 @@ export class CreateBranch extends React.Component<
     if (currentBranchName === upstreamDefaultBranch.nameWithoutRemote) {
       return (
         <div>
-          您的新分支机构将基于{' '}
-          <strong>{upstreamRepositoryFullName}</strong>
+          您的新分支机构将基于 <strong>{upstreamRepositoryFullName}</strong>
           {defaultBranchLink} (
           <Ref>{upstreamDefaultBranch.nameWithoutRemote}</Ref>)
           {this.renderForkLinkSuffix()}.
@@ -414,7 +408,7 @@ export class CreateBranch extends React.Component<
         {
           title: upstreamDefaultBranch.name,
           description:
-            "上游存储库的默认分支. 选择这个来开始一些新的不依赖于你当前分支的东西.",
+            '上游存储库的默认分支. 选择这个来开始一些新的不依赖于你当前分支的东西.',
           key: StartPoint.UpstreamDefaultBranch,
         },
         {
@@ -460,7 +454,7 @@ export class CreateBranch extends React.Component<
         <span>
           &nbsp;由您的{' '}
           <LinkButton onClick={this.onForkSettingsClick}>
-          (fock)分支行为设置
+            (fock)分支行为设置
           </LinkButton>
         </span>
       )

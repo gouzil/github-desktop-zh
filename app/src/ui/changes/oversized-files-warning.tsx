@@ -44,14 +44,17 @@ export class OversizedFiles extends React.Component<IOversizedFilesProps> {
           {this.renderFileList()}
           <p className="recommendation">
             我们建议您避免提交这些文件或使用{' '}
-            <LinkButton uri={GitLFSWebsiteURL}>Git LFS</LinkButton> 在GitHub上存储大文件.
+            <LinkButton uri={GitLFSWebsiteURL}>Git LFS</LinkButton>{' '}
+            在GitHub上存储大文件.
           </p>
         </DialogContent>
 
         <DialogFooter>
           <OkCancelButtonGroup
             destructive={true}
-            okButtonText={__DARWIN__ ? '无论如何提交 (强制提交)' : '无论如何提交 (强制提交)'}
+            okButtonText={
+              __DARWIN__ ? '无论如何提交 (强制提交)' : '无论如何提交 (强制提交)'
+            }
           />
         </DialogFooter>
       </Dialog>

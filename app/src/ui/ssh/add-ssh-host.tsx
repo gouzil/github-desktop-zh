@@ -28,9 +28,8 @@ export class AddSSHHost extends React.Component<IAddSSHHostProps> {
       >
         <DialogContent>
           <Row>
-            主机的真实性 '{this.props.host} ({this.props.ip})' 无法建立. 
-            {this.props.keyType} 密钥指纹是{' '}
-            {this.props.fingerprint}.
+            主机的真实性 '{this.props.host} ({this.props.ip})' 无法建立.
+            {this.props.keyType} 密钥指纹是 {this.props.fingerprint}.
             <br />
             确实要继续连接吗?
           </Row>

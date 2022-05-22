@@ -45,9 +45,7 @@ export class DiscardChangesRetryDialog extends React.Component<
           <div>
             常见的原因是:
             <ul>
-              <li>
-                {TrashNameLabel} 配置为立即删除项.
-              </li>
+              <li>{TrashNameLabel} 配置为立即删除项.</li>
               <li>移动文件的限制访问权限.</li>
             </ul>
           </div>
@@ -77,11 +75,7 @@ export class DiscardChangesRetryDialog extends React.Component<
     return (
       <DialogFooter>
         <OkCancelButtonGroup
-          okButtonText={
-            __DARWIN__
-              ? '永久放弃更改'
-              : '永久放弃更改'
-          }
+          okButtonText={__DARWIN__ ? '永久放弃更改' : '永久放弃更改'}
           okButtonTitle={`这将放弃更改，并且这些更改将不可恢复.`}
           cancelButtonText="取消"
           destructive={true}

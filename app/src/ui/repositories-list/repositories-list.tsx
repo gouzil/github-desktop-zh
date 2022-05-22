@@ -256,7 +256,7 @@ export class RepositoriesList extends React.Component<
         <div className="title">抱歉，我找不到该存储库</div>
 
         <div className="protip">
-          专业提示! 按 {this.renderAddLocalShortcut()} 快速添加本地存储库, 
+          专业提示! 按 {this.renderAddLocalShortcut()} 快速添加本地存储库,
           以及从 {this.renderCloneRepositoryShortcut()} 应用程序中的任何位置克隆
         </div>
       </div>
@@ -309,9 +309,7 @@ export class RepositoriesList extends React.Component<
         action: this.onCreateNewRepository,
       },
       {
-        label: __DARWIN__
-          ? '添加现有存储库…'
-          : '添加现有存储库…',
+        label: __DARWIN__ ? '添加现有存储库…' : '添加现有存储库…',
         action: this.onAddExistingRepository,
       },
     ]

@@ -115,9 +115,7 @@ export class CreateTag extends React.Component<
 
   private getCurrentError(): JSX.Element | null {
     if (this.state.tagName.length > MaxTagNameLength) {
-      return (
-        <>标记名称不能长于 {MaxTagNameLength} 字符</>
-      )
+      return <>标记名称不能长于 {MaxTagNameLength} 字符</>
     }
 
     const alreadyExists =

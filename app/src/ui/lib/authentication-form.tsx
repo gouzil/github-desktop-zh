@@ -244,10 +244,6 @@ function getEndpointRequiresWebFlowMessage(endpoint: string): JSX.Element {
       </>
     )
   } else {
-    return (
-      <p>
-        你的GitHub企业实例需要你用浏览器登录.
-      </p>
-    )
+    return <p>你的GitHub企业实例需要你用浏览器登录.</p>
   }
 }

@@ -30,9 +30,7 @@ export class PushNeedsPullWarning extends React.Component<
   public render() {
     return (
       <Dialog
-        title={
-          __DARWIN__ ? '远程上更新的提交' : '远程上更新的提交'
-        }
+        title={__DARWIN__ ? '远程上更新的提交' : '远程上更新的提交'}
         dismissable={!this.state.isLoading}
         disabled={this.state.isLoading}
         onDismissed={this.props.onDismissed}
@@ -43,8 +41,8 @@ export class PushNeedsPullWarning extends React.Component<
         <DialogContent>
           <p>
             桌面无法将提交推送到该分支,
-            因为远程服务器上存在本地分支上不存在的提交.
-            在推之前获取这些新提交, 以便将它们与本地提交协调.
+            因为远程服务器上存在本地分支上不存在的提交. 在推之前获取这些新提交,
+            以便将它们与本地提交协调.
           </p>
         </DialogContent>
         <DialogFooter>

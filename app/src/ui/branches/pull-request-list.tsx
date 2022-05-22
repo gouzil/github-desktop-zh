@@ -251,10 +251,7 @@ export class PullRequestList extends React.Component<
     const pullRequest = item.pullRequest
 
     this.props.dispatcher.closeFoldout(FoldoutType.Branch)
-    const timer = startTimer(
-      '从列表签出拉取请求',
-      this.props.repository
-    )
+    const timer = startTimer('从列表签出拉取请求', this.props.repository)
     this.props.dispatcher
       .checkoutPullRequest(this.props.repository, pullRequest)
       .then(() => timer.done())

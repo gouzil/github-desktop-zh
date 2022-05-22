@@ -44,9 +44,7 @@ export class OverwriteStash extends React.Component<
         onDismissed={this.props.onDismissed}
       >
         <DialogContent>
-          <Row>
-            是否确实要继续? 这将用当前更改覆盖现有存储.
-          </Row>
+          <Row>是否确实要继续? 这将用当前更改覆盖现有存储.</Row>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup destructive={true} okButtonText="覆盖" />

@@ -54,9 +54,7 @@ export class InstallGit extends React.Component<IInstallGitProps, {}> {
             我们无法在您的系统上找到Git。这意味着您将无法在{' '}
             {__DARWIN__ ? '终端' : '命令提示符'}使用.
           </p>
-          <p>
-            为了帮助您为操作系统安装和配置Git, 我们提供了一些外部资源.
-          </p>
+          <p>为了帮助您为操作系统安装和配置Git, 我们提供了一些外部资源.</p>
         </DialogContent>
         <DialogFooter>
           <OkCancelButtonGroup

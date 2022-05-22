@@ -1,7 +1,5 @@
 const RestrictedFileExtensions = ['.cmd', '.exe', '.bat', '.sh']
-export const CopyFilePathLabel = __DARWIN__
-  ? '拷贝文件路径'
-  : '拷贝文件路径'
+export const CopyFilePathLabel = __DARWIN__ ? '拷贝文件路径' : '拷贝文件路径'
 
 export const CopyRelativeFilePathLabel = __DARWIN__
   ? '复制相对文件路径'
