@@ -8,6 +8,12 @@
 
 这是一个把github desktop翻译成中文的项目, 当前翻译版本[here](https://github.com/gouzil/github-desktop-zh/tree/releases/3.0.1-test7)
 
+## 部分截图
+
+<img src="docs/images/image1.png" height=50%/>
+<img src="docs/images/image2.png" height=50%/>
+<img src="docs/images/image3.png" height=50%/>
+
 ## 如何使用
 
 可以使用打包好的文件安装或者使用renderer.js 和main.js 覆盖
