@@ -62,9 +62,10 @@ jobs:
           TARGET_ARCH: ${{ matrix.arch }}
       - name: Lint
         run: yarn lint
-      # I don't know how I should use it yet Validate changelog, so
-      # - name: Validate changelog
-      #   run: yarn validate-changelog
+      - name: Dbug
+        run: echo "-------------------------"
+      - name: Validate changelog
+        run: yarn validate-changelog
       - name: Ensure a clean working directory
         run: git diff --name-status --exit-code
       - name: Build production app
