@@ -7,7 +7,7 @@ GitHub app. 它是用 [TypeScript](http://www.typescriptlang.org) 和 [React](ht
 
 ## 这是一个什么项目？
 
-这是一个把github desktop翻译成中文的项目, 当前翻译版本[here](https://github.com/gouzil/github-desktop-zh/tree/releases/3.0.1-test7)
+这是一个把github desktop翻译成中文的项目, 当前翻译版本[releases/3.0.1-beta1](https://github.com/gouzil/github-desktop-zh/tree/releases/3.0.1-beta1)
 
 ## 在哪里可以下载到?
 
