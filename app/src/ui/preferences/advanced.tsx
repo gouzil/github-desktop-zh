@@ -7,7 +7,15 @@ import { UncommittedChangesStrategy } from '../../models/uncommitted-changes-str
 import { RadioButton } from '../lib/radio-button'
 import { isWindowsOpenSSHAvailable } from '../../lib/ssh/ssh'
 import { enableHighSignalNotifications } from '../../lib/feature-flag'
-import { isWindows10OrLater } from '../../lib/get-os'
+import {
+  getNotificationSettingsUrl,
+  supportsNotifications,
+  supportsNotificationsPermissionRequest,
+} from 'desktop-notifications'
+import {
+  getNotificationsPermission,
+  requestNotificationsPermission,
+} from '../main-process-proxy'
 
 interface IAdvancedPreferencesProps {
   readonly useWindowsOpenSSH: boolean
@@ -28,6 +36,9 @@ interface IAdvancedPreferencesState {
   readonly optOutOfUsageTracking: boolean
   readonly uncommittedChangesStrategy: UncommittedChangesStrategy
   readonly canUseWindowsSSH: boolean
+  readonly suggestGrantNotificationPermission: boolean
+  readonly warnNotificationsDenied: boolean
+  readonly suggestConfigureNotifications: boolean
 }
 
 export class Advanced extends React.Component<
@@ -41,11 +52,15 @@ export class Advanced extends React.Component<
       optOutOfUsageTracking: this.props.optOutOfUsageTracking,
       uncommittedChangesStrategy: this.props.uncommittedChangesStrategy,
       canUseWindowsSSH: false,
+      suggestGrantNotificationPermission: false,
+      warnNotificationsDenied: false,
+      suggestConfigureNotifications: false,
     }
   }
 
   public componentDidMount() {
     this.checkSSHAvailability()
+    this.updateNotificationsState()
   }
 
   private async checkSSHAvailability() {
@@ -204,25 +219,82 @@ export class Advanced extends React.Component<
         <p className="git-settings-description">
           允许在当前存储库中发生高信号事件时显示通知 (Allows the display of
           notifications when high-signal events take place in the current
-          repository).{this.renderNotificationSettingsLink()}
+          repository).{this.renderNotificationHint()}
         </p>
       </div>
     )
   }
 
-  private renderNotificationSettingsLink() {
-    if (!__DARWIN__ && !isWindows10OrLater()) {
+  private onGrantNotificationPermission = async () => {
+    await requestNotificationsPermission()
+    this.updateNotificationsState()
+  }
+
+  private async updateNotificationsState() {
+    const notificationsPermission = await getNotificationsPermission()
+    this.setState({
+      suggestGrantNotificationPermission:
+        supportsNotificationsPermissionRequest() &&
+        notificationsPermission === 'default',
+      warnNotificationsDenied: notificationsPermission === 'denied',
+      suggestConfigureNotifications: notificationsPermission === 'granted',
+    })
+  }
+
+  private renderNotificationHint() {
+    // No need to bother the user if their environment doesn't support our
+    // notifications or if they've been explicitly disabled.
+    if (!supportsNotifications() || !this.props.notificationsEnabled) {
       return null
     }
 
-    const notificationSettingsURL = __DARWIN__
-      ? 'x-apple.systempreferences:com.apple.preference.notifications'
-      : 'ms-settings:notifications'
+    const {
+      suggestGrantNotificationPermission,
+      warnNotificationsDenied,
+      suggestConfigureNotifications,
+    } = this.state
+
+    if (suggestGrantNotificationPermission) {
+      return (
+        <>
+          {' '}
+          你需要{' '}
+          <LinkButton onClick={this.onGrantNotificationPermission}>
+            允许
+          </LinkButton>{' '}
+          要从GitHub桌面显示这些通知, 请执行以下操作.
+        </>
+      )
+    }
+
+    const notificationSettingsURL = getNotificationSettingsUrl()
+
+    if (notificationSettingsURL === null) {
+      return null
+    }
+
+    if (warnNotificationsDenied) {
+      return (
+        <>
+          <br />
+          <br />
+          <span className="warning-icon">⚠️</span> GitHub桌面没有显示通知的权限. 请在{' '}
+          <LinkButton uri={notificationSettingsURL}>
+            通知和设置
+          </LinkButton>
+          中启用它们.
+        </>
+      )
+    }
+
+    const verb = suggestConfigureNotifications
+      ? 'properly configured'
+      : 'enabled'
 
     return (
       <>
         {' '}
-        确保GitHub Desktop的通知已启用{' '}
+        确保GitHub Desktop的通知{verb}{' '}
         <LinkButton uri={notificationSettingsURL}>通知设置</LinkButton>.
       </>
     )

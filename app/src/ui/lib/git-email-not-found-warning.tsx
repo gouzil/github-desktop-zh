@@ -28,9 +28,8 @@ export class GitEmailNotFoundWarning extends React.Component<IGitEmailNotFoundWa
     }
 
     return (
-      <div>
-        ⚠️ 此电子邮件地址不匹配 {this.getAccountTypeDescription()},
-        所以你的行为将被错误地归因于.{' '}
+      <div className="git-email-not-found-warning">
+        <span className="warning-icon">⚠️</span> 此电子邮件地址不匹配 {this.getAccountTypeDescription()}, 所以你的行为将被错误归因.{' '}
         <LinkButton uri="https://docs.github.com/en/github/committing-changes-to-your-project/why-are-my-commits-linked-to-the-wrong-user">
           查看更多.
         </LinkButton>

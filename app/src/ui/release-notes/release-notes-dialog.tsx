@@ -89,13 +89,16 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
    */
   private getDisplayRelease = () => {
     const { newReleases } = this.props
-    const latestRelease = newReleases[0]
+    const latestRelease = newReleases.at(0)
+    const oldestRelease = newReleases.at(-1)
 
-    if (newReleases.length === 1) {
+    if (
+      latestRelease === undefined ||
+      oldestRelease === undefined ||
+      latestRelease === oldestRelease
+    ) {
       return latestRelease
     }
-
-    const oldestRelease = newReleases.slice(-1)[0]
 
     return {
       latestVersion: `${oldestRelease.latestVersion} - ${latestRelease.latestVersion}`,
@@ -108,7 +111,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
     }
   }
 
-  private getPretext = (pretext: ReadonlyArray<ReleaseNote>) => {
+  private renderPretext = (pretext: ReadonlyArray<ReleaseNote>) => {
     if (pretext.length === 0) {
       return
     }
@@ -117,6 +120,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
       <SandboxedMarkdown
         markdown={pretext[0].message}
         emoji={this.props.emoji}
+        onMarkdownLinkClicked={this.onMarkdownLinkClicked}
       />
     )
   }
@@ -150,6 +154,10 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
     const { latestVersion, datePublished, enhancements, bugfixes, pretext } =
       release
 
+    if (release === undefined) {
+      return null
+    }
+
     const contents =
       enhancements.length > 0 && bugfixes.length > 0
         ? this.drawTwoColumnLayout(release)
@@ -180,7 +188,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
         title={dialogHeader}
       >
         <DialogContent>
-          {this.getPretext(pretext)}
+          {this.renderPretext(pretext)}
           {contents}
         </DialogContent>
         <DialogFooter>
@@ -199,5 +207,9 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
 
   private showAllReleaseNotes = () => {
     shell.openExternal(ReleaseNotesUri)
+  }
+
+  private onMarkdownLinkClicked = (url: string) => {
+    shell.openExternal(url)
   }
 }
