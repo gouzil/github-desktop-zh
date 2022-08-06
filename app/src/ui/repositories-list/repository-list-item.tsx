@@ -168,7 +168,11 @@ export class RepositoryListItem extends React.Component<
         label: __DARWIN__
           ? '复制存储库名称 (Copy Repo Name)'
           : '复制存储库名称 (Copy Repo Name)',
-        action: this.copyToClipboard,
+          action: this.copyNameToClipboard,
+      },
+      {
+        label: __DARWIN__ ? '复制存储库路径 (Copy Repo Path)' : '复制存储库路径 (Copy Repo Path)',
+        action: this.copyPathToClipboard,
       },
       { type: 'separator' },
       {
@@ -260,8 +264,12 @@ export class RepositoryListItem extends React.Component<
     }
   }
 
-  private copyToClipboard = () => {
+  private copyNameToClipboard = () => {
     clipboard.writeText(this.props.repository.name)
+  }
+
+  private copyPathToClipboard = () => {
+    clipboard.writeText(this.props.repository.path)
   }
 }
 

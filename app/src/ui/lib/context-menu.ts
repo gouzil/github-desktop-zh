@@ -5,6 +5,12 @@ export const CopyRelativeFilePathLabel = __DARWIN__
   ? '复制相对文件路径'
   : '复制相对文件路径'
 
+export const CopySelectedPathsLabel = __DARWIN__ ? '复制路径' : '复制路径'
+
+export const CopySelectedRelativePathsLabel = __DARWIN__
+  ? '复制相对路径'
+  : '复制相对路径'
+
 export const DefaultEditorLabel = __DARWIN__
   ? '在外部编辑器中打开'
   : '在外部编辑器中打开'

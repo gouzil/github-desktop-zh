@@ -1,14 +1,4 @@
-/*
- * @Author: gouzi 530971494@qq.com
- * @Date: 2022-05-23 00:24:02
- * @LastEditors: gouzi 530971494@qq.com
- * @LastEditTime: 2022-08-06 10:49:54
- * @FilePath: /github-desktop-zh/app/src/lib/databases/issues-database.ts
- * @Description: 
- * 
- * Copyright (c) 2022 by gouzi 530971494@qq.com, All Rights Reserved. 
- */
-import Dexie from 'dexie'
+import Dexie, { Transaction } from 'dexie'
 import { BaseDatabase } from './base-database'
 
 export interface IIssue {
@@ -47,7 +37,7 @@ export class IssuesDatabase extends BaseDatabase {
   }
 }
 
-function clearIssues(transaction: Dexie.Transaction) {
+function clearIssues(transaction: Transaction) {
   // Clear deprecated localStorage keys, we compute the since parameter
   // using the database now.
   clearDeprecatedKeys()
