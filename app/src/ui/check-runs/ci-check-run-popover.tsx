@@ -314,10 +314,19 @@ export class CICheckRunPopover extends React.PureComponent<
           FailingCheckConclusions.includes(v.conclusion)
       )
 
-    const allSuccess =
+    const successfulishConclusions = [
+      APICheckConclusion.Success,
+      APICheckConclusion.Neutral,
+      APICheckConclusion.Skipped,
+    ]
+    const allSuccessIsh =
       !loading && // quick return: if loading, no list
       !somePendingNoFailures && // quick return: if some pending, can't all be success
-      !checkRuns.some(v => v.conclusion !== APICheckConclusion.Success)
+      !checkRuns.some(
+        v =>
+          v.conclusion !== null &&
+          !successfulishConclusions.includes(v.conclusion)
+      )
 
     const allFailure =
       !loading && // quick return if loading, no list
@@ -332,7 +341,7 @@ export class CICheckRunPopover extends React.PureComponent<
       <div className="ci-check-run-list-header" tabIndex={0}>
         <div className="completeness-indicator">
           {this.renderCompletenessIndicator(
-            allSuccess,
+            allSuccessIsh,
             allFailure,
             loading,
             checkRuns
@@ -341,7 +350,7 @@ export class CICheckRunPopover extends React.PureComponent<
         <div className="ci-check-run-list-title-container">
           <div className="title">
             {this.getTitle(
-              allSuccess,
+              allSuccessIsh,
               allFailure,
               somePendingNoFailures,
               loading

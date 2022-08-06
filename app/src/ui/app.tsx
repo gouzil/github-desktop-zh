@@ -148,7 +148,7 @@ import { CICheckRunRerunDialog } from './check-runs/ci-check-run-rerun-dialog'
 import { WarnForcePushDialog } from './multi-commit-operation/dialog/warn-force-push-dialog'
 import { clamp } from '../lib/clamp'
 import * as ipcRenderer from '../lib/ipc-renderer'
-import { showNotification } from '../lib/stores/helpers/show-notification'
+import { showNotification } from '../lib/notifications/show-notification'
 import { DiscardChangesRetryDialog } from './discard-changes/discard-changes-retry-dialog'
 import { generateDevReleaseSummary } from '../lib/release-notes'
 import { PullRequestReview } from './notifications/pull-request-review'
@@ -464,11 +464,11 @@ export class App extends React.Component<IAppProps, IAppState> {
       return
     }
 
-    showNotification(
-      'Test notification',
-      'Click here! This is a test notification',
-      () => this.props.dispatcher.showPopup({ type: PopupType.About })
-    )
+    showNotification({
+      title: 'Test notification',
+      body: 'Click here! This is a test notification',
+      onClick: () => this.props.dispatcher.showPopup({ type: PopupType.About }),
+    })
   }
 
   private testPullRequestCheckRunFailed() {
@@ -2708,7 +2708,7 @@ export class App extends React.Component<IAppProps, IAppState> {
       )
     } else if (
       this.state.isUpdateAvailableBannerVisible ||
-      this.state.isUpdateShowCaseVisible
+      this.state.isUpdateShowcaseVisible
     ) {
       banner = this.renderUpdateBanner()
     }
@@ -2729,7 +2729,7 @@ export class App extends React.Component<IAppProps, IAppState> {
         dispatcher={this.props.dispatcher}
         newReleases={updateStore.state.newReleases}
         onDismissed={this.onUpdateAvailableDismissed}
-        isUpdateShowCaseVisible={this.state.isUpdateShowCaseVisible}
+        isUpdateShowcaseVisible={this.state.isUpdateShowcaseVisible}
         emoji={this.state.emoji}
         key={'update-available'}
       />
