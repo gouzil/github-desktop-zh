@@ -151,6 +151,11 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
 
   public render() {
     const release = this.getDisplayRelease()
+
+    if (release === undefined) {
+      return null
+    }
+
     const { latestVersion, datePublished, enhancements, bugfixes, pretext } =
       release
 
