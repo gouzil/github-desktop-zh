@@ -339,10 +339,10 @@ export class CommitSummary extends React.Component<
 
     const hasEmptySummary = this.state.summary.length === 0
     const commitSummary = hasEmptySummary
-     ? '清空提交消息' 
-     : this.props.commits.length > 1
-     ? `查看 ${this.props.commits.length} 提交`
-     : this.state.summary
+      ? '清空提交消息'
+      : this.props.commits.length > 1
+      ? `查看 ${this.props.commits.length} 提交`
+      : this.state.summary
 
     const summaryClassNames = classNames('commit-summary-title', {
       'empty-summary': hasEmptySummary,

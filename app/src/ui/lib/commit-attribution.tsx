@@ -65,19 +65,19 @@ export class CommitAttribution extends React.Component<
 
     const allAuthors = new Map<string, CommitIdentity | GitAuthor>()
     for (const commit of commits) {
-    const { author, committer, coAuthors } = commit
+      const { author, committer, coAuthors } = commit
 
-    // do we need to attribute the committer separately from the author?
-    const committerAttribution =
-      !commit.authoredByCommitter &&
-      !(
-        this.props.gitHubRepository !== null &&
-        isWebFlowCommitter(commit, this.props.gitHubRepository)
-      )
+      // do we need to attribute the committer separately from the author?
+      const committerAttribution =
+        !commit.authoredByCommitter &&
+        !(
+          this.props.gitHubRepository !== null &&
+          isWebFlowCommitter(commit, this.props.gitHubRepository)
+        )
 
-    const authors: Array<CommitIdentity | GitAuthor> = committerAttribution
-      ? [author, committer, ...coAuthors]
-      : [author, ...coAuthors]
+      const authors: Array<CommitIdentity | GitAuthor> = committerAttribution
+        ? [author, committer, ...coAuthors]
+        : [author, ...coAuthors]
 
       for (const a of authors) {
         if (!allAuthors.has(a.toString())) {

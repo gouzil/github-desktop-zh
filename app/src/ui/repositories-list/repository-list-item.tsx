@@ -168,10 +168,12 @@ export class RepositoryListItem extends React.Component<
         label: __DARWIN__
           ? '复制存储库名称 (Copy Repo Name)'
           : '复制存储库名称 (Copy Repo Name)',
-          action: this.copyNameToClipboard,
+        action: this.copyNameToClipboard,
       },
       {
-        label: __DARWIN__ ? '复制存储库路径 (Copy Repo Path)' : '复制存储库路径 (Copy Repo Path)',
+        label: __DARWIN__
+          ? '复制存储库路径 (Copy Repo Path)'
+          : '复制存储库路径 (Copy Repo Path)',
         action: this.copyPathToClipboard,
       },
       { type: 'separator' },

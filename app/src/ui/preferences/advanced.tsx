@@ -278,10 +278,8 @@ export class Advanced extends React.Component<
         <>
           <br />
           <br />
-          <span className="warning-icon">⚠️</span> GitHub桌面没有显示通知的权限. 请在{' '}
-          <LinkButton uri={notificationSettingsURL}>
-            通知和设置
-          </LinkButton>
+          <span className="warning-icon">⚠️</span> GitHub桌面没有显示通知的权限.
+          请在 <LinkButton uri={notificationSettingsURL}>通知和设置</LinkButton>
           中启用它们.
         </>
       )

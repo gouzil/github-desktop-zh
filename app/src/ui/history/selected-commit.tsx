@@ -310,9 +310,7 @@ export class SelectedCommits extends React.Component<
             <ul>
               <li>
                 选择单个提交{' '}
-                {enableMultiCommitDiffs()
-                  ? '或者选择多个提交 '
-                  : ' '}
+                {enableMultiCommitDiffs() ? '或者选择多个提交 ' : ' '}
                 查看差异.
               </li>
               <li>将提交拖到“分支”菜单以快速拾取它们.</li>
