@@ -6,7 +6,7 @@
 
 ## 这是一个什么项目？
 
-这是一个把github desktop翻译成中文的项目, 当前翻译版本[here](https://github.com/gouzil/github-desktop-zh/tree/releases/3.0.1-test7)
+这是一个把github desktop翻译成中文的项目, 当前翻译版本[release-3.0.2](https://github.com/gouzil/github-desktop-zh/tree/release-3.0.2)
 
 ## 部分截图
 
