@@ -97,7 +97,7 @@ jobs:
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUBTOKEN }}
-          # tag: refs/tags/
+          tag: version-${{ github.ref }}
           file: GitHubDesktop-${{ matrix.friendlyName }}-${{ matrix.arch }}.gz
       # - name: Publish production app
       #   run: yarn run publish
