@@ -1,4 +1,3 @@
-import { enableSquashMerging } from '../../lib/feature-flag'
 import { getCommitsBetweenCommits, getMergeBase } from '../../lib/git'
 import { promiseWithMinimumTimeout } from '../../lib/promise'
 import { Branch } from '../../models/branch'
@@ -9,29 +8,26 @@ import { Repository } from '../../models/repository'
 import { IDropdownSelectButtonOption } from '../dropdown-select-button'
 
 export function getMergeOptions(): ReadonlyArray<IDropdownSelectButtonOption> {
-  const mergeOptions = [
+  return [
     {
-      label: 'Create a merge commit',
+      label: '创建合并提交',
       description:
-        'The commits from the selected branch will be added to the current branch via a merge commit.',
+        '来自所选分支的提交将通过合并提交添加到当前分支.',
       value: MultiCommitOperationKind.Merge,
     },
-  ]
-  if (enableSquashMerging()) {
-    mergeOptions.push({
+    {
       label: 'Squash and merge',
       description:
-        'The commits in the selected branch will be combined into one commit in the current branch.',
+        '所选分支中的提交将合并为当前分支中的一个提交.',
       value: MultiCommitOperationKind.Squash,
-    })
-  }
-  mergeOptions.push({
-    label: 'Rebase',
-    description:
-      'The commits from the selected branch will be rebased and added to the current branch.',
-    value: MultiCommitOperationKind.Rebase,
-  })
-  return mergeOptions
+    },
+    {
+      label: '变基',
+      description:
+        '来自所选分支的提交将被重新基于并添加到当前分支.',
+      value: MultiCommitOperationKind.Rebase,
+    },
+  ]
 }
 
 export async function updateRebasePreview(

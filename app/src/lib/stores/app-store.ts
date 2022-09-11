@@ -108,6 +108,7 @@ import {
   isMergeConflictState,
   IMultiCommitOperationState,
   IConstrainedValue,
+  ICompareState,
 } from '../app-state'
 import {
   findEditorOrDefault,
@@ -161,6 +162,7 @@ import {
   RepositoryType,
   getCommitRangeDiff,
   getCommitRangeChangedFiles,
+  updateRemoteHEAD,
 } from '../git'
 import {
   installGlobalLFSFilters,
@@ -217,10 +219,7 @@ import {
 } from './updates/changes-state'
 import { ManualConflictResolution } from '../../models/manual-conflict-resolution'
 import { BranchPruner } from './helpers/branch-pruner'
-import {
-  enableHideWhitespaceInDiffOption,
-  enableMultiCommitDiffs,
-} from '../feature-flag'
+import { enableMultiCommitDiffs } from '../feature-flag'
 import { Banner, BannerType } from '../../models/banner'
 import { ComputedAction } from '../../models/computed-action'
 import {
@@ -300,6 +299,7 @@ import {
 import * as ipcRenderer from '../ipc-renderer'
 import { pathExists } from '../../ui/lib/path-exists'
 import { offsetFromNow } from '../offset-from'
+import { findContributionTargetDefaultBranch } from '../branch'
 import { ValidNotificationPullRequestReview } from '../valid-notification-pull-request-review'
 import { determineMergeability } from '../git/merge-tree'
 
@@ -988,6 +988,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
       return {
         tip: gitStore.tip,
         defaultBranch: gitStore.defaultBranch,
+        upstreamDefaultBranch: gitStore.upstreamDefaultBranch,
         allBranches: gitStore.allBranches,
         recentBranches: gitStore.recentBranches,
         pullWithRebase: gitStore.pullWithRebase,
@@ -1109,12 +1110,13 @@ export class AppStore extends TypedBaseStore<IAppState> {
   }
 
   /** This shouldn't be called directly. See `Dispatcher`. */
-  public async _changeCommitSelection(
+  public _changeCommitSelection(
     repository: Repository,
     shas: ReadonlyArray<string>,
     isContiguous: boolean
-  ): Promise<void> {
-    const { commitSelection } = this.repositoryStateCache.get(repository)
+  ): void {
+    const { commitSelection, commitLookup, compareState } =
+      this.repositoryStateCache.get(repository)
 
     if (
       commitSelection.shas.length === shas.length &&
@@ -1123,8 +1125,15 @@ export class AppStore extends TypedBaseStore<IAppState> {
       return
     }
 
+    const shasInDiff = this.getShasInDiff(shas, isContiguous, commitLookup)
+
+    if (shas.length > 1 && isContiguous) {
+      this.recordMultiCommitDiff(shas, shasInDiff, compareState)
+    }
+
     this.repositoryStateCache.updateCommitSelection(repository, () => ({
       shas,
+      shasInDiff,
       isContiguous,
       file: null,
       changesetData: { files: [], linesAdded: 0, linesDeleted: 0 },
@@ -1132,6 +1141,85 @@ export class AppStore extends TypedBaseStore<IAppState> {
     }))
 
     this.emitUpdate()
+  }
+
+  private recordMultiCommitDiff(
+    shas: ReadonlyArray<string>,
+    shasInDiff: ReadonlyArray<string>,
+    compareState: ICompareState
+  ) {
+    const isHistoryTab = compareState.formState.kind === HistoryTabMode.History
+
+    if (isHistoryTab) {
+      this.statsStore.recordMultiCommitDiffFromHistoryCount()
+    } else {
+      this.statsStore.recordMultiCommitDiffFromCompareCount()
+    }
+
+    const hasUnreachableCommitWarning = !shas.every(s => shasInDiff.includes(s))
+
+    if (hasUnreachableCommitWarning) {
+      this.statsStore.recordMultiCommitDiffWithUnreachableCommitWarningCount()
+    }
+  }
+
+  /** This shouldn't be called directly. See `Dispatcher`. */
+  public async _updateShasToHighlight(
+    repository: Repository,
+    shasToHighlight: ReadonlyArray<string>
+  ) {
+    this.repositoryStateCache.updateCompareState(repository, () => ({
+      shasToHighlight,
+    }))
+    this.emitUpdate()
+  }
+
+  /**
+   * When multiple commits are selected, the diff is created using the rev range
+   * of firstSha^..lastSha in the selected shas. Thus comparing the trees of the
+   * the lastSha and the first parent of the first sha. However, our history
+   * list shows commits in chronological order. Thus, when a branch is merged,
+   * the commits from that branch are injected in their chronological order into
+   * the history list. Therefore, given a branch history of A, B, C, D,
+   * MergeCommit where B and C are from the merged branch, diffing on the
+   * selection of A through D would not have the changes from B an C.
+   *
+   * This method traverses the ancestral path from the last commit in the
+   * selection back to the first commit via checking the parents. The
+   * commits on this path are the commits whose changes will be seen in the
+   * diff. This is equivalent to doing `git rev-list firstSha^..lastSha`.
+   */
+  private getShasInDiff(
+    selectedShas: ReadonlyArray<string>,
+    isContiguous: boolean,
+    commitLookup: Map<string, Commit>
+  ) {
+    const shasInDiff = new Array<string>()
+
+    if (selectedShas.length <= 1 || !isContiguous) {
+      return selectedShas
+    }
+
+    const shasToTraverse = [selectedShas.at(-1)]
+    do {
+      const currentSha = shasToTraverse.pop()
+      if (currentSha === undefined) {
+        continue
+      }
+
+      shasInDiff.push(currentSha)
+
+      // shas are selection of history -> should be in lookup ->  `|| []` is for typing sake
+      const parentSHAs = commitLookup.get(currentSha)?.parentSHAs || []
+
+      const parentsInSelection = parentSHAs.filter(parentSha =>
+        selectedShas.includes(parentSha)
+      )
+
+      shasToTraverse.push(...parentsInSelection)
+    } while (shasToTraverse.length > 0)
+
+    return shasInDiff
   }
 
   private updateOrSelectFirstCommit(
@@ -2036,6 +2124,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
   private updateMenuItemLabels(state: IRepositoryState | null) {
     const {
       selectedShell,
+      selectedRepository,
       selectedExternalEditor,
       askForConfirmationOnRepositoryRemoval,
       askForConfirmationOnForcePush,
@@ -2054,12 +2143,14 @@ export class AppStore extends TypedBaseStore<IAppState> {
     }
 
     const { changesState, branchesState, aheadBehind } = state
-    const { defaultBranch, currentPullRequest } = branchesState
+    const { currentPullRequest } = branchesState
 
-    const defaultBranchName =
-      defaultBranch === null || defaultBranch.upstreamWithoutRemote === null
-        ? undefined
-        : defaultBranch.upstreamWithoutRemote
+    let contributionTargetDefaultBranch: string | undefined
+    if (selectedRepository instanceof Repository) {
+      contributionTargetDefaultBranch =
+        findContributionTargetDefaultBranch(selectedRepository, branchesState)
+          ?.name ?? undefined
+    }
 
     const isForcePushForCurrentRepository = isCurrentBranchForcePush(
       branchesState,
@@ -2074,7 +2165,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
 
     updatePreferredAppMenuItemLabels({
       ...labels,
-      defaultBranchName,
+      contributionTargetDefaultBranch,
       isForcePushForCurrentRepository,
       isStashedChangesVisible,
       hasCurrentPullRequest: currentPullRequest !== null,
@@ -2534,7 +2625,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
     const diff = await getWorkingDirectoryDiff(
       repository,
       selectedFileBeforeLoad,
-      enableHideWhitespaceInDiffOption() && this.hideWhitespaceInChangesDiff
+      this.hideWhitespaceInChangesDiff
     )
 
     const stateAfterLoad = this.repositoryStateCache.get(repository)
@@ -4253,6 +4344,8 @@ export class AppStore extends TypedBaseStore<IAppState> {
               retryAction,
             }
           )
+
+          await updateRemoteHEAD(repository, account, remote)
 
           const refreshStartProgress = pullWeight + fetchWeight
           const refreshTitle = __DARWIN__

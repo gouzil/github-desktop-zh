@@ -178,6 +178,7 @@ function getInitialRepositoryState(): IRepositoryState {
   return {
     commitSelection: {
       shas: [],
+      shasInDiff: [],
       isContiguous: true,
       file: null,
       changesetData: { files: [], linesAdded: 0, linesDeleted: 0 },
@@ -203,6 +204,7 @@ function getInitialRepositoryState(): IRepositoryState {
     branchesState: {
       tip: { kind: TipState.Unknown },
       defaultBranch: null,
+      upstreamDefaultBranch: null,
       allBranches: new Array<Branch>(),
       recentBranches: new Array<Branch>(),
       openPullRequests: new Array<PullRequest>(),
@@ -219,6 +221,7 @@ function getInitialRepositoryState(): IRepositoryState {
       showBranchList: false,
       filterText: '',
       commitSHAs: [],
+      shasToHighlight: [],
       branches: new Array<Branch>(),
       recentBranches: new Array<Branch>(),
       defaultBranch: null,

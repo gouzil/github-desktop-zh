@@ -1,7 +1,7 @@
 # [GitHub Desktop](https://desktop.github.com)
 
 [GitHub Desktop](https://desktop.github.com/) 是开源的 [Electron](https://www.electronjs.org/)-based
-GitHub app. 它是用 [TypeScript](http://www.typescriptlang.org) 和 [React](https://reactjs.org/) 开发的.
+GitHub app. 它是用 [TypeScript](https://www.typescriptlang.org) 和 [React](https://reactjs.org/) 开发的.
 
 ![GitHub Desktop screenshot - Windows](https://cloud.githubusercontent.com/assets/359239/26094502/a1f56d02-3a5d-11e7-8799-23c7ba5e5106.png)
 
@@ -14,7 +14,7 @@ GitHub app. 它是用 [TypeScript](http://www.typescriptlang.org) 和 [React](ht
 下载操作系统的官方安装程序:
 
  - [macOS](https://central.github.com/deployments/desktop/desktop/latest/darwin)
- - [macOS (Apple Silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64)
+ - [macOS (Apple silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64)
  - [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32)
  - [Windows machine-wide install](https://central.github.com/deployments/desktop/desktop/latest/win32?format=msi)
 
@@ -30,7 +30,7 @@ Linux不受官方支持；但是，您可以在 [Community Releases](https://git
 想在其他人之前测试新功能并得到修复吗？安装测试版频道以访问 Desktop 的早期版本:
 
  - [macOS](https://central.github.com/deployments/desktop/desktop/latest/darwin?env=beta)
- - [macOS (Apple Silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64?env=beta)
+ - [macOS (Apple silicon)](https://central.github.com/deployments/desktop/desktop/latest/darwin-arm64?env=beta)
  - [Windows](https://central.github.com/deployments/desktop/desktop/latest/win32?env=beta)
  - [Windows (ARM64)](https://central.github.com/deployments/desktop/desktop/latest/win32-arm64?env=beta)
  

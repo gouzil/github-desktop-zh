@@ -13,12 +13,7 @@ import { IMenuItem } from '../../lib/menu-item'
 import { Octicon } from '../octicons'
 import * as OcticonSymbol from '../octicons/octicons.generated'
 import { Draggable } from '../lib/draggable'
-import {
-  enableAmendingCommits,
-  enableBranchFromCommit,
-  enableResetToCommit,
-  enableSquashing,
-} from '../../lib/feature-flag'
+import { enableResetToCommit } from '../../lib/feature-flag'
 import { dragAndDropManager } from '../../lib/drag-and-drop-manager'
 import {
   DragType,
@@ -93,7 +88,6 @@ export class CommitListItem extends React.PureComponent<
   private onMouseUp = () => {
     const { onSquash, selectedCommits, commit, disableSquashing } = this.props
     if (
-      enableSquashing() &&
       disableSquashing !== true &&
       dragAndDropManager.isDragOfTypeInProgress(DragType.Commit) &&
       onSquash !== undefined &&
@@ -111,7 +105,6 @@ export class CommitListItem extends React.PureComponent<
     if (
       disableSquashing !== true &&
       dragAndDropManager.isDragOfTypeInProgress(DragType.Commit) &&
-      enableSquashing() &&
       !isSelected
     ) {
       dragAndDropManager.emitEnterDropTarget({
@@ -273,7 +266,7 @@ export class CommitListItem extends React.PureComponent<
 
     const items: IMenuItem[] = []
 
-    if (this.props.canBeAmended && enableAmendingCommits()) {
+    if (this.props.canBeAmended) {
       items.push({
         label: __DARWIN__ ? '修改提交…' : '修改提交…',
         action: this.onAmendCommit,
@@ -305,7 +298,8 @@ export class CommitListItem extends React.PureComponent<
       })
     }
 
-    items.push({
+    items.push(
+      {
       label: __DARWIN__ ? '在提交中恢复更改' : '在提交中恢复更改',
       action: () => {
         if (this.props.onRevertCommit) {
@@ -313,26 +307,22 @@ export class CommitListItem extends React.PureComponent<
         }
       },
       enabled: this.props.onRevertCommit !== undefined,
-    })
-
-    items.push({ type: 'separator' })
-
-    if (enableBranchFromCommit()) {
-      items.push({
+    },
+    { type: 'separator' },
+    {
         label: __DARWIN__ ? '从Commit创建分支' : '从Commit创建分支',
         action: () => {
           if (this.props.onCreateBranch) {
             this.props.onCreateBranch(this.props.commit)
           }
         },
-      })
-    }
-
-    items.push({
+      },
+      {
       label: '创建标签…',
       action: this.onCreateTag,
       enabled: this.props.onCreateTag !== undefined,
-    })
+      }
+    )
 
     const deleteTagsMenuItem = this.getDeleteTagsMenuItem()
 
@@ -345,13 +335,12 @@ export class CommitListItem extends React.PureComponent<
       )
     }
 
-    items.push({
+    items.push(
+      {
       label: __DARWIN__ ? '筛选提交…' : '筛选提交……',
       action: this.onCherryPick,
       enabled: this.canCherryPick(),
-    })
-
-    items.push(
+    },
       { type: 'separator' },
       {
         label: '拷贝 SHA',
@@ -368,23 +357,19 @@ export class CommitListItem extends React.PureComponent<
   }
 
   private getContextMenuMultipleCommits(): IMenuItem[] {
-    const items: IMenuItem[] = []
-
     const count = this.props.selectedCommits.length
-    items.push({
+
+    return [
+      {
       label: __DARWIN__ ? `筛选 ${count} 提交…` : `筛选 ${count} 提交…`,
       action: this.onCherryPick,
       enabled: this.canCherryPick(),
-    })
-
-    if (enableSquashing()) {
-      items.push({
+    },
+    {
         label: __DARWIN__ ? `去除 ${count} 提交…` : `去除 ${count} 提交…`,
         action: this.onSquash,
-      })
-    }
-
-    return items
+      },
+    ]
   }
 
   private canCherryPick(): boolean {

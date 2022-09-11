@@ -64,6 +64,10 @@ const editors: IDarwinExternalEditor[] = [
     bundleIdentifiers: ['com.jetbrains.PyCharm'],
   },
   {
+    name: 'PyCharm Community Edition',
+    bundleIdentifiers: ['com.jetbrains.pycharm.ce'],
+  },
+  {
     name: 'RubyMine',
     bundleIdentifiers: ['com.jetbrains.RubyMine'],
   },
@@ -144,11 +148,7 @@ async function findApplication(
           : Promise.reject(e)
       )
 
-      if (installPath === null) {
-        return null
-      }
-
-      if (await pathExists(installPath)) {
+      if (installPath && (await pathExists(installPath))) {
         return installPath
       }
 

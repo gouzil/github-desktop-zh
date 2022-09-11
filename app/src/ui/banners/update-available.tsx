@@ -15,6 +15,7 @@ import { RichText } from '../lib/rich-text'
 interface IUpdateAvailableProps {
   readonly dispatcher: Dispatcher
   readonly newReleases: ReadonlyArray<ReleaseSummary> | null
+  readonly isX64ToARM64ImmediateAutoUpdate: boolean
   readonly isUpdateShowcaseVisible: boolean
   readonly emoji: Map<string, string>
   readonly onDismissed: () => void
@@ -44,10 +45,22 @@ export class UpdateAvailable extends React.Component<
   }
 
   private renderMessage = () => {
+    if (this.props.isX64ToARM64ImmediateAutoUpdate) {
+      return (
+        <span onSubmit={this.updateNow}>
+          GitHub Desktop的优化版本可用于您的{' '}
+          {__DARWIN__ ? 'Apple silicon' : 'Arm64'} 机器，将在下次启动时安装，或{' '}
+          <LinkButton onClick={this.updateNow}>
+            现在重启 GitHub Desktop
+          </LinkButton>{' '}
+        </span>
+      )
+    }
+
     if (this.props.isUpdateShowcaseVisible) {
       const version =
         this.props.newReleases !== null
-          ? ` with GitHub Desktop ${this.props.newReleases[0].latestVersion}`
+          ? ` 使用 GitHub Desktop ${this.props.newReleases[0].latestVersion}`
           : ''
 
       return (

@@ -219,6 +219,8 @@ export class RepositoryView extends React.Component<
           this.props.askForConfirmationOnDiscardChanges
         }
         accounts={this.props.accounts}
+        isShowingModal={this.props.isShowingModal}
+        isShowingFoldout={this.props.isShowingFoldout}
         externalEditorLabel={this.props.externalEditorLabel}
         onOpenInExternalEditor={this.props.onOpenInExternalEditor}
         onChangesListScrolled={this.onChangesListScrolled}
@@ -265,6 +267,7 @@ export class RepositoryView extends React.Component<
         isLocalRepository={remote === null}
         compareState={compareState}
         selectedCommitShas={shas}
+        shasToHighlight={compareState.shasToHighlight}
         currentBranch={currentBranch}
         emoji={emoji}
         commitLookup={commitLookup}
@@ -373,7 +376,8 @@ export class RepositoryView extends React.Component<
 
   private renderContentForHistory(): JSX.Element {
     const { commitSelection, commitLookup, localCommitSHAs } = this.props.state
-    const { changesetData, file, diff, shas, isContiguous } = commitSelection
+    const { changesetData, file, diff, shas, shasInDiff, isContiguous } =
+      commitSelection
 
     const selectedCommits = []
     for (const sha of shas) {
@@ -393,6 +397,7 @@ export class RepositoryView extends React.Component<
         isLocalRepository={this.props.state.remote === null}
         dispatcher={this.props.dispatcher}
         selectedCommits={selectedCommits}
+        shasInDiff={shasInDiff}
         isContiguous={isContiguous}
         localCommitSHAs={localCommitSHAs}
         changesetData={changesetData}

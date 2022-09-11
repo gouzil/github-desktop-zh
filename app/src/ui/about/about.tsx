@@ -47,6 +47,9 @@ interface IAboutProps {
   /** A function to call to kick off an update check. */
   readonly onCheckForUpdates: () => void
 
+  /** A function to call to kick off a non-staggered update check. */
+  readonly onCheckForNonStaggeredUpdates: () => void
+
   readonly onShowAcknowledgements: () => void
 
   /** A function to call when the user wants to see Terms and Conditions. */
@@ -55,6 +58,7 @@ interface IAboutProps {
 
 interface IAboutState {
   readonly updateState: IUpdateState
+  readonly altKeyPressed: boolean
 }
 
 /**
@@ -69,6 +73,7 @@ export class About extends React.Component<IAboutProps, IAboutState> {
 
     this.state = {
       updateState: updateStore.state,
+      altKeyPressed: false,
     }
   }
 
@@ -81,12 +86,28 @@ export class About extends React.Component<IAboutProps, IAboutState> {
       this.onUpdateStateChanged
     )
     this.setState({ updateState: updateStore.state })
+    window.addEventListener('keydown', this.onKeyDown)
+    window.addEventListener('keyup', this.onKeyUp)
   }
 
   public componentWillUnmount() {
     if (this.updateStoreEventHandle) {
       this.updateStoreEventHandle.dispose()
       this.updateStoreEventHandle = null
+    }
+    window.removeEventListener('keydown', this.onKeyDown)
+    window.removeEventListener('keyup', this.onKeyUp)
+  }
+
+  private onKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Alt') {
+      this.setState({ altKeyPressed: true })
+    }
+  }
+
+  private onKeyUp = (event: KeyboardEvent) => {
+    if (event.key === 'Alt') {
+      this.setState({ altKeyPressed: false })
     }
   }
 
@@ -117,10 +138,22 @@ export class About extends React.Component<IAboutProps, IAboutState> {
           UpdateStatus.UpdateNotAvailable,
         ].includes(updateStatus)
 
+        const onClick = this.state.altKeyPressed
+          ? this.props.onCheckForNonStaggeredUpdates
+          : this.props.onCheckForUpdates
+
+        const buttonTitle = this.state.altKeyPressed
+          ? '确保最新版本'
+          : '检查更新'
+
+        const tooltip = this.state.altKeyPressed
+          ? "GitHub Desktop可能会逐步向我们的用户群发布更新, 以确保我们及早发现任何问题。这允许您绕过之前的版本, 直接跳到最新版本(如果有)."
+          : ''
+
         return (
           <Row>
-            <Button disabled={disabled} onClick={this.props.onCheckForUpdates}>
-              检查更新
+            <Button disabled={disabled} onClick={onClick} tooltip={tooltip}>
+              {buttonTitle}
             </Button>
           </Row>
         )

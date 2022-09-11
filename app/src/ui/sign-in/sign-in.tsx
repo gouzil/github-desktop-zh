@@ -254,8 +254,6 @@ export class SignIn extends React.Component<ISignInProps, ISignInState> {
             label="验证码"
             value={this.state.otpToken}
             onValueChanged={this.onOTPTokenChanged}
-            labelLinkText={`这是什么?`}
-            labelLinkUri="https://help.github.com/articles/providing-your-2fa-authentication-code/"
             autoFocus={true}
           />
         </Row>

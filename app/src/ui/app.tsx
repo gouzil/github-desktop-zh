@@ -104,7 +104,7 @@ import { TutorialStep, isValidTutorialStep } from '../models/tutorial-step'
 import { WorkflowPushRejectedDialog } from './workflow-push-rejected/workflow-push-rejected'
 import { SAMLReauthRequiredDialog } from './saml-reauth-required/saml-reauth-required'
 import { CreateForkDialog } from './forks/create-fork-dialog'
-import { findDefaultUpstreamBranch } from '../lib/branch'
+import { findContributionTargetDefaultBranch } from '../lib/branch'
 import {
   GitHubRepository,
   hasWritePermission,
@@ -132,7 +132,6 @@ import { ReleaseNote } from '../models/release-notes'
 import { CommitMessageDialog } from './commit-message/commit-message-dialog'
 import { buildAutocompletionProviders } from './autocompletion'
 import { DragType, DropTargetSelector } from '../models/drag-drop'
-import { enableSquashing } from '../lib/feature-flag'
 import { dragAndDropManager } from '../lib/drag-and-drop-manager'
 import { MultiCommitOperation } from './multi-commit-operation/multi-commit-operation'
 import { WarnLocalChangesBeforeUndo } from './undo/warn-local-changes-before-undo'
@@ -147,6 +146,7 @@ import { PullRequestChecksFailed } from './notifications/pull-request-checks-fai
 import { CICheckRunRerunDialog } from './check-runs/ci-check-run-rerun-dialog'
 import { WarnForcePushDialog } from './multi-commit-operation/dialog/warn-force-push-dialog'
 import { clamp } from '../lib/clamp'
+import { generateRepositoryListContextMenu } from './repositories-list/repository-list-item-context-menu'
 import * as ipcRenderer from '../lib/ipc-renderer'
 import { showNotification } from '../lib/notifications/show-notification'
 import { DiscardChangesRetryDialog } from './discard-changes/discard-changes-retry-dialog'
@@ -155,6 +155,8 @@ import { PullRequestReview } from './notifications/pull-request-review'
 import { getPullRequestCommitRef } from '../models/pull-request'
 import { getRepositoryType } from '../lib/git'
 import { SSHUserPassword } from './ssh/ssh-user-password'
+import { showContextualMenu } from '../lib/menu-item'
+import { UnreachableCommitsDialog } from './history/unreachable-commits-dialog'
 
 const MinuteInMilliseconds = 1000 * 60
 const HourInMilliseconds = MinuteInMilliseconds * 60
@@ -382,9 +384,9 @@ export class App extends React.Component<IAppProps, IAppState> {
         return this.props.dispatcher.showPopup({ type: PopupType.Preferences })
       case 'open-working-directory':
         return this.openCurrentRepositoryWorkingDirectory()
-      case 'update-branch':
+      case 'update-branch-with-contribution-target-branch':
         this.props.dispatcher.recordMenuInitiatedUpdate()
-        return this.updateBranch()
+        return this.updateBranchWithContributionTargetBranch()
       case 'compare-to-branch':
         return this.showHistory(true)
       case 'merge-branch':
@@ -613,12 +615,15 @@ export class App extends React.Component<IAppProps, IAppState> {
     this.props.dispatcher.setCommitMessageFocus(true)
   }
 
-  private checkForUpdates(inBackground: boolean) {
+  private checkForUpdates(
+    inBackground: boolean,
+    skipGuidCheck: boolean = false
+  ) {
     if (__LINUX__ || __RELEASE_CHANNEL__ === 'development') {
       return
     }
 
-    updateStore.checkForUpdates(inBackground)
+    updateStore.checkForUpdates(inBackground, skipGuidCheck)
   }
 
   private getDotComAccount(): Account | null {
@@ -635,7 +640,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     return enterpriseAccount || null
   }
 
-  private updateBranch() {
+  private updateBranchWithContributionTargetBranch() {
     const { selectedState } = this.state
     if (
       selectedState == null ||
@@ -645,19 +650,27 @@ export class App extends React.Component<IAppProps, IAppState> {
     }
 
     const { state, repository } = selectedState
-    const defaultBranch = state.branchesState.defaultBranch
-    if (!defaultBranch) {
+
+    const contributionTargetDefaultBranch = findContributionTargetDefaultBranch(
+      repository,
+      state.branchesState
+    )
+    if (!contributionTargetDefaultBranch) {
       return
     }
 
     this.props.dispatcher.initializeMergeOperation(
       repository,
       false,
-      defaultBranch
+      contributionTargetDefaultBranch
     )
 
     const { mergeStatus } = state.compareState
-    this.props.dispatcher.mergeBranch(repository, defaultBranch, mergeStatus)
+    this.props.dispatcher.mergeBranch(
+      repository,
+      contributionTargetDefaultBranch,
+      mergeStatus
+    )
   }
 
   private mergeBranch(isSquash: boolean = false) {
@@ -1553,10 +1566,7 @@ export class App extends React.Component<IAppProps, IAppState> {
 
         if (isRepositoryWithGitHubRepository(repository)) {
           upstreamGhRepo = getNonForkGitHubRepository(repository)
-          upstreamDefaultBranch = findDefaultUpstreamBranch(
-            repository,
-            branchesState.allBranches
-          )
+          upstreamDefaultBranch = branchesState.upstreamDefaultBranch
         }
 
         return (
@@ -1596,6 +1606,7 @@ export class App extends React.Component<IAppProps, IAppState> {
             applicationVersion={version}
             applicationArchitecture={process.arch}
             onCheckForUpdates={this.onCheckForUpdates}
+            onCheckForNonStaggeredUpdates={this.onCheckForNonStaggeredUpdates}
             onShowAcknowledgements={this.showAcknowledgements}
             onShowTermsAndConditions={this.showTermsAndConditions}
           />
@@ -2137,6 +2148,31 @@ export class App extends React.Component<IAppProps, IAppState> {
           />
         )
       }
+      case PopupType.UnreachableCommits: {
+        const { selectedState, emoji } = this.state
+        if (
+          selectedState == null ||
+          selectedState.type !== SelectionType.Repository
+        ) {
+          return null
+        }
+
+        const {
+          commitLookup,
+          commitSelection: { shas, shasInDiff },
+        } = selectedState.state
+
+        return (
+          <UnreachableCommitsDialog
+            selectedShas={shas}
+            shasInDiff={shasInDiff}
+            commitLookup={commitLookup}
+            selectedTab={popup.selectedTab}
+            emoji={emoji}
+            onDismissed={onPopupDismissedFn}
+          />
+        )
+      }
       case PopupType.CICheckRunRerun: {
         return (
           <CICheckRunRerunDialog
@@ -2284,6 +2320,8 @@ export class App extends React.Component<IAppProps, IAppState> {
   }
 
   private onCheckForUpdates = () => this.checkForUpdates(false)
+  private onCheckForNonStaggeredUpdates = () =>
+    this.checkForUpdates(false, true)
 
   private showAcknowledgements = () => {
     this.props.dispatcher.showPopup({ type: PopupType.Acknowledgements })
@@ -2383,9 +2421,6 @@ export class App extends React.Component<IAppProps, IAppState> {
       currentDragElement !== null && currentDragElement.type === DragType.Commit
     return classNames({
       'commit-being-dragged': isCommitBeingDragged,
-      // 'squashing-enabled' is due to feature flagging. If feature flag is
-      // removed, we can just delete this line with adjustment to the css file
-      'squashing-enabled': isCommitBeingDragged && enableSquashing(),
     })
   }
 
@@ -2551,11 +2586,49 @@ export class App extends React.Component<IAppProps, IAppState> {
         description={__DARWIN__ ? '当前存储库' : '当前存储库'}
         tooltip={tooltip}
         foldoutStyle={foldoutStyle}
+        onContextMenu={this.onRepositoryToolbarButtonContextMenu}
         onDropdownStateChanged={this.onRepositoryDropdownStateChanged}
         dropdownContentRenderer={this.renderRepositoryList}
         dropdownState={currentState}
       />
     )
+  }
+
+  private onRepositoryToolbarButtonContextMenu = () => {
+    const repository = this.state.selectedState?.repository
+    if (repository === undefined) {
+      return
+    }
+
+    const externalEditorLabel = this.state.selectedExternalEditor ?? undefined
+
+    const onChangeRepositoryAlias = (repository: Repository) => {
+      this.props.dispatcher.showPopup({
+        type: PopupType.ChangeRepositoryAlias,
+        repository,
+      })
+    }
+
+    const onRemoveRepositoryAlias = (repository: Repository) => {
+      this.props.dispatcher.changeRepositoryAlias(repository, null)
+    }
+
+    const items = generateRepositoryListContextMenu({
+      onRemoveRepository: this.removeRepository,
+      onShowRepository: this.showRepository,
+      onOpenInShell: this.openInShell,
+      onOpenInExternalEditor: this.openInExternalEditor,
+      askForConfirmationOnRemoveRepository:
+        this.state.askForConfirmationOnRepositoryRemoval,
+      externalEditorLabel: externalEditorLabel,
+      onChangeRepositoryAlias: onChangeRepositoryAlias,
+      onRemoveRepositoryAlias: onRemoveRepositoryAlias,
+      onViewOnGitHub: this.viewOnGitHub,
+      repository: repository,
+      shellLabel: this.state.selectedShell,
+    })
+
+    showContextualMenu(items)
   }
 
   private renderPushPullToolbarButton() {
@@ -2739,6 +2812,9 @@ export class App extends React.Component<IAppProps, IAppState> {
       <UpdateAvailable
         dispatcher={this.props.dispatcher}
         newReleases={updateStore.state.newReleases}
+        isX64ToARM64ImmediateAutoUpdate={
+          updateStore.state.isX64ToARM64ImmediateAutoUpdate
+        }
         onDismissed={this.onUpdateAvailableDismissed}
         isUpdateShowcaseVisible={this.state.isUpdateShowcaseVisible}
         emoji={this.state.emoji}
