@@ -530,7 +530,7 @@ export class List extends React.Component<IListProps, IListState> {
     }
 
     const hasModifier =
-    event.altKey || event.ctrlKey || event.metaKey || event.shiftKey
+      event.altKey || event.ctrlKey || event.metaKey || event.shiftKey
 
     // We give consumers the power to prevent the onRowClick event by subscribing
     // to the onRowKeyDown event and calling event.preventDefault. This lets
@@ -547,7 +547,7 @@ export class List extends React.Component<IListProps, IListState> {
 
   private onFocusContainerKeyDown = (event: React.KeyboardEvent<any>) => {
     const hasModifier =
-    event.altKey || event.ctrlKey || event.metaKey || event.shiftKey
+      event.altKey || event.ctrlKey || event.metaKey || event.shiftKey
 
     if (
       !event.defaultPrevented &&

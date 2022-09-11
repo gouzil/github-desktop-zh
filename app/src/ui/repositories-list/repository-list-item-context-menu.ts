@@ -35,11 +35,15 @@ export const generateRepositoryListContextMenu = (
   const items: ReadonlyArray<IMenuItem> = [
     ...buildAliasMenuItems(config),
     {
-      label: __DARWIN__ ? '复制存储库名称 (Copy Repo Name)' : '复制存储库名称 (Copy Repo Name)',
+      label: __DARWIN__
+        ? '复制存储库名称 (Copy Repo Name)'
+        : '复制存储库名称 (Copy Repo Name)',
       action: () => clipboard.writeText(repository.name),
     },
     {
-      label: __DARWIN__ ? '复制存储库路径 (Copy Repo Path)' : '复制存储库路径 (Copy Repo Path)',
+      label: __DARWIN__
+        ? '复制存储库路径 (Copy Repo Path)'
+        : '复制存储库路径 (Copy Repo Path)',
       action: () => clipboard.writeText(repository.path),
     },
     { type: 'separator' },

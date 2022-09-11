@@ -147,7 +147,7 @@ export class About extends React.Component<IAboutProps, IAboutState> {
           : '检查更新'
 
         const tooltip = this.state.altKeyPressed
-          ? "GitHub Desktop可能会逐步向我们的用户群发布更新, 以确保我们及早发现任何问题。这允许您绕过之前的版本, 直接跳到最新版本(如果有)."
+          ? 'GitHub Desktop可能会逐步向我们的用户群发布更新, 以确保我们及早发现任何问题。这允许您绕过之前的版本, 直接跳到最新版本(如果有).'
           : ''
 
         return (

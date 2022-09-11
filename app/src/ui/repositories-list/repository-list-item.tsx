@@ -161,9 +161,9 @@ export class RepositoryListItem extends React.Component<
       onViewOnGitHub: this.props.onViewOnGitHub,
       repository: this.props.repository,
       shellLabel: this.props.shellLabel,
-      })
+    })
 
-      showContextualMenu(items)
+    showContextualMenu(items)
   }
 }
 

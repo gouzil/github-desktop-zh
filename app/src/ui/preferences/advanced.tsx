@@ -199,7 +199,6 @@ export class Advanced extends React.Component<
   }
 
   private renderNotificationsSettings() {
-
     return (
       <div className="advanced-section">
         <h2>通知</h2>

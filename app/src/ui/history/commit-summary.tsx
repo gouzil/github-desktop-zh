@@ -71,7 +71,7 @@ interface ICommitSummaryState {
    */
   readonly summary: ReadonlyArray<TokenResult>
 
-    /**
+  /**
    * Whether the commit summary was empty.
    */
   readonly hasEmptySummary: boolean
@@ -349,7 +349,7 @@ export class CommitSummary extends React.Component<
 
   private onHighlightShasInDiff = () => {
     this.props.onHighlightShas(this.props.shasInDiff)
-    }
+  }
 
   private onHighlightShasNotInDiff = () => {
     const { onHighlightShas, selectedCommits, shasInDiff } = this.props

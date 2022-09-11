@@ -42,7 +42,7 @@ export class CICheckReRunButton extends React.PureComponent<ICICheckReRunButtonP
 
   public render() {
     const text =
-    this.props.canReRunFailed && this.failedChecksExist ? (
+      this.props.canReRunFailed && this.failedChecksExist ? (
         <>
           重新运行 <Octicon symbol={OcticonSymbol.triangleDown} />
         </>

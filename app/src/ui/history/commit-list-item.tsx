@@ -300,16 +300,16 @@ export class CommitListItem extends React.PureComponent<
 
     items.push(
       {
-      label: __DARWIN__ ? '在提交中恢复更改' : '在提交中恢复更改',
-      action: () => {
-        if (this.props.onRevertCommit) {
-          this.props.onRevertCommit(this.props.commit)
-        }
+        label: __DARWIN__ ? '在提交中恢复更改' : '在提交中恢复更改',
+        action: () => {
+          if (this.props.onRevertCommit) {
+            this.props.onRevertCommit(this.props.commit)
+          }
+        },
+        enabled: this.props.onRevertCommit !== undefined,
       },
-      enabled: this.props.onRevertCommit !== undefined,
-    },
-    { type: 'separator' },
-    {
+      { type: 'separator' },
+      {
         label: __DARWIN__ ? '从Commit创建分支' : '从Commit创建分支',
         action: () => {
           if (this.props.onCreateBranch) {
@@ -318,9 +318,9 @@ export class CommitListItem extends React.PureComponent<
         },
       },
       {
-      label: '创建标签…',
-      action: this.onCreateTag,
-      enabled: this.props.onCreateTag !== undefined,
+        label: '创建标签…',
+        action: this.onCreateTag,
+        enabled: this.props.onCreateTag !== undefined,
       }
     )
 
@@ -337,10 +337,10 @@ export class CommitListItem extends React.PureComponent<
 
     items.push(
       {
-      label: __DARWIN__ ? '筛选提交…' : '筛选提交……',
-      action: this.onCherryPick,
-      enabled: this.canCherryPick(),
-    },
+        label: __DARWIN__ ? '筛选提交…' : '筛选提交……',
+        action: this.onCherryPick,
+        enabled: this.canCherryPick(),
+      },
       { type: 'separator' },
       {
         label: '拷贝 SHA',
@@ -361,11 +361,11 @@ export class CommitListItem extends React.PureComponent<
 
     return [
       {
-      label: __DARWIN__ ? `筛选 ${count} 提交…` : `筛选 ${count} 提交…`,
-      action: this.onCherryPick,
-      enabled: this.canCherryPick(),
-    },
-    {
+        label: __DARWIN__ ? `筛选 ${count} 提交…` : `筛选 ${count} 提交…`,
+        action: this.onCherryPick,
+        enabled: this.canCherryPick(),
+      },
+      {
         label: __DARWIN__ ? `去除 ${count} 提交…` : `去除 ${count} 提交…`,
         action: this.onSquash,
       },
