@@ -1,4 +1,21 @@
-# Github-Desktop 中文版
+<p align="center">
+ <img width="100px" src="https://desktop.github.com/images/desktop-icon.svg" align="center" alt="GitHub Desktop" />
+ <h2 align="center">GitHub Desktop</h2>
+</p>
+  <p align="center">
+    <a href="https://github.com/gouzil/github-desktop-zh/actions">
+      <img alt="build Passing" src="https://github.com/gouzil/github-desktop-zh/workflows/CI/badge.svg" />
+    </a>
+    <a href="https://github.com/gouzil/github-desktop-zh/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/gouzil/github-desktop-zh?color=0088ff" />
+    </a>
+    <a href="https://github.com/gouzil/github-desktop-zh/pulls">
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gouzil/github-desktop-zh?color=0088ff" />
+    </a>
+    <a href="https://github.com/gouzil/github-desktop-zh/releases/tag/version-release-3.0.8">
+      <img alt="version" src="https://img.shields.io/badge/version-3.0.8-blue" />
+    </a>
+  </p>
 
 原版 [README.md](./Original-README-EN.md)
 
