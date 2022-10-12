@@ -37,6 +37,7 @@ export class CloneGenericRepository extends React.Component<
             placeholder="URL 或者 用户名/存储库"
             value={this.props.url}
             onValueChanged={this.onUrlChanged}
+            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={true}
             label={
               <span>

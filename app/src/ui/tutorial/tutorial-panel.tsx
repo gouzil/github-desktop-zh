@@ -100,7 +100,7 @@ export class TutorialPanel extends React.Component<
       <div className="tutorial-panel-component panel">
         <div className="titleArea">
           <h3>开始</h3>
-          <img src={TutorialPanelImage} />
+          <img src={TutorialPanelImage} alt="部分检查清单" />
         </div>
         <ol>
           <TutorialStepInstructions

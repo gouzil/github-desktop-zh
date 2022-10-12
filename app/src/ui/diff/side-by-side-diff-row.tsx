@@ -382,6 +382,7 @@ export class SideBySideDiffRow extends React.Component<
     )
 
     return (
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
       <div
         className="hunk-expansion-handle selectable hoverable"
         onClick={elementInfo.handler}
@@ -423,6 +424,7 @@ export class SideBySideDiffRow extends React.Component<
     }
 
     return (
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
       <div
         className="hunk-handle hoverable"
         onMouseEnter={this.onMouseEnterHunk}
@@ -459,6 +461,7 @@ export class SideBySideDiffRow extends React.Component<
     }
 
     return (
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
         className={classNames('line-number', 'selectable', 'hoverable', {
           'line-selected': isSelected,

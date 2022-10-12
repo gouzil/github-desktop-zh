@@ -173,6 +173,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
         <img
           className="release-note-graphic-left"
           src={ReleaseNoteHeaderLeftUri}
+          alt=""
         />
         <div className="title">
           <p className="version">版本 {latestVersion}</p>
@@ -181,6 +182,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
         <img
           className="release-note-graphic-right"
           src={ReleaseNoteHeaderRightUri}
+          alt=""
         />
       </div>
     )

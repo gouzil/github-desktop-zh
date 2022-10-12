@@ -205,25 +205,23 @@ export class CICheckRunRerunDialog extends React.Component<
 
     let descriptor = ''
     if (showDescriptor && checkRuns.length === 1) {
-      descriptor = __DARWIN__ ? 'Single ' : 'single '
+      descriptor = __DARWIN__ ? '单个的 ' : '单个的 '
     }
 
     if (showDescriptor && failedOnly) {
-      descriptor = __DARWIN__ ? 'Failed ' : 'failed '
+      descriptor = __DARWIN__ ? '失败 ' : '失败 '
     }
 
-    return `Re-run ${descriptor}${c}heck${s}`
+    return `重新运行 ${descriptor}${c}糟糕 (heck)${s}`
   }
 
   private renderDialogContent = () => {
     if (this.state.loadingCheckSuites && this.props.checkRuns.length > 1) {
       return (
         <div className="loading-rerun-checks">
-          <img src={BlankSlateImage} className="blankslate-image" />
-          <div className="title">Please wait</div>
-          <div className="call-to-action">
-            Determining which checks can be re-run.
-          </div>
+          <img src={BlankSlateImage} className="blankslate-image" alt="" />
+          <div className="title">请稍候</div>
+          <div className="call-to-action">确定可以重新运行哪些检查.</div>
         </div>
       )
     }

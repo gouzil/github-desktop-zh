@@ -34,6 +34,7 @@ export class DiffSearchInput extends React.Component<
         <TextBox
           placeholder="搜索..."
           type="search"
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={true}
           onValueChanged={this.onChange}
           onKeyDown={this.onKeyDown}

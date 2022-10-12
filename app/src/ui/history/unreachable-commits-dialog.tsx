@@ -4,6 +4,7 @@ import { TabBar } from '../tab-bar'
 import { OkCancelButtonGroup } from '../dialog/ok-cancel-button-group'
 import { Commit } from '../../models/commit'
 import { CommitList } from './commit-list'
+import { LinkButton } from '../lib/link-button'
 
 export enum UnreachableCommitsTab {
   Unreachable,
@@ -126,7 +127,10 @@ export class UnreachableCommitsDialog extends React.Component<
         {this.state.selectedTab === UnreachableCommitsTab.Unreachable
           ? 'not'
           : ''}{' '}
-        在您的选择中最近提交的祖先路径中.
+        在您的选择中最近提交的祖先路径中.{' '}
+        <LinkButton uri="https://github.com/desktop/desktop/blob/development/docs/learn-more/unreachable-commits.md">
+          了解更多信息.
+        </LinkButton>
       </div>
     )
   }

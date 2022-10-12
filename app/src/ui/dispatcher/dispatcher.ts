@@ -1955,6 +1955,23 @@ export class Dispatcher {
     })
   }
 
+  public async openOrAddRepository(path: string): Promise<Repository | null> {
+    const state = this.appStore.getState()
+    const repositories = state.repositories
+    const existingRepository = repositories.find(r => r.path === path)
+
+    if (existingRepository) {
+      return await this.selectRepository(existingRepository)
+    }
+
+    return this.appStore._startOpenInDesktop(() => {
+      this.showPopup({
+        type: PopupType.AddRepository,
+        path,
+      })
+    })
+  }
+
   /**
    * Install the CLI tool.
    *
@@ -2325,6 +2342,10 @@ export class Dispatcher {
     return this.appStore._setConfirmForcePushSetting(value)
   }
 
+  public setConfirmUndoCommitSetting(value: boolean) {
+    return this.appStore._setConfirmUndoCommitSetting(value)
+  }
+
   /**
    * Converts a local repository to use the given fork
    * as its default remote and associated `GitHubRepository`.
@@ -2350,6 +2371,11 @@ export class Dispatcher {
    */
   public mergeConflictDetectedFromExplicitMerge() {
     return this.statsStore.recordMergeConflictFromExplicitMerge()
+  }
+
+  /** Increments the `openSubmoduleFromDiffCount` metric */
+  public recordOpenSubmoduleFromDiffCount() {
+    return this.statsStore.recordOpenSubmoduleFromDiffCount()
   }
 
   /**
@@ -3932,6 +3958,14 @@ export class Dispatcher {
     this.showPopup({
       type: PopupType.UnreachableCommits,
       selectedTab,
+    })
+  }
+
+  public startPullRequest(repository: Repository) {
+    this.appStore._startPullRequest(repository)
+
+    this.showPopup({
+      type: PopupType.StartPullRequest,
     })
   }
 }

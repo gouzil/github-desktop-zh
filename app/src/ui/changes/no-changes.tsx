@@ -693,9 +693,9 @@ export class NoChanges extends React.Component<
 
   public render() {
     return (
-      <div id="no-changes">
+      <div className="changes-interstitial">
         <div className="content">
-          <div className="header">
+          <div className="interstitial-header">
             <div className="text">
               <h1>没有本地更改</h1>
               <p>
@@ -703,7 +703,7 @@ export class NoChanges extends React.Component<
                 这里有一些关于下一步该做什么的友好建议.
               </p>
             </div>
-            <img src={PaperStackImage} className="blankslate-image" />
+            <img src={PaperStackImage} className="blankslate-image" alt="" />
           </div>
           {this.renderActions()}
         </div>

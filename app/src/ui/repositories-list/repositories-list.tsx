@@ -252,7 +252,7 @@ export class RepositoriesList extends React.Component<
   private renderNoItems = () => {
     return (
       <div className="no-items no-results-found">
-        <img src={BlankSlateImage} className="blankslate-image" />
+        <img src={BlankSlateImage} className="blankslate-image" alt="" />
         <div className="title">抱歉，我找不到该存储库</div>
 
         <div className="protip">

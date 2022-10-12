@@ -47,6 +47,9 @@ interface IStashDiffViewerProps {
 
   /** Called when the user changes the hide whitespace in diffs setting. */
   readonly onHideWhitespaceInDiffChanged: (checked: boolean) => void
+
+  /** Called when the user requests to open a submodule. */
+  readonly onOpenSubmodule: (fullPath: string) => void
 }
 
 /**

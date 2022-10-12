@@ -22,19 +22,22 @@ export class TutorialWelcome extends React.Component {
         </div>
         <ul className="definitions">
           <li>
-            <img src={CodeImage} />
+            <img src={CodeImage} alt="Html syntax icon" />
             <p>
               <strong>Git</strong> 是版本控制系统.
             </p>
           </li>
           <li>
-            <img src={TeamDiscussionImage} />
+            <img
+              src={TeamDiscussionImage}
+              alt="People with discussion bubbles overhead"
+            />
             <p>
               <strong>GitHub</strong> 是存储代码并与他人协作的地方.
             </p>
           </li>
           <li>
-            <img src={CloudServerImage} />
+            <img src={CloudServerImage} alt="Server stack with cloud" />
             <p>
               <strong>GitHub Desktop</strong> 帮助你在本地使用GitHub.
             </p>
