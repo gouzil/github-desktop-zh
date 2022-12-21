@@ -51,8 +51,8 @@ interface ICommitProps {
   readonly showUnpushedIndicator: boolean
   readonly unpushedIndicatorTitle?: string
   readonly unpushedTags?: ReadonlyArray<string>
-  readonly isCherryPickInProgress?: boolean
   readonly disableSquashing?: boolean
+  readonly isMultiCommitOperationInProgress?: boolean
 }
 
 interface ICommitListItemState {
@@ -126,7 +126,7 @@ export class CommitListItem extends React.PureComponent<
       author: { date },
     } = commit
 
-    const isDraggable = this.canCherryPick()
+    const isDraggable = this.isDraggable()
     const hasEmptySummary = commit.summary.length === 0
     const commitSummary = hasEmptySummary ? '清空提交信息' : commit.summary
 
@@ -369,17 +369,34 @@ export class CommitListItem extends React.PureComponent<
       {
         label: __DARWIN__ ? `去除 ${count} 提交…` : `去除 ${count} 提交…`,
         action: this.onSquash,
+        enabled: this.canSquash(),
       },
     ]
   }
 
-  private canCherryPick(): boolean {
-    const { onCherryPick, isCherryPickInProgress } = this.props
+  private isDraggable(): boolean {
+    const { onCherryPick, onSquash, isMultiCommitOperationInProgress } =
+      this.props
     return (
-      onCherryPick !== undefined &&
-      this.onSquash !== undefined &&
-      isCherryPickInProgress === false
-      // TODO: isSquashInProgress === false
+      (onCherryPick !== undefined || onSquash !== undefined) &&
+      isMultiCommitOperationInProgress === false
+    )
+  }
+
+  private canCherryPick(): boolean {
+    const { onCherryPick, isMultiCommitOperationInProgress } = this.props
+    return (
+      onCherryPick !== undefined && isMultiCommitOperationInProgress === false
+    )
+  }
+
+  private canSquash(): boolean {
+    const { onSquash, disableSquashing, isMultiCommitOperationInProgress } =
+      this.props
+    return (
+      onSquash !== undefined &&
+      disableSquashing === false &&
+      isMultiCommitOperationInProgress === false
     )
   }
 
