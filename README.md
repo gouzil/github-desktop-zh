@@ -12,8 +12,8 @@
     <a href="https://github.com/gouzil/github-desktop-zh/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gouzil/github-desktop-zh?color=0088ff" />
     </a>
-    <a href="https://github.com/gouzil/github-desktop-zh/releases/tag/version-release-3.0.8">
-      <img alt="version" src="https://img.shields.io/badge/version-3.0.8-blue" />
+    <a href="https://github.com/gouzil/github-desktop-zh/releases/tag/version-release-3.1.4">
+      <img alt="version" src="https://img.shields.io/badge/version-3.1.4-blue" />
     </a>
   </p>
 
@@ -23,7 +23,7 @@
 
 ## 这是一个什么项目？
 
-这是一个把github desktop翻译成中文的项目, 当前翻译版本[release-3.1.3](https://github.com/gouzil/github-desktop-zh/tree/release-3.1.3)
+这是一个把github desktop翻译成中文的项目, 当前翻译版本[release-3.1.4](https://github.com/gouzil/github-desktop-zh/tree/release-3.1.4)
 
 ## 部分截图
 
