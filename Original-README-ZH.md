@@ -3,11 +3,21 @@
 [GitHub Desktop](https://desktop.github.com/) 是开源的 [Electron](https://www.electronjs.org/)-based
 GitHub app. 它是用 [TypeScript](https://www.typescriptlang.org) 和 [React](https://reactjs.org/) 开发的.
 
-![GitHub Desktop screenshot - Windows](https://cloud.githubusercontent.com/assets/359239/26094502/a1f56d02-3a5d-11e7-8799-23c7ba5e5106.png)
+<picture>
+  <source
+    srcset="https://user-images.githubusercontent.com/634063/202742848-63fa1488-6254-49b5-af7c-96a6b50ea8af.png"
+    media="(prefers-color-scheme: dark)"
+  />
+  <img
+    width="1072"
+    src="https://user-images.githubusercontent.com/634063/202742985-bb3b3b94-8aca-404a-8d8a-fd6a6f030672.png"
+    alt="GitHub Desktop应用程序的屏幕截图，显示了与两位共同作者一起查看和提交的更改"
+  />
+</picture>
 
 ## 这是一个什么项目？
 
-这是一个把github desktop翻译成中文的项目, 当前翻译版本[release-3.1.4](https://github.com/gouzil/github-desktop-zh/tree/release-3.1.4)
+这是一个把github desktop翻译成中文的项目, 当前翻译版本[release-3.1.5](https://github.com/gouzil/github-desktop-zh/tree/release-3.1.5)
 
 ## 在哪里可以下载到?
 
