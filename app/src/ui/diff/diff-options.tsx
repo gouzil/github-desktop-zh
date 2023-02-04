@@ -4,14 +4,13 @@ import { Octicon } from '../octicons'
 import * as OcticonSymbol from '../octicons/octicons.generated'
 import { RadioButton } from '../lib/radio-button'
 import { Popover, PopoverCaretPosition } from '../lib/popover'
-import { RepositorySectionTab } from '../../lib/app-state'
 
 interface IDiffOptionsProps {
-  readonly sourceTab: RepositorySectionTab
+  readonly isInteractiveDiff: boolean
   readonly hideWhitespaceChanges: boolean
   readonly onHideWhitespaceChangesChanged: (
     hideWhitespaceChanges: boolean
-  ) => Promise<void>
+  ) => void
 
   readonly showSideBySideDiff: boolean
   readonly onShowSideBySideDiffChanged: (showSideBySideDiff: boolean) => void
@@ -142,7 +141,7 @@ export class DiffOptions extends React.Component<
           onChange={this.onHideWhitespaceChangesChanged}
           label={__DARWIN__ ? '隐藏空白更改' : '隐藏空白更改'}
         />
-        {this.props.sourceTab === RepositorySectionTab.Changes && (
+        {this.props.isInteractiveDiff && (
           <p className="secondary-text">
             与单独的行或块交互将被禁用，同时隐藏空白.
           </p>

@@ -280,6 +280,12 @@ export function buildDefaultMenu({
         click: emit('pull'),
       },
       {
+        id: 'fetch',
+        label: __DARWIN__ ? '取 (Fetch)' : '取 (Fetch)',
+        accelerator: 'CmdOrCtrl+Shift+T',
+        click: emit('fetch'),
+      },
+      {
         label: removeRepoLabel,
         id: 'remove-repository',
         accelerator: 'CmdOrCtrl+Backspace',
@@ -416,12 +422,12 @@ export function buildDefaultMenu({
     },
   ]
 
-  if (!hasCurrentPullRequest && enableStartingPullRequests()) {
+  if (enableStartingPullRequests()) {
     branchSubmenu.push({
-      label: __DARWIN__ ? '启动拉取请求' : '启动拉取请求',
-      id: 'start-pull-request',
+      label: __DARWIN__ ? '预览拉取请求' : '预览拉取请求',
+      id: 'preview-pull-request',
       accelerator: 'CmdOrCtrl+Alt+P',
-      click: emit('start-pull-request'),
+      click: emit('preview-pull-request'),
     })
   }
 
@@ -539,6 +545,10 @@ export function buildDefaultMenu({
             label: '拉取请求检查运行失败',
             click: emit('pull-request-check-run-failed'),
           },
+          {
+            label: '显示 APP 错误',
+            click: emit('show-app-error'),
+          },
         ],
       },
       {
@@ -628,7 +638,7 @@ function emit(name: MenuEvent): ClickHandler {
 }
 
 /** The zoom steps that we support, these factors must sorted */
-const ZoomInFactors = [1, 1.1, 1.25, 1.5, 1.75, 2]
+const ZoomInFactors = [0.67, 0.75, 0.8, 0.9, 1, 1.1, 1.25, 1.5, 1.75, 2]
 const ZoomOutFactors = ZoomInFactors.slice().reverse()
 
 /**
