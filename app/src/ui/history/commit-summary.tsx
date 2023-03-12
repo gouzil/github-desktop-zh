@@ -535,6 +535,7 @@ export class CommitSummary extends React.Component<
     let filesAdded = 0
     let filesModified = 0
     let filesRemoved = 0
+    let filesRenamed = 0
     for (const file of this.props.changesetData.files) {
       switch (file.status.kind) {
         case AppFileStatusKind.New:
@@ -546,8 +547,13 @@ export class CommitSummary extends React.Component<
         case AppFileStatusKind.Deleted:
           filesRemoved += 1
           break
+        case AppFileStatusKind.Renamed:
+          filesRenamed += 1
       }
     }
+
+    const hasFileDescription =
+      filesAdded + filesModified + filesRemoved + filesRenamed > 0
 
     const filesLongDescription = (
       <>
@@ -578,6 +584,15 @@ export class CommitSummary extends React.Component<
             {filesRemoved} 已删除
           </span>
         ) : null}
+        {filesRenamed > 0 ? (
+          <span>
+            <Octicon
+              className="files-renamed-icon"
+              symbol={OcticonSymbol.diffRenamed}
+            />
+            {filesRenamed} 重命名
+          </span>
+        ) : null}
       </>
     )
 
@@ -585,7 +600,9 @@ export class CommitSummary extends React.Component<
       <TooltippedContent
         className="commit-summary-meta-item without-truncation"
         tooltipClassName="changed-files-description-tooltip"
-        tooltip={fileCount > 0 ? filesLongDescription : undefined}
+        tooltip={
+          fileCount > 0 && hasFileDescription ? filesLongDescription : undefined
+        }
       >
         <Octicon symbol={OcticonSymbol.diff} />
         {filesShortDescription}

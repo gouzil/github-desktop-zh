@@ -150,6 +150,7 @@ These shells are currently supported:
  - [Kitty](https://sw.kovidgoyal.net/kitty/)
  - [Alacritty](https://github.com/alacritty/alacritty)
  - [WezTerm](https://github.com/wez/wezterm)
+ - [Tabby](https://tabby.sh/)
 
 These are defined in an enum at the top of the file:
 
