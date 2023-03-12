@@ -12,8 +12,8 @@
     <a href="https://github.com/gouzil/github-desktop-zh/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gouzil/github-desktop-zh?color=0088ff" />
     </a>
-    <a href="https://github.com/gouzil/github-desktop-zh/releases/tag/version-release-3.1.4">
-      <img alt="version" src="https://img.shields.io/badge/version-3.1.4-blue" />
+    <a href="https://github.com/gouzil/github-desktop-zh/releases/tag/version-release-3.1.7">
+      <img alt="version" src="https://img.shields.io/badge/version-3.1.7-blue" />
     </a>
   </p>
 
