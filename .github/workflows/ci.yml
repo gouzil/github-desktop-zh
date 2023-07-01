@@ -21,8 +21,10 @@ jobs:
         include:
           - os: macos-11
             friendlyName: macOS
+            asset_name: GitHub\ Desktop-darwin
           - os: windows-2019
             friendlyName: Windows
+            asset_name: GitHubDesktop-win32
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v3
