@@ -7,7 +7,6 @@ import { UNSAFE_openDirectory } from '../shell'
 import { MenuLabelsEvent } from '../../models/menu-labels'
 import * as ipcWebContents from '../ipc-webcontents'
 import { mkdir } from 'fs/promises'
-import { enableStartingPullRequests } from '../../lib/feature-flag'
 
 const platformDefaultShell = __WIN32__ ? '命令提示符' : '终端'
 const createPullRequestLabel = __DARWIN__ ? '创建拉取请求' : '创建拉取请求'
@@ -225,6 +224,22 @@ export function buildDefaultMenu({
         accelerator: 'CmdOrCtrl+-',
         click: zoom(ZoomDirection.Out),
       },
+      {
+        label: __DARWIN__
+          ? 'Expand Active Resizable'
+          : 'Expand active resizable',
+        id: 'increase-active-resizable-width',
+        accelerator: 'CmdOrCtrl+9',
+        click: emit('increase-active-resizable-width'),
+      },
+      {
+        label: __DARWIN__
+          ? 'Contract Active Resizable'
+          : 'Contract active resizable',
+        id: 'decrease-active-resizable-width',
+        accelerator: 'CmdOrCtrl+8',
+        click: emit('decrease-active-resizable-width'),
+      },
       separator,
       {
         label: '重新加载',
@@ -422,14 +437,12 @@ export function buildDefaultMenu({
     },
   ]
 
-  if (enableStartingPullRequests()) {
-    branchSubmenu.push({
-      label: __DARWIN__ ? '预览拉取请求' : '预览拉取请求',
-      id: 'preview-pull-request',
-      accelerator: 'CmdOrCtrl+Alt+P',
-      click: emit('preview-pull-request'),
-    })
-  }
+  branchSubmenu.push({
+    label: __DARWIN__ ? '预览拉取请求' : '预览拉取请求',
+    id: 'preview-pull-request',
+    accelerator: 'CmdOrCtrl+Alt+P',
+    click: emit('preview-pull-request'),
+  })
 
   branchSubmenu.push({
     label: pullRequestLabel,

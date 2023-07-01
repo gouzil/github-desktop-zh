@@ -1,30 +1,33 @@
 import * as React from 'react'
 import {
   Popover,
-  PopoverCaretPosition,
+  PopoverAnchorPosition,
   PopoverAppearEffect,
+  PopoverDecoration,
 } from '../lib/popover'
 import { OkCancelButtonGroup } from '../dialog'
 
 interface IWhitespaceHintPopoverProps {
-  readonly caretPosition: PopoverCaretPosition
+  readonly anchor: HTMLElement | null
+  readonly anchorPosition: PopoverAnchorPosition
   /** Called when the user changes the hide whitespace in diffs setting. */
   readonly onHideWhitespaceInDiffChanged: (checked: boolean) => void
   readonly onDismissed: () => void
-  readonly style: React.CSSProperties
 }
 
 export class WhitespaceHintPopover extends React.Component<IWhitespaceHintPopoverProps> {
   public render() {
     return (
       <Popover
-        caretPosition={this.props.caretPosition}
+        anchor={this.props.anchor}
+        anchorPosition={this.props.anchorPosition}
+        decoration={PopoverDecoration.Balloon}
         onMousedownOutside={this.onDismissed}
         className={'whitespace-hint'}
-        style={this.props.style}
         appearEffect={PopoverAppearEffect.Shake}
+        ariaLabelledby="whitespace-hint-header"
       >
-        <h3>显示空白更改?</h3>
+        <h3 id="whitespace-hint-header">显示空白更改?</h3>
         <p className="byline">隐藏空白更改时禁用选择行.</p>
         <footer>
           <OkCancelButtonGroup

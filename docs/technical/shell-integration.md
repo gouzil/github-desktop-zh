@@ -149,8 +149,8 @@ These shells are currently supported:
  - [PowerShell Core](https://github.com/powershell/powershell/)
  - [Kitty](https://sw.kovidgoyal.net/kitty/)
  - [Alacritty](https://github.com/alacritty/alacritty)
- - [WezTerm](https://github.com/wez/wezterm)
  - [Tabby](https://tabby.sh/)
+ - [WezTerm](https://github.com/wez/wezterm)
 
 These are defined in an enum at the top of the file:
 

@@ -1,4 +1,6 @@
 import * as React from 'react'
+import * as Path from 'path'
+
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import {
   IAppState,
@@ -18,7 +20,7 @@ import { shouldRenderApplicationMenu } from './lib/features'
 import { matchExistingRepository } from '../lib/repository-matching'
 import { getDotComAPIEndpoint } from '../lib/api'
 import { getVersion, getName } from './lib/app-proxy'
-import { getOS } from '../lib/get-os'
+import { getOS, isWindowsAndNoLongerSupportedByElectron } from '../lib/get-os'
 import { MenuEvent } from '../main-process/menu'
 import {
   Repository,
@@ -161,10 +163,14 @@ import { sendNonFatalException } from '../lib/helpers/non-fatal-exception'
 import { createCommitURL } from '../lib/commit-url'
 import { uuid } from '../lib/uuid'
 import { InstallingUpdate } from './installing-update/installing-update'
-import { enableStackedPopups } from '../lib/feature-flag'
 import { DialogStackContext } from './dialog'
 import { TestNotifications } from './test-notifications/test-notifications'
 import { NotificationsDebugStore } from '../lib/stores/notifications-debug-store'
+import { PullRequestComment } from './notifications/pull-request-comment'
+import { UnknownAuthors } from './unknown-authors/unknown-authors-dialog'
+import { UnsupportedOSBannerDismissedAtKey } from './banners/windows-version-no-longer-supported-banner'
+import { offsetFromNow } from '../lib/offset-from'
+import { getNumber } from '../lib/local-storage'
 
 const MinuteInMilliseconds = 1000 * 60
 const HourInMilliseconds = MinuteInMilliseconds * 60
@@ -286,14 +292,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     updateStore.onError(error => {
       log.error(`Error checking for updates`, error)
 
-      // It is possible to obtain an error with no message. This was found to be
-      // the case on a windows instance where there was not space on the hard
-      // drive to download the installer. In this case, we want to override the
-      // error message so the user is not given a blank dialog.
-      const hasErrorMsg = error.message.trim().length > 0
-      this.props.dispatcher.postError(
-        hasErrorMsg ? error : new Error('Checking for updates failed.')
-      )
+      this.props.dispatcher.postError(error)
     })
 
     ipcRenderer.on('launch-timing-stats', (_, stats) => {
@@ -357,6 +356,15 @@ export class App extends React.Component<IAppProps, IAppState> {
     }
 
     this.checkIfThankYouIsInOrder()
+
+    if (isWindowsAndNoLongerSupportedByElectron()) {
+      const dismissedAt = getNumber(UnsupportedOSBannerDismissedAtKey, 0)
+
+      // Remind the user that they're running an unsupported OS every 90 days
+      if (dismissedAt < offsetFromNow(-90, 'days')) {
+        this.setBanner({ type: BannerType.WindowsVersionNoLongerSupported })
+      }
+    }
   }
 
   private onMenuEvent(name: MenuEvent): any {
@@ -375,9 +383,9 @@ export class App extends React.Component<IAppProps, IAppState> {
       case 'fetch':
         return this.fetch()
       case 'show-changes':
-        return this.showChanges()
+        return this.showChanges(true)
       case 'show-history':
-        return this.showHistory()
+        return this.showHistory(true)
       case 'choose-repository':
         return this.chooseRepository()
       case 'add-local-repository':
@@ -406,7 +414,7 @@ export class App extends React.Component<IAppProps, IAppState> {
         this.props.dispatcher.recordMenuInitiatedUpdate()
         return this.updateBranchWithContributionTargetBranch()
       case 'compare-to-branch':
-        return this.showHistory(true)
+        return this.showHistory(false, true)
       case 'merge-branch':
         this.props.dispatcher.recordMenuInitiatedMerge()
         return this.mergeBranch()
@@ -421,9 +429,9 @@ export class App extends React.Component<IAppProps, IAppState> {
       case 'view-repository-on-github':
         return this.viewRepositoryOnGitHub()
       case 'compare-on-github':
-        return this.openBranchOnGitub('compare')
+        return this.openBranchOnGitHub('compare')
       case 'branch-on-github':
-        return this.openBranchOnGitub('tree')
+        return this.openBranchOnGitHub('tree')
       case 'create-issue-in-repository-on-github':
         return this.openIssueCreationOnGitHub()
       case 'open-in-shell':
@@ -464,6 +472,10 @@ export class App extends React.Component<IAppProps, IAppState> {
         return this.props.dispatcher.postError(
           new Error('Test Error - to use default error handler' + uuid())
         )
+      case 'increase-active-resizable-width':
+        return this.resizeActiveResizable('increase-active-resizable-width')
+      case 'decrease-active-resizable-width':
+        return this.resizeActiveResizable('decrease-active-resizable-width')
       default:
         return assertNever(name, `Unknown menu event name: ${name}`)
     }
@@ -595,6 +607,25 @@ export class App extends React.Component<IAppProps, IAppState> {
   }
 
   /**
+   * Handler for the 'increase-active-resizable-width' and
+   * 'decrease-active-resizable-width' menu event, dispatches a custom DOM event
+   * originating from the element which currently has keyboard focus. Components
+   * have a chance to intercept this event and implement their resize logic.
+   */
+  private resizeActiveResizable(
+    menuId:
+      | 'increase-active-resizable-width'
+      | 'decrease-active-resizable-width'
+  ) {
+    document.activeElement?.dispatchEvent(
+      new CustomEvent(menuId, {
+        bubbles: true,
+        cancelable: true,
+      })
+    )
+  }
+
+  /**
    * Handler for the 'select-all' menu event, dispatches
    * a custom DOM event originating from the element which
    * currently has keyboard focus. Components have a chance
@@ -644,7 +675,7 @@ export class App extends React.Component<IAppProps, IAppState> {
   }
 
   private async goToCommitMessage() {
-    await this.showChanges()
+    await this.showChanges(false)
     this.props.dispatcher.setCommitMessageFocus(true)
   }
 
@@ -653,6 +684,13 @@ export class App extends React.Component<IAppProps, IAppState> {
     skipGuidCheck: boolean = false
   ) {
     if (__LINUX__ || __RELEASE_CHANNEL__ === 'development') {
+      return
+    }
+
+    if (isWindowsAndNoLongerSupportedByElectron()) {
+      log.error(
+        `Can't check for updates on Windows 8.1 or older. Next available update only supports Windows 10 and later`
+      )
       return
     }
 
@@ -718,7 +756,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     this.props.dispatcher.startMergeBranchOperation(repository, isSquash)
   }
 
-  private openBranchOnGitub(view: 'tree' | 'compare') {
+  private openBranchOnGitHub(view: 'tree' | 'compare') {
     const htmlURL = this.getCurrentRepositoryGitHubURL()
     if (!htmlURL) {
       return
@@ -891,7 +929,10 @@ export class App extends React.Component<IAppProps, IAppState> {
     this.props.dispatcher.showPopup({ type: PopupType.About })
   }
 
-  private async showHistory(showBranchList: boolean = false) {
+  private async showHistory(
+    shouldFocusHistory: boolean,
+    showBranchList: boolean = false
+  ) {
     const state = this.state.selectedState
     if (state == null || state.type !== SelectionType.Repository) {
       return
@@ -912,19 +953,28 @@ export class App extends React.Component<IAppProps, IAppState> {
       filterText: '',
       showBranchList,
     })
+
+    if (shouldFocusHistory) {
+      this.repositoryViewRef.current?.setFocusHistoryNeeded()
+    }
   }
 
-  private showChanges() {
+  private async showChanges(shouldFocusChanges: boolean) {
     const state = this.state.selectedState
     if (state == null || state.type !== SelectionType.Repository) {
       return
     }
 
     this.props.dispatcher.closeCurrentFoldout()
-    return this.props.dispatcher.changeRepositorySection(
+
+    await this.props.dispatcher.changeRepositorySection(
       state.repository,
       RepositorySectionTab.Changes
     )
+
+    if (shouldFocusChanges) {
+      this.repositoryViewRef.current?.setFocusChangesNeeded()
+    }
   }
 
   private chooseRepository() {
@@ -1037,6 +1087,14 @@ export class App extends React.Component<IAppProps, IAppState> {
       window.addEventListener('keydown', this.onWindowKeyDown)
       window.addEventListener('keyup', this.onWindowKeyUp)
     }
+
+    document.addEventListener('focus', this.onDocumentFocus, {
+      capture: true,
+    })
+  }
+
+  private onDocumentFocus = (event: FocusEvent) => {
+    this.props.dispatcher.appFocusedElementChanged()
   }
 
   /**
@@ -1356,6 +1414,12 @@ export class App extends React.Component<IAppProps, IAppState> {
       this.state.currentFoldout &&
       this.state.currentFoldout.type === FoldoutType.AppMenu
 
+    // As Linux still uses the classic Electron menu, we are opting out of the
+    // custom menu that is shown as part of the title bar below
+    if (__LINUX__) {
+      return null
+    }
+
     // When we're in full-screen mode on Windows we only need to render
     // the title bar when the menu bar is active. On other platforms we
     // never render the title bar while in full-screen mode.
@@ -1408,11 +1472,7 @@ export class App extends React.Component<IAppProps, IAppState> {
     this.props.dispatcher.setUpdateBannerVisibility(false)
 
   private allPopupContent(): JSX.Element | null {
-    let { allPopups } = this.state
-
-    if (!enableStackedPopups() && this.state.currentPopup !== null) {
-      allPopups = [this.state.currentPopup]
-    }
+    const { allPopups } = this.state
 
     if (allPopups.length === 0) {
       return null
@@ -1558,7 +1618,6 @@ export class App extends React.Component<IAppProps, IAppState> {
             onDismissed={onPopupDismissedFn}
             selectedShell={this.state.selectedShell}
             selectedTheme={this.state.selectedTheme}
-            customTheme={this.state.customTheme}
             repositoryIndicatorsEnabled={this.state.repositoryIndicatorsEnabled}
           />
         )
@@ -2362,6 +2421,7 @@ export class App extends React.Component<IAppProps, IAppState> {
             showSideBySideDiff={showSideBySideDiff}
             currentBranchHasPullRequest={currentBranchHasPullRequest}
             onDismissed={onPopupDismissedFn}
+            onOpenInExternalEditor={this.onOpenInExternalEditor}
           />
         )
       }
@@ -2391,6 +2451,33 @@ export class App extends React.Component<IAppProps, IAppState> {
             dispatcher={this.props.dispatcher}
             notificationsDebugStore={this.props.notificationsDebugStore}
             repository={popup.repository}
+            onDismissed={onPopupDismissedFn}
+          />
+        )
+      }
+      case PopupType.PullRequestComment: {
+        return (
+          <PullRequestComment
+            key="pull-request-comment"
+            dispatcher={this.props.dispatcher}
+            shouldCheckoutBranch={popup.shouldCheckoutBranch}
+            shouldChangeRepository={popup.shouldChangeRepository}
+            repository={popup.repository}
+            pullRequest={popup.pullRequest}
+            comment={popup.comment}
+            emoji={this.state.emoji}
+            accounts={this.state.accounts}
+            onSubmit={onPopupDismissedFn}
+            onDismissed={onPopupDismissedFn}
+          />
+        )
+      }
+      case PopupType.UnknownAuthors: {
+        return (
+          <UnknownAuthors
+            key="unknown-authors"
+            authors={popup.authors}
+            onCommit={popup.onCommit}
             onDismissed={onPopupDismissedFn}
           />
         )
@@ -2576,6 +2663,9 @@ export class App extends React.Component<IAppProps, IAppState> {
     this.props.dispatcher.showPopup(popup)
   }
 
+  private setBanner = (banner: Banner) =>
+    this.props.dispatcher.setBanner(banner)
+
   private getDesktopAppContentsClassNames = (): string => {
     const { currentDragElement } = this.state
     const isCommitBeingDragged =
@@ -2667,6 +2757,16 @@ export class App extends React.Component<IAppProps, IAppState> {
     }
 
     this.props.dispatcher.openInExternalEditor(repository.path)
+  }
+
+  private onOpenInExternalEditor = (path: string) => {
+    const repository = this.state.selectedState?.repository
+    if (repository === undefined) {
+      return
+    }
+
+    const fullPath = Path.join(repository.path, path)
+    this.props.dispatcher.openInExternalEditor(fullPath)
   }
 
   private showRepository = (repository: Repository | CloningRepository) => {
@@ -2816,6 +2916,10 @@ export class App extends React.Component<IAppProps, IAppState> {
 
     if (tip.kind === TipState.Valid && tip.branch.upstreamRemoteName !== null) {
       remoteName = tip.branch.upstreamRemoteName
+
+      if (tip.branch.upstreamWithoutRemote !== tip.branch.name) {
+        remoteName = tip.branch.upstream
+      }
     }
 
     const currentFoldout = this.state.currentFoldout
@@ -3096,7 +3200,7 @@ export class App extends React.Component<IAppProps, IAppState> {
           accounts={state.accounts}
           externalEditorLabel={externalEditorLabel}
           resolvedExternalEditor={state.resolvedExternalEditor}
-          onOpenInExternalEditor={this.openFileInExternalEditor}
+          onOpenInExternalEditor={this.onOpenInExternalEditor}
           appMenu={state.appMenuState[0]}
           currentTutorialStep={state.currentOnboardingTutorialStep}
           onExitTutorial={this.onExitTutorial}
@@ -3151,13 +3255,7 @@ export class App extends React.Component<IAppProps, IAppState> {
 
     return (
       <div id="desktop-app-chrome" className={className}>
-        <AppTheme
-          theme={currentTheme}
-          customTheme={this.state.customTheme}
-          useCustomTheme={
-            this.state.selectedTheme === ApplicationTheme.HighContrast
-          }
-        />
+        <AppTheme theme={currentTheme} />
         {this.renderTitlebar()}
         {this.state.showWelcomeFlow
           ? this.renderWelcomeFlow()
@@ -3330,7 +3428,7 @@ export class App extends React.Component<IAppProps, IAppState> {
         )
       },
     }
-    this.props.dispatcher.setBanner(banner)
+    this.setBanner(banner)
   }
 
   private openThankYouCard = (

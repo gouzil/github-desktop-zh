@@ -7,6 +7,7 @@ import { Button } from '../lib/button'
 import { clamp } from '../../lib/clamp'
 import { createObservableRef } from '../lib/observable-ref'
 import { Tooltip, TooltipDirection, TooltipTarget } from '../lib/tooltip'
+import { AriaHasPopupType } from '../lib/aria-types'
 
 /** The button style. */
 export enum ToolbarButtonStyle {
@@ -108,6 +109,14 @@ export interface IToolbarButtonProps {
 
   readonly role?: string
   readonly ariaExpanded?: boolean
+  readonly ariaHaspopup?: AriaHasPopupType
+
+  /**
+   * Typically the contents of a button serve the purpose of describing the
+   * buttons use. However, ariaLabel can be used if the contents do not suffice.
+   * Such as when a button wraps an image and there is no text.
+   */
+  readonly ariaLabel?: string
 
   /**
    * Whether to only show the tooltip when the tooltip target overflows its
@@ -221,6 +230,8 @@ export class ToolbarButton extends React.Component<IToolbarButtonProps, {}> {
           tabIndex={this.props.tabIndex}
           role={this.props.role}
           ariaExpanded={this.props.ariaExpanded}
+          ariaHaspopup={this.props.ariaHaspopup}
+          ariaLabel={this.props.ariaLabel}
         >
           {progress}
           {icon}

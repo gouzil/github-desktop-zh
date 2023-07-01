@@ -29,6 +29,8 @@ import {
   InvalidGitAuthorNameMessage,
 } from '../lib/identifier-rules'
 import { Account } from '../../models/account'
+import { Octicon } from '../octicons'
+import * as OcticonSymbol from '../octicons/octicons.generated'
 
 interface IRepositorySettingsProps {
   readonly initialSelectedTab?: RepositorySettingsTab
@@ -63,6 +65,7 @@ interface IRepositorySettingsState {
   readonly initialCommitterEmail: string | null
   readonly errors?: ReadonlyArray<JSX.Element | string>
   readonly forkContributionTarget: ForkContributionTarget
+  readonly isLoadingGitConfig: boolean
 }
 
 export class RepositorySettings extends React.Component<
@@ -89,6 +92,7 @@ export class RepositorySettings extends React.Component<
       initialGitConfigLocation: GitConfigLocation.Global,
       initialCommitterName: null,
       initialCommitterEmail: null,
+      isLoadingGitConfig: true,
     }
   }
 
@@ -141,6 +145,7 @@ export class RepositorySettings extends React.Component<
       initialGitConfigLocation: gitConfigLocation,
       initialCommitterName: localCommitterName,
       initialCommitterEmail: localCommitterEmail,
+      isLoadingGitConfig: false,
     })
   }
 
@@ -178,37 +183,35 @@ export class RepositorySettings extends React.Component<
             selectedIndex={this.state.selectedTab}
             type={TabBarType.Vertical}
           >
-            <span>远程</span>
             <span>
+              <Octicon className="icon" symbol={OcticonSymbol.server} />
+              Remote
+            </span>
+            <span>
+              <Octicon className="icon" symbol={OcticonSymbol.file} />
               {__DARWIN__ ? '(Ignored) 忽略文件' : '(Ignored) 忽略文件'}
             </span>
-            <span>{__DARWIN__ ? 'Git 配置' : 'Git 配置'}</span>
+            <span>
+              <Octicon className="icon" symbol={OcticonSymbol.gitCommit} />
+              {__DARWIN__ ? 'Git 配置' : 'Git 配置'}
+            </span>
             {showForkSettings && (
-              <span>{__DARWIN__ ? '(Fork)分支行为' : '(Fork)分支行为'}</span>
+              <span>
+                <Octicon className="icon" symbol={OcticonSymbol.repoForked} />
+                {__DARWIN__ ? '(Fork)分支行为' : '(Fork)分支行为'}
+              </span>
             )}
           </TabBar>
 
           <div className="active-tab">{this.renderActiveTab()}</div>
         </div>
-        {this.renderFooter()}
+        <DialogFooter>
+          <OkCancelButtonGroup
+            okButtonText="Save"
+            okButtonDisabled={this.state.saveDisabled}
+          />
+        </DialogFooter>
       </Dialog>
-    )
-  }
-
-  private renderFooter() {
-    const tab = this.state.selectedTab
-    const remote = this.state.remote
-    if (tab === RepositorySettingsTab.Remote && !remote) {
-      return null
-    }
-
-    return (
-      <DialogFooter>
-        <OkCancelButtonGroup
-          okButtonText="保存"
-          okButtonDisabled={this.state.saveDisabled}
-        />
-      </DialogFooter>
     )
   }
 
@@ -265,6 +268,7 @@ export class RepositorySettings extends React.Component<
             globalEmail={this.state.globalCommitterEmail}
             onNameChanged={this.onCommitterNameChanged}
             onEmailChanged={this.onCommitterEmailChanged}
+            isLoadingGitConfig={this.state.isLoadingGitConfig}
           />
         )
       }

@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import { Repository } from '../../models/repository'
 import {
   ITextDiff,
@@ -49,6 +50,7 @@ import {
   getNumberOfDigits,
   MaxIntraLineDiffStringLength,
   getFirstAndLastClassesSideBySide,
+  textDiffEquals,
 } from './diff-helpers'
 import { showContextualMenu } from '../../lib/menu-item'
 import { getTokens } from './diff-syntax-mode'
@@ -344,6 +346,11 @@ export class SideBySideDiff extends React.Component<
 
   private isEntireDiffSelected(selection = document.getSelection()) {
     const { diffContainer } = this
+
+    if (selection?.rangeCount === 0) {
+      return false
+    }
+
     const ancestor = selection?.getRangeAt(0).commonAncestorContainer
 
     // This is an artefact of the selectAllChildren call in the onSelectAll
@@ -375,11 +382,9 @@ export class SideBySideDiff extends React.Component<
       this.clearListRowsHeightCache()
     }
 
-    if (this.props.diff.text !== prevProps.diff.text) {
+    if (!textDiffEquals(this.props.diff, prevProps.diff)) {
       this.diffToRestore = null
-      this.setState({
-        diff: this.props.diff,
-      })
+      this.setState({ diff: this.props.diff })
     }
 
     // Scroll to top if we switched to a new file
@@ -478,6 +483,9 @@ export class SideBySideDiff extends React.Component<
                 hoveredHunk={this.state.hoveredHunk}
                 isSelectable={canSelect(this.props.file)}
                 fileSelection={this.getSelection()}
+                // rows are memoized and include things like the
+                // noNewlineIndicator
+                rows={rows}
               />
             )}
           </AutoSizer>

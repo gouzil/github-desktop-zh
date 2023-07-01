@@ -26,22 +26,17 @@ interface IStartProps {
 export class Start extends React.Component<IStartProps, {}> {
   public render() {
     return (
-      <div id="start">
+      <section
+        id="start"
+        aria-label="欢迎来到 GitHub Desktop"
+        aria-describedby="start-description"
+      >
         <h1 className="welcome-title">欢迎来到 GitHub&nbsp;Desktop</h1>
         {!this.props.loadingBrowserAuth ? (
           <>
-            <p className="welcome-text">
-              GitHub Desktop是为GitHub和GitHub 企业贡献项目的无缝方式.
-              请在下面登录, 以开始您现有的项目.
-            </p>
-            <p className="welcome-text">
-              新的 GitHub?{' '}
-              <LinkButton
-                uri={CreateAccountURL}
-                className="create-account-link"
-              >
-                创建免费帐户.
-              </LinkButton>
+            <p id="start-description" className="welcome-text">
+              GitHub Desktop是一种无缝的方式, 可以在
+              GitHub和GitHub企业版。在下面登录以开始 您现有的项目。
             </p>
           </>
         ) : (
@@ -54,6 +49,7 @@ export class Start extends React.Component<IStartProps, {}> {
             className="button-with-icon"
             disabled={this.props.loadingBrowserAuth}
             onClick={this.signInWithBrowser}
+            autoFocus={true}
           >
             {this.props.loadingBrowserAuth && <Loading />}
             登录到 GitHub.com
@@ -68,6 +64,12 @@ export class Start extends React.Component<IStartProps, {}> {
           )}
         </div>
         <div className="skip-action-container">
+          <p className="welcome-text">
+            GitHub新手?{' '}
+            <LinkButton uri={CreateAccountURL} className="create-account-link">
+              创建您的免费账户
+            </LinkButton>
+          </p>
           <LinkButton className="skip-button" onClick={this.skip}>
             跳过这一步
           </LinkButton>
@@ -83,11 +85,10 @@ export class Start extends React.Component<IStartProps, {}> {
           </LinkButton>
           .<br />
           <br />
-          GitHub Desktop发送使用指标以改进产品并通知功能决策.
-          了解更多有关发送哪些指标以及我们如何使用这些指标的信息{' '}
-          <LinkButton uri={SamplesURL}>点击这里</LinkButton>.
+          GitHub Desktop发送使用指标以改进产品并为功能决策提供信息.{' '}
+          <LinkButton uri={SamplesURL}>了解有关用户指标的更多信息。</LinkButton>
         </div>
-      </div>
+      </section>
     )
   }
 

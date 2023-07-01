@@ -68,6 +68,7 @@ export class BranchSelect extends React.Component<
   private onItemClick = (branch: Branch, source: ClickSource) => {
     source.event.preventDefault()
     this.popoverRef.current?.closePopover()
+    this.setState({ selectedBranch: branch })
     this.props.onChange?.(branch)
   }
 

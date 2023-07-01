@@ -18,6 +18,8 @@ interface IGitConfigUserFormProps {
 
   readonly onNameChanged: (name: string) => void
   readonly onEmailChanged: (email: string) => void
+
+  readonly isLoadingGitConfig: boolean
 }
 
 interface IGitConfigUserFormState {
@@ -49,7 +51,8 @@ export class GitConfigUserForm extends React.Component<
     this.state = {
       emailIsOther:
         this.accountEmails.length > 0 &&
-        !this.accountEmails.includes(this.props.email),
+        !this.accountEmails.includes(this.props.email) &&
+        !this.props.isLoadingGitConfig,
     }
   }
 
@@ -71,7 +74,8 @@ export class GitConfigUserForm extends React.Component<
       this.setState({
         emailIsOther:
           this.accountEmails.length > 0 &&
-          !this.accountEmails.includes(this.props.email),
+          !this.accountEmails.includes(this.props.email) &&
+          !this.props.isLoadingGitConfig,
       })
     }
 
@@ -101,10 +105,12 @@ export class GitConfigUserForm extends React.Component<
         </Row>
         {this.renderEmailDropdown()}
         {this.renderEmailTextBox()}
-        <GitEmailNotFoundWarning
-          accounts={this.accounts}
-          email={this.props.email}
-        />
+        {this.state.emailIsOther ? (
+          <GitEmailNotFoundWarning
+            accounts={this.accounts}
+            email={this.props.email}
+          />
+        ) : null}
       </div>
     )
   }
@@ -164,6 +170,8 @@ export class GitConfigUserForm extends React.Component<
     // presented independently, without the email dropdown, not when presented
     // as a consequence of the option "Other" selected in the dropdown.
     const label = this.state.emailIsOther ? undefined : '邮箱'
+    // If there is not a label, provide a screen reader announcement.
+    const ariaLabel = label ? undefined : '邮箱'
 
     return (
       <Row>
@@ -174,6 +182,8 @@ export class GitConfigUserForm extends React.Component<
           value={this.props.email}
           disabled={this.props.disabled}
           onValueChanged={this.props.onEmailChanged}
+          ariaLabel={ariaLabel}
+          ariaControls="git-email-not-found-warning-for-screen-readers"
         />
       </Row>
     )

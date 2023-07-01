@@ -129,7 +129,7 @@ export class UnreachableCommitsDialog extends React.Component<
           : ''}{' '}
         在您的选择中最近提交的祖先路径中.{' '}
         <LinkButton uri="https://github.com/desktop/desktop/blob/development/docs/learn-more/unreachable-commits.md">
-          了解更多信息.
+          了解有关无法访问的提交的详细信息。
         </LinkButton>
       </div>
     )

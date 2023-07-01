@@ -49,6 +49,8 @@ export class WarnLocalChangesBeforeUndo extends React.Component<
         disabled={this.state.isLoading}
         onSubmit={this.onSubmit}
         onDismissed={this.props.onDismissed}
+        role="alertdialog"
+        ariaDescribedBy="undo-warning-message"
       >
         {this.getWarningDialog()}
         <DialogFooter>
@@ -64,7 +66,7 @@ export class WarnLocalChangesBeforeUndo extends React.Component<
     }
     return (
       <DialogContent>
-        <Row>
+        <Row id="undo-warning-message">
           您正在进行更改。撤销合并提交可能会导致其中一些更改丢失。是否仍要继续？
         </Row>
         <Row>

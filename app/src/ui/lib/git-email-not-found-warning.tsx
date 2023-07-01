@@ -3,6 +3,9 @@ import { Account } from '../../models/account'
 import { LinkButton } from './link-button'
 import { getDotComAPIEndpoint } from '../../lib/api'
 import { isAttributableEmailFor } from '../../lib/email'
+import { Octicon } from '../octicons'
+import * as OcticonSymbol from '../octicons/octicons.generated'
+import { AriaLiveContainer } from '../accessibility/aria-live-container'
 
 interface IGitEmailNotFoundWarningProps {
   /** The account the commit should be attributed to. */
@@ -17,24 +20,70 @@ interface IGitEmailNotFoundWarningProps {
  * email doesn't match any of the emails in their GitHub (Enterprise) account.
  */
 export class GitEmailNotFoundWarning extends React.Component<IGitEmailNotFoundWarningProps> {
-  public render() {
+  private buildMessage() {
     const { accounts, email } = this.props
 
-    if (
-      accounts.length === 0 ||
-      accounts.some(account => isAttributableEmailFor(account, email))
-    ) {
+    if (accounts.length === 0 || email.trim().length === 0) {
       return null
     }
 
-    return (
-      <div className="git-email-not-found-warning">
-        <span className="warning-icon">⚠️</span> 此电子邮件地址不匹配{' '}
-        {this.getAccountTypeDescription()}, 所以你的行为将被错误归因.{' '}
-        <LinkButton uri="https://docs.github.com/en/github/committing-changes-to-your-project/why-are-my-commits-linked-to-the-wrong-user">
+    const isAttributableEmail = accounts.some(account =>
+      isAttributableEmailFor(account, email)
+    )
+
+    const verb = !isAttributableEmail ? '不匹配' : '匹配'
+
+    const indicatorIcon = !isAttributableEmail ? (
+      <span className="warning-icon">⚠️</span>
+    ) : (
+      <span className="green-circle">
+        <Octicon className="check-icon" symbol={OcticonSymbol.check} />
+      </span>
+    )
+
+    const info = !isAttributableEmail ? (
+      <>
+        所以你的行为将被错误归因.{' '}
+        <LinkButton
+          ariaLabel="了解有关提交归因的更多信息"
+          uri="https://docs.github.com/en/github/committing-changes-to-your-project/why-are-my-commits-linked-to-the-wrong-user"
+        >
           查看更多.
         </LinkButton>
-      </div>
+      </>
+    ) : null
+
+    return (
+      <>
+        {indicatorIcon}
+        This email address {verb} {this.getAccountTypeDescription()}. {info}
+      </>
+    )
+  }
+
+  public render() {
+    const { accounts, email } = this.props
+
+    if (accounts.length === 0 || email.trim().length === 0) {
+      return null
+    }
+
+    /**
+     * Here we put the message in the top div for visual users immediately  and
+     * in the bottom div for screen readers. The screen reader content is
+     * debounced to avoid frequent updates from typing in the email field.
+     */
+    return (
+      <>
+        <div className="git-email-not-found-warning">{this.buildMessage()}</div>
+
+        <AriaLiveContainer
+          id="git-email-not-found-warning-for-screen-readers"
+          trackedUserInput={this.props.email}
+        >
+          {this.buildMessage()}
+        </AriaLiveContainer>
+      </>
     )
   }
 

@@ -82,6 +82,7 @@ export class ChangesSidebar extends React.Component<IChangesSidebarProps, {}> {
   private autocompletionProviders: ReadonlyArray<
     IAutocompletionProvider<any>
   > | null = null
+  private changesListRef = React.createRef<ChangesList>()
 
   public constructor(props: IChangesSidebarProps) {
     super(props)
@@ -248,6 +249,14 @@ export class ChangesSidebar extends React.Component<IChangesSidebarProps, {}> {
     const fullPath = Path.join(this.props.repository.path, path)
     openFile(fullPath, this.props.dispatcher)
   }
+  /**
+   * Called to open a file in the default external editor
+   *
+   * @param path The path of the file relative to the root of the repository
+   */
+  private onOpenItemInExternalEditor = (path: string) => {
+    this.props.onOpenInExternalEditor(path)
+  }
 
   /**
    * Toggles the selection of a given working directory file.
@@ -342,6 +351,10 @@ export class ChangesSidebar extends React.Component<IChangesSidebarProps, {}> {
     return this.renderMostRecentLocalCommit()
   }
 
+  public focus() {
+    this.changesListRef.current?.focus()
+  }
+
   public render() {
     const {
       workingDirectory,
@@ -371,8 +384,9 @@ export class ChangesSidebar extends React.Component<IChangesSidebarProps, {}> {
     )
 
     return (
-      <div className="panel">
+      <div className="panel" role="tabpanel" aria-labelledby="changes-tab">
         <ChangesList
+          ref={this.changesListRef}
           dispatcher={this.props.dispatcher}
           repository={this.props.repository}
           repositoryAccount={repositoryAccount}
@@ -407,7 +421,7 @@ export class ChangesSidebar extends React.Component<IChangesSidebarProps, {}> {
           showCoAuthoredBy={showCoAuthoredBy}
           coAuthors={coAuthors}
           externalEditorLabel={this.props.externalEditorLabel}
-          onOpenInExternalEditor={this.props.onOpenInExternalEditor}
+          onOpenItemInExternalEditor={this.onOpenItemInExternalEditor}
           onChangesListScrolled={this.props.onChangesListScrolled}
           changesListScrollTop={this.props.changesListScrollTop}
           stashEntry={this.props.changes.stashEntry}

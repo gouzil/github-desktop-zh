@@ -27,7 +27,7 @@ import {
   IDropdownSuggestedActionOption,
 } from '../suggested-actions/dropdown-suggested-action'
 import { PullRequestSuggestedNextAction } from '../../models/pull-request'
-import { enableStartingPullRequests } from '../../lib/feature-flag'
+import { KeyboardShortcut } from '../keyboard-shortcut/keyboard-shortcut'
 
 function formatMenuItemLabel(text: string) {
   if (__WIN32__ || __LINUX__) {
@@ -224,8 +224,13 @@ export class NoChanges extends React.Component<
     )
   }
 
-  private renderDiscoverabilityKeyboardShortcut(menuItem: IMenuItemInfo) {
-    return menuItem.acceleratorKeys.map((k, i) => <kbd key={k + i}>{k}</kbd>)
+  private renderDiscoverabilityKeyboardShortcut(menuItemInfo: IMenuItemInfo) {
+    return (
+      <KeyboardShortcut
+        darwinKeys={menuItemInfo.acceleratorKeys}
+        keys={menuItemInfo.acceleratorKeys}
+      />
+    )
   }
 
   private renderMenuBackedAction(
@@ -658,24 +663,6 @@ export class NoChanges extends React.Component<
 
     const title = `从当前分支创建一个拉取请求`
     const buttonText = `创建一个拉取请求`
-
-    if (!enableStartingPullRequests()) {
-      return (
-        <MenuBackedSuggestedAction
-          key="create-pr-action"
-          title={title}
-          menuItemId={'create-pull-request'}
-          description={description}
-          buttonText={buttonText}
-          discoverabilityContent={this.renderDiscoverabilityElements(
-            createMenuItem
-          )}
-          type="primary"
-          disabled={!createMenuItem.enabled}
-          onClick={this.onCreatePullRequestClicked}
-        />
-      )
-    }
 
     const previewPullMenuItem = this.getMenuItemInfo('preview-pull-request')
 

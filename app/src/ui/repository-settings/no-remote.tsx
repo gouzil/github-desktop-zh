@@ -16,9 +16,9 @@ export class NoRemote extends React.Component<INoRemoteProps, {}> {
     return (
       <DialogContent>
         <CallToAction actionTitle="Publish" onAction={this.props.onPublish}>
-          <div>
-            将存储库发布到GitHub. 需要帮助?{' '}
-            <LinkButton uri={HelpURL}>查看更多</LinkButton> 关于远程仓库.
+          <div className="no-remote-publish-message">
+            将您的存储库发布到GitHub。需要帮助?{' '}
+            <LinkButton uri={HelpURL}>了解有关远程存储库的更多信息.</LinkButton>
           </div>
         </CallToAction>
       </DialogContent>

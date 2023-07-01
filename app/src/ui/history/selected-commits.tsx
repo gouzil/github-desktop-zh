@@ -34,7 +34,6 @@ import { IChangesetData } from '../../lib/git'
 import { IConstrainedValue } from '../../lib/app-state'
 import { clamp } from '../../lib/clamp'
 import { pathExists } from '../lib/path-exists'
-import { enableMultiCommitDiffs } from '../../lib/feature-flag'
 import { UnreachableCommitsTab } from './unreachable-commits-dialog'
 
 interface ISelectedCommitsProps {
@@ -114,6 +113,13 @@ export class SelectedCommits extends React.Component<
 
   private onFileSelected = (file: CommittedFileChange) => {
     this.props.dispatcher.changeFileSelection(this.props.repository, file)
+  }
+
+  private onRowDoubleClick = (row: number) => {
+    const files = this.props.changesetData.files
+    const file = files[row]
+
+    this.props.onOpenInExternalEditor(file.path)
   }
 
   private onHistoryRef = (ref: HTMLDivElement | null) => {
@@ -252,6 +258,7 @@ export class SelectedCommits extends React.Component<
         selectedFile={this.props.selectedFile}
         availableWidth={availableWidth}
         onContextMenu={this.onContextMenu}
+        onRowDoubleClick={this.onRowDoubleClick}
       />
     )
   }
@@ -269,10 +276,7 @@ export class SelectedCommits extends React.Component<
   public render() {
     const { selectedCommits, isContiguous } = this.props
 
-    if (
-      selectedCommits.length > 1 &&
-      (!isContiguous || !enableMultiCommitDiffs())
-    ) {
+    if (selectedCommits.length > 1 && !isContiguous) {
       return this.renderMultipleCommitsBlankSlate()
     }
 
@@ -322,17 +326,10 @@ export class SelectedCommits extends React.Component<
         <div className="panel blankslate">
           <img src={BlankSlateImage} className="blankslate-image" alt="" />
           <div>
-            <p>
-              多个时无法显示差异{' '}
-              {enableMultiCommitDiffs() ? 'non-consecutive ' : ' '}选择提交.
-            </p>
+            <p>选择多个非连续时无法显示差异。</p>
             <div>您可以:</div>
             <ul>
-              <li>
-                选择单个提交{' '}
-                {enableMultiCommitDiffs() ? '或者选择多个提交 ' : ' '}
-                查看差异.
-              </li>
+              <li>选择单个提交或一系列连续提交以查看差异。</li>
               <li>将提交拖到“分支”菜单以快速拾取它们.</li>
               <li>拖动提交以压缩或重新排序它们.</li>
               <li>右键单击多个提交以查看选项.</li>
@@ -384,7 +381,7 @@ export class SelectedCommits extends React.Component<
       },
       {
         label: openInExternalEditor,
-        action: () => this.props.onOpenInExternalEditor(fullPath),
+        action: () => this.props.onOpenInExternalEditor(file.path),
         enabled: fileExistsOnDisk,
       },
       {

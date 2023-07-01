@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { encodePathAsUrl } from '../../lib/path'
 import { Button } from '../lib/button'
+import { KeyboardShortcut } from '../keyboard-shortcut/keyboard-shortcut'
 
 const BlankSlateImage = encodePathAsUrl(
   __dirname,
@@ -36,8 +37,12 @@ export class NoBranches extends React.Component<INoBranchesProps> {
           </Button>
 
           <div className="protip">
-            专业提示! 按 {this.renderShortcut()} 快速创建一个新分支
-            从应用程序中的任何地方
+            专业提示! 按{' '}
+            <KeyboardShortcut
+              darwinKeys={['⌘', '⇧', 'N']}
+              keys={['Ctrl', 'Shift', 'N']}
+            />{' '}
+            从应用程序中的任何位置快速创建新分支
           </div>
         </div>
       )
@@ -48,21 +53,5 @@ export class NoBranches extends React.Component<INoBranchesProps> {
         {this.props.noBranchesMessage ?? '对不起, 找不到分支'}
       </div>
     )
-  }
-
-  private renderShortcut() {
-    if (__DARWIN__) {
-      return (
-        <span>
-          <kbd>⌘</kbd> + <kbd>⇧</kbd> + <kbd>N</kbd>
-        </span>
-      )
-    } else {
-      return (
-        <span>
-          <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd>
-        </span>
-      )
-    }
   }
 }

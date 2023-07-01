@@ -78,7 +78,6 @@ export class TwoFactorAuthentication extends React.Component<
           <TextBox
             label="验证码"
             disabled={textEntryDisabled}
-            // eslint-disable-next-line jsx-a11y/no-autofocus
             autoFocus={true}
             onValueChanged={this.onOTPChange}
           />

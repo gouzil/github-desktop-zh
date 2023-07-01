@@ -14,8 +14,8 @@ interface IConfigureGitProps {
 export class ConfigureGit extends React.Component<IConfigureGitProps, {}> {
   public render() {
     return (
-      <div id="configure-git">
-        <h1 className="welcome-title">配置Git</h1>
+      <section id="configure-git" aria-label="Configure Git">
+        <h1 className="welcome-title">配置 Git</h1>
         <p className="welcome-text">
           这用于标识您创建的提交. 如果您发布提交, 任何人都可以看到这个信息.
         </p>
@@ -27,7 +27,7 @@ export class ConfigureGit extends React.Component<IConfigureGitProps, {}> {
         >
           <Button onClick={this.cancel}>取消</Button>
         </ConfigureGitUser>
-      </div>
+      </section>
     )
   }
 

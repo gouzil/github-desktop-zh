@@ -34,13 +34,17 @@ export class ChangeRepositoryAlias extends React.Component<
       <Dialog
         id="change-repository-alias"
         title={__DARWIN__ ? `${verb} 存储库别名` : `${verb} 存储库别名`}
+        ariaDescribedBy="change-repository-alias-description"
         onDismissed={this.props.onDismissed}
         onSubmit={this.changeAlias}
       >
         <DialogContent>
-          <p>为存储库选择新别名 "{nameOf(repository)}". </p>
+          <p id="change-repository-alias-description">
+            为存储库选择新别名 "{nameOf(repository)}".{' '}
+          </p>
           <p>
             <TextBox
+              ariaLabel="别名"
               value={this.state.newAlias}
               onValueChanged={this.onNameChanged}
             />

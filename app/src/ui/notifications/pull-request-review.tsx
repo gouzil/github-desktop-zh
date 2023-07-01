@@ -39,7 +39,7 @@ interface IPullRequestReviewState {
 }
 
 /**
- * * Dialog to show a pull request review.
+ * Dialog to show a pull request review.
  */
 export class PullRequestReview extends React.Component<
   IPullRequestReviewProps,
@@ -69,6 +69,7 @@ export class PullRequestReview extends React.Component<
 
     return (
       <PullRequestCommentLike
+        id="pull-request-review"
         dispatcher={dispatcher}
         accounts={accounts}
         repository={repository}

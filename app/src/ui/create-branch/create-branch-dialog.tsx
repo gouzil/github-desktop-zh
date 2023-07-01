@@ -346,9 +346,14 @@ export class CreateBranch extends React.Component<
     if (defaultBranch === null || defaultBranch.name === currentBranchName) {
       return (
         <div>
-          您的新分行将基于您当前签出的分行 (<Ref>{currentBranchName}</Ref>)
-          {this.renderForkLinkSuffix()}. <Ref>{currentBranchName}</Ref> 是{' '}
-          {defaultBranchLink} 为您的存储库.
+          您的新分支将以您当前签出的分支为基础 (<Ref>{currentBranchName}</Ref>)
+          {this.renderForkLinkSuffix()}.{' '}
+          {defaultBranch?.name === currentBranchName && (
+            <>
+              <Ref>{currentBranchName}</Ref> 是 {defaultBranchLink}{' '}
+              为您的存储库.
+            </>
+          )}
         </div>
       )
     } else {

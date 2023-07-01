@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-autofocus */
 import * as React from 'react'
 import { Dispatcher } from '../dispatcher'
 import {
@@ -20,6 +19,8 @@ import { getWelcomeMessage } from '../../lib/2fa'
 import { getDotComAPIEndpoint } from '../../lib/api'
 import { OkCancelButtonGroup } from '../dialog/ok-cancel-button-group'
 import { Button } from '../lib/button'
+import { HorizontalRule } from '../lib/horizontal-rule'
+import { PasswordTextBox } from '../lib/password-text-box'
 
 interface ISignInProps {
   readonly dispatcher: Dispatcher
@@ -40,6 +41,7 @@ const DefaultTitle = '登录'
 
 export class SignIn extends React.Component<ISignInProps, ISignInState> {
   private readonly dialogRef = React.createRef<Dialog>()
+
   public constructor(props: ISignInProps) {
     super(props)
 
@@ -227,9 +229,7 @@ export class SignIn extends React.Component<ISignInProps, ISignInState> {
           </Button>
         </Row>
 
-        <div className="horizontal-rule">
-          <span className="horizontal-rule-content">或者</span>
-        </div>
+        <HorizontalRule title="或者" />
 
         <Row>
           <TextBox
@@ -239,10 +239,9 @@ export class SignIn extends React.Component<ISignInProps, ISignInState> {
           />
         </Row>
         <Row>
-          <TextBox
+          <PasswordTextBox
             label="密码"
             value={this.state.password}
-            type="password"
             onValueChanged={this.onPasswordChanged}
           />
         </Row>
