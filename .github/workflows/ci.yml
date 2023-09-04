@@ -27,7 +27,7 @@ jobs:
             asset_name: GitHubDesktop-win32
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Use Node.js ${{ matrix.node }}
